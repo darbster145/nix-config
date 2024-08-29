@@ -3,21 +3,22 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    apple-silicon = "github:nixos/nixpkgs?ref=nixos-unstable";
+    apple-silicon.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
   outputs = { nixpkgs, ... } @ inputs: {
-      nixosConfigurations = {
-        brixos = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
-          modules = [ ./configuration.nix ];
-        };
-        nixi = nixpkgs.lib.nixosSystem {
-          system = "aarch64_linux";
-          modules = [ ./configuration.nix ];
-        };
+    nixosConfigurations = {
+      brixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        system = "x86_64-linux";
+        modules = [ ./hosts/brixos/configuration.nix];
       };
-   };
- };
+      nixi = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
+        system = "aarch64-linux";
+        modules = [ ./hosts/nixi/configuration.nix ];
+      };
+    };
+  };
 }
 
