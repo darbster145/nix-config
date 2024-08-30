@@ -107,6 +107,8 @@
     protonmail-bridge-gui
     thunderbird
     gearlever
+    youtube-music
+    youtube-tui
   ];
 
   programs.appimage = {
