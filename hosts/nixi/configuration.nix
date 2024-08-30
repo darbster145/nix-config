@@ -45,9 +45,11 @@
   # };
 
   # enable GPU support and audio
-  hardware.asahi.useExperimentalGPUDriver = true;
-  hardware.asahi.experimentalGPUInstallMode = "replace";
-  hardware.asahi.setupAsahiSound = true;
+  hardware.asahi = {
+    useExperimentalGPUDriver = true;
+    experimentalGPUInstallMode = "replace";
+    setupAsahiSound = true;
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -70,7 +72,7 @@
   # };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brad = {
