@@ -12,6 +12,7 @@
       #apple-silicon.nixosModules.apple-silicon-support
     ];
 
+  boot.kernelParams = [ "apple_dcp.show_notch=1" ];
 
   #hardware.asahi.extractPeripheralFirmware = false;
 
@@ -96,7 +97,14 @@
     stow
     oh-my-posh
     gcc
-    
+    asahi-nvram
+    asahi-bless
+    asahi-btsync
+    asahi-wifisync
+    protonvpn-gui
+    protonmail-bridge-gui
+    thunderbird
+    gearlever
   ];
 
   programs.appimage = {
