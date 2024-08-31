@@ -58,10 +58,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Gnome
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
-
   # Hyprland
   programs.hyprland.enable = true;
 
@@ -117,10 +113,7 @@
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Allow unfree packages
+    # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -133,6 +126,7 @@
     bitwarden
     thunderbird
     fastfetch
+    firefox-devedition
     gcc
     htop
     nvtopPackages.full
