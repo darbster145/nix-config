@@ -11,12 +11,12 @@
       brixos = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         system = "x86_64-linux";
-        modules = [ ./hosts/brixos/configuration.nix];
+        modules = [ ./nixos/hosts/brixos/configuration.nix];
       };
       nixi = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         system = "aarch64-linux";
-        modules = [ ./hosts/nixi/configuration.nix ];
+        modules = [ ./nixos/hosts/nixi/configuration.nix ];
       };
     };
   };
