@@ -131,11 +131,11 @@
     htop
     nvtopPackages.full
     btop
-    coolercontrol.coolercontrol-gui
-    linuxKernel.packages.linux_6_6.it87
-    coolercontrol.coolercontrold
-    coolercontrol.coolercontrol-liqctld
-    coolercontrol.coolercontrol-ui-data
+    #coolercontrol.coolercontrol-gui
+    #linuxKernel.packages.linux_6_6.it87
+    #coolercontrol.coolercontrold
+    #coolercontrol.coolercontrol-liqctld
+    #coolercontrol.coolercontrol-ui-data
     #lm-sensors
     steam
     kitty
@@ -145,6 +145,7 @@
     openiscsi
     stow
     pkgs.gnome.gnome-tweaks
+    signal-desktop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
