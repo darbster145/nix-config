@@ -10,7 +10,7 @@
 
   boot.initrd.availableKernelModules = [ "usbhid" "usb_storage" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "apple_dcp.show_notch=1" ];
+  boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =

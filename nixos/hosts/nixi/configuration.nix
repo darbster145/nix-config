@@ -14,7 +14,9 @@
 
   boot.kernelParams = [ "apple_dcp.show_notch=1" ];
 
-  #hardware.asahi.extractPeripheralFirmware = false;
+  services.udev.extraRules = ''
+    SUBSYSTEM=="power_supply", KERNEL=="macsmc-battery", ATTR{charge_control_end_threshold}="80"
+    '';
 
   # Use the grub EFI boot loader.
   boot.loader.grub = {
@@ -111,6 +113,13 @@
     gearlever
     youtube-music
     youtube-tui
+    waybar
+    brightnessctl
+    wofi
+    jellyfin-media-player
+    remmina
+    openconnect
+    openconnect_openssl
   ];
 
   programs.appimage = {
@@ -121,6 +130,10 @@
 
   fonts.packages = with pkgs; [
     fira-code
+    font-awesome
+    powerline-fonts
+    powerline-symbols
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
