@@ -113,13 +113,19 @@
     gearlever
     youtube-music
     youtube-tui
-    waybar
-    brightnessctl
     wofi
     jellyfin-media-player
     remmina
     openconnect
     openconnect_openssl
+    lazygit
+
+    # Hyperland Programs
+    waybar
+    brightnessctl
+    pavucontrol
+    
+
   ];
 
   programs.appimage = {
