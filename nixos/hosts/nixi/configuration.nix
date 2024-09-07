@@ -112,6 +112,8 @@
     lazygit
     ungoogled-chromium
     youtube-music
+    box64
+    adoptopenjdk-icedtea-web
     # Hyperland Programs
     waybar
     brightnessctl
