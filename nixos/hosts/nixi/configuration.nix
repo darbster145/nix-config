@@ -84,7 +84,8 @@
     neovim
     wget
     git
-    firefox-devedition
+    #firefox-devedition
+    firefox
     kitty 
     htop
     fastfetch
