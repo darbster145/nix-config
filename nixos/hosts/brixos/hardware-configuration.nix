@@ -24,11 +24,11 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-   #fileSystems."/home/brad/Games" = {
-  #    device = "/dev/disk/by-uuid/05e7966d-bde7-4983-8065-8fd20a312fd0";
-  #    fsType = "btrfs";
-  #    options = [ "nofail" "_netdev" "auto" "exec" "x-systemd.automount" ];
-  #    };
+  # fileSystems."/home/brad/Games" = {
+  # device = "/dev/disk/by-uuid/763dce71-5e05-4cb2-9abf-83d5753b5471";
+  # fsType = "ext4";
+  # options = [ "nofail" "_netdev" "auto" "exec" ];
+  #};
 
   swapDevices = [ ];
 

@@ -11,6 +11,7 @@
     ];
   
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelModules = [ "iscsi_tcp" ];
 
   # Bootloader
   boot.loader = {
@@ -91,19 +92,37 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Enable and configure the open-iscsi service
- # services.openiscsi = {
- #   enable = true;
- #   discoverPortal = "10.0.0.3:3260";
- #   name = "iqn.2005-10.org.freenas.ctl:lingames";
- #   
- #   # Logs in to all discovered targets
- #   enableAutoLoginOut = true;
-  #};
+  services.openiscsi = {
+    enable = true;  # Enable openiscsi daemon
+    name = "iqn.2024-09.com.nixos:my-nixos-initiator";  # Set your iSCSI initiator name
+    discoverPortal = "10.0.0.3";
+  };
+  
+  # Custom activation script to ensure iscsid is running and log in to the specific iSCSI target
+
+  # Custom systemd service for logging in to a specific iSCSI target
+  systemd.services.iscsi-login-lingames = {
+    description = "Login to iSCSI target iqn.2005-10.org.freenas.ctl:lingames";
+    after = [ "network.target" "iscsid.service" ];
+    wants = [ "iscsid.service" ];
+    serviceConfig = {
+      ExecStartPre = "${pkgs.openiscsi}/bin/iscsiadm -m discovery -t sendtargets -p 10.0.0.3";
+      ExecStart = "${pkgs.openiscsi}/bin/iscsiadm -m node -T iqn.2005-10.org.freenas.ctl:lingames -p 10.0.0.3 --login";
+      ExecStop = "${pkgs.openiscsi}/bin/iscsiadm -m node -T iqn.2005-10.org.freenas.ctl:lingames -p 10.0.0.3 --logout";
+      Restart = "on-failure";
+      RemainAfterExit = true;
+    };
+    wantedBy = [ "multi-user.target" ];
+  };
 
 
+  fileSystems."/home/brad/Games" = {
+    device = "/dev/disk/by-path/ip-10.0.0.3:3260-iscsi-iqn.2005-10.org.freenas.ctl:lingames-lun-0";  # Replace with the correct device path after iSCSI login
+    fsType = "ext4";  # Or the correct filesystem type
+    options = [ "_netdev" "nofail" ];  # Ensures network is up before mounting
+  };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
+    # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
