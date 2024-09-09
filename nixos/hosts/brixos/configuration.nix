@@ -115,11 +115,11 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  fileSystems."/home/brad/Games" = {
-    device = "/dev/disk/by-path/ip-10.0.0.3:3260-iscsi-iqn.2005-10.org.freenas.ctl:lingames-lun-0";  # Replace with the correct device path after iSCSI login
-    fsType = "ext4";  # Or the correct filesystem type
-    options = [ "_netdev" "nofail" ];  # Ensures network is up before mounting
-  };
+   fileSystems."/home/brad/Games" = {
+     device = "/dev/disk/by-path/ip-10.0.0.3:3260-iscsi-iqn.2005-10.org.freenas.ctl:lingames-lun-0";  # Replace with the correct device path after iSCSI login
+     fsType = "ext4";  # Or the correct filesystem type
+     options = [ "_netdev" "nofail" ];  # Ensures network is up before mounting
+   };
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brad = {
@@ -133,6 +133,18 @@
 
     # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+  };
+
+  programs.gamemode.enable = true;
+
+  environment.sessionVariables = {
+    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/brad/.steam/root/compatibilitytools.d";
+  };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -155,7 +167,6 @@
     #coolercontrol.coolercontrol-liqctld
     #coolercontrol.coolercontrol-ui-data
     #lm-sensors
-    steam
     kitty
     waybar
     dunst
@@ -164,6 +175,18 @@
     stow
     pkgs.gnome.gnome-tweaks
     signal-desktop
+    zoxide
+    fzf
+    bat
+    tldr
+    thefuck
+    lutris
+    adwaita-icon-theme
+    mangohud
+    protonup
+    bottles
+    heroic
+    trash-cli
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
