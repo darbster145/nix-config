@@ -92,14 +92,14 @@
   # services.xserver.libinput.enable = true;
 
   # Enable and configure the open-iscsi service
-  services.openiscsi = {
-    enable = true;
-    discoverPortal = "10.0.0.3:3260";
-    name = "iqn.2005-10.org.freenas.ctl:lingames";
-    
-    # Logs in to all discovered targets
-    enableAutoLoginOut = true;
-  };
+ # services.openiscsi = {
+ #   enable = true;
+ #   discoverPortal = "10.0.0.3:3260";
+ #   name = "iqn.2005-10.org.freenas.ctl:lingames";
+ #   
+ #   # Logs in to all discovered targets
+ #   enableAutoLoginOut = true;
+  #};
 
 
 
@@ -126,7 +126,7 @@
     bitwarden
     thunderbird
     fastfetch
-    firefox-devedition
+    firefox-devedition-bin
     gcc
     htop
     nvtopPackages.full

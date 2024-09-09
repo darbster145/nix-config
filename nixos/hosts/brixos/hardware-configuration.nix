@@ -8,26 +8,27 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/54cbf1f9-dc32-4baf-a447-0fbbfe0a92ab";
+    { device = "/dev/disk/by-uuid/97bacbdc-b537-42e5-9e99-1285355a8fbb";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A0CB-CFD4";
+    { device = "/dev/disk/by-uuid/27F3-5E4B";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
-  fileSystems."/home/brad/Games" = {
-      device = "/dev/disk/by-uuid/05e7966d-bde7-4983-8065-8fd20a312fd0";
-      fsType = "btrfs";
-      options = [ "nofail" "_netdev" "auto" "exec" "x-systemd.automount" ];
-      };
+
+   #fileSystems."/home/brad/Games" = {
+  #    device = "/dev/disk/by-uuid/05e7966d-bde7-4983-8065-8fd20a312fd0";
+  #    fsType = "btrfs";
+  #    options = [ "nofail" "_netdev" "auto" "exec" "x-systemd.automount" ];
+  #    };
 
   swapDevices = [ ];
 
