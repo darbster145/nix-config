@@ -115,7 +115,6 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-
   fileSystems."/home/brad/Games" = {
     device = "/dev/disk/by-path/ip-10.0.0.3:3260-iscsi-iqn.2005-10.org.freenas.ctl:lingames-lun-0";  # Replace with the correct device path after iSCSI login
     fsType = "ext4";  # Or the correct filesystem type
