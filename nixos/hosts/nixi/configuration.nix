@@ -54,6 +54,17 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  #services.xserver.enable = true;
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome = {
+  #  enable = true;
+  #  extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
+  #  extraGSettingsOverrides = ''
+  #    [org.gnome.mutter]
+  #    experimental-features=['scale-monitor-framebuffer']
+  #  '';
+  #};
+
   programs.hyprland.enable = true;
 
   # Configure keymap in X11
@@ -104,13 +115,13 @@
     thunderbird
     gearlever
     youtube-music
-    youtube-tui
     wofi
     jellyfin-media-player
     remmina
     openconnect
     openconnect_openssl
     lazygit
+    tmux
     ungoogled-chromium
     youtube-music
     box64
@@ -119,6 +130,8 @@
     waybar
     brightnessctl
     pavucontrol
+    onedrive
+    onedrivegui
   ];
 
   # Enable Appimages
