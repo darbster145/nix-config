@@ -130,8 +130,8 @@
     waybar
     brightnessctl
     pavucontrol
-    onedrive
-    onedrivegui
+    libreoffice
+    teams-for-linux
   ];
 
   # Enable Appimages
