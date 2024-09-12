@@ -8,7 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./apple-silicon-support
+      #./apple-silicon-support
+
       #apple-silicon.nixosModules.apple-silicon-support
     ];
 
@@ -133,6 +134,18 @@
     libreoffice
     teams-for-linux
   ];
+
+  services.flatpak = {
+    enable = true;
+    # remotes = [{
+    #   name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
+    # }];
+     packages = [
+       "com.brave.Browser"
+     ];  
+  };
+
+
 
   # Enable Appimages
   programs.appimage = {
