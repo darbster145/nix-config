@@ -8,9 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #./apple-silicon-support
-
-      #apple-silicon.nixosModules.apple-silicon-support
     ];
 
   boot.kernelParams = [ "apple_dcp.show_notch=1" ];
@@ -137,15 +134,19 @@
 
   services.flatpak = {
     enable = true;
-    # remotes = [{
-    #   name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo";
-    # }];
-     packages = [
-       "com.brave.Browser"
+    uninstallUnmanaged = true;
+    update.onActivation = true;
+    remotes = [
+      { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
+      { name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo"; }
+    ];
+    packages = [
+#     Example of how to add a package from the beta repo     
+#     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
+      "com.vscodium.codium"
+      "com.github.tchx84.Flatseal"
      ];  
   };
-
-
 
   # Enable Appimages
   programs.appimage = {
