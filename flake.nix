@@ -9,6 +9,8 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     spacebar.url = "github:cmacrae/spacebar/v1.4.0";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    firefox.url = "github:nix-community/flake-firefox-nightly";
+    firefox.inputs.nixpkgs.follows = "nixpkgs";
 
     # Optional: Homebrew taps for crapple
     homebrew-core = {
@@ -29,7 +31,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, apple-silicon, nix-flatpak, nix-darwin, nix-homebrew, ... } @ inputs: {
+  outputs = { self, nixpkgs, apple-silicon, nix-flatpak, nix-darwin, nix-homebrew, firefox, ... } @ inputs: {
 
     nixosConfigurations = {
       brixos = nixpkgs.lib.nixosSystem {
