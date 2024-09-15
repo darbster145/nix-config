@@ -2,11 +2,12 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, apple-silicon,... }:
+{ config, lib, pkgs, apple-silicon, ... }:
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
@@ -14,7 +15,7 @@
 
   services.udev.extraRules = ''
     SUBSYSTEM=="power_supply", KERNEL=="macsmc-battery", ATTR{charge_control_end_threshold}="80"
-    '';
+  '';
 
   # Use the grub EFI boot loader.
   boot.loader.grub = {
@@ -27,7 +28,7 @@
   networking.hostName = "nixi"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -95,7 +96,7 @@
     git
     #firefox-devedition
     firefox
-    kitty 
+    kitty
     htop
     fastfetch
     btop
@@ -130,6 +131,8 @@
     pavucontrol
     libreoffice
     teams-for-linux
+    wireguard-tools
+    cargo
   ];
 
   services.flatpak = {
@@ -141,11 +144,11 @@
       { name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo"; }
     ];
     packages = [
-#     Example of how to add a package from the beta repo     
-#     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
+      #     Example of how to add a package from the beta repo     
+      #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
       "com.vscodium.codium"
       "com.github.tchx84.Flatseal"
-     ];  
+    ];
   };
 
   # Enable Appimages

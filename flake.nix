@@ -1,5 +1,5 @@
 {
-  description = "Combined flake for Darwin and NixOS systems";
+  description = "Combined flake for NixOS and Darwin systems";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
