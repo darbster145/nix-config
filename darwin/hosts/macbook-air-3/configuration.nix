@@ -20,24 +20,25 @@
     oh-my-posh
     spacebar
     powershell
+    cargo
   ];
 
   homebrew = {
     enable = true;
     onActivation = {
       cleanup = "uninstall";
-      autoUpdate = true;            
+      autoUpdate = true;
       upgrade = true;
     };
     caskArgs.no_quarantine = true;
 
-    taps = [ 
-      "nikitabobko/homebrew-tap"      
-      "koekeishiya/formulae" 
+    taps = [
+      "nikitabobko/homebrew-tap"
+      "koekeishiya/formulae"
     ];
 
-    brews = [ 
-      "yabai" 
+    brews = [
+      "yabai"
       "skhd"
     ];
 
@@ -71,14 +72,14 @@
       "shortcat"
       "aerospace"
       "betterdisplay"
-        "kitty"
+      "kitty"
     ];
- };
+  };
 
   fonts.packages = with pkgs; [
-      fira-code
-      nerdfonts
- ];
+    fira-code
+    nerdfonts
+  ];
 
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
@@ -97,53 +98,53 @@
 
   system.defaults = {
     dock = {
-     autohide = true;
-     autohide-delay = 0.24;
-     mru-spaces = false;
-     magnification = false;
-     mineffect = "scale";
-     minimize-to-application = true;
-     persistent-others = [
-       "~/Applications"
-     ];
+      autohide = true;
+      autohide-delay = 0.24;
+      mru-spaces = false;
+      magnification = false;
+      mineffect = "scale";
+      minimize-to-application = true;
+      persistent-others = [
+        "~/Applications"
+      ];
     };
 
     menuExtraClock = {
-     Show24Hour = true;
-     ShowSeconds = true;
+      Show24Hour = true;
+      ShowSeconds = true;
     };
 
     finder = {
-     AppleShowAllExtensions = true;
-     AppleShowAllFiles = true;
+      AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
       FXPreferredViewStyle = "Nlsv";
-     FXDefaultSearchScope = "SCcf";
-     QuitMenuItem = true;
-     ShowPathbar = true;
-     ShowStatusBar = true;
-     _FXShowPosixPathInTitle = true;
+      FXDefaultSearchScope = "SCcf";
+      QuitMenuItem = true;
+      ShowPathbar = true;
+      ShowStatusBar = true;
+      _FXShowPosixPathInTitle = true;
     };
 
     loginwindow.LoginwindowText = "sugundezz";
-    
+
     screencapture.location = "~/Pictures/screenshots";
-    
+
     screensaver.askForPasswordDelay = 10;
 
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
     spaces.spans-displays = false;
-    
+
     trackpad = {
-     ActuationStrength = 1;
-     Clicking = true;
-     Dragging = false;
+      ActuationStrength = 1;
+      Clicking = true;
+      Dragging = false;
     };
-     
+
     NSGlobalDomain = {
-     AppleInterfaceStyle = "Dark";
-     "com.apple.sound.beep.volume" = 1.0;
-     NSScrollAnimationEnabled = true;
-     "com.apple.swipescrolldirection" = true;
+      AppleInterfaceStyle = "Dark";
+      "com.apple.sound.beep.volume" = 1.0;
+      NSScrollAnimationEnabled = true;
+      "com.apple.swipescrolldirection" = true;
     };
   };
 
