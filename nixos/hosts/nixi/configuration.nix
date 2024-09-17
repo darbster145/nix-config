@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, apple-silicon, ... }:
+{ config, lib, pkgs, apple-silicon, inputs, ... }:
 
 {
   imports =
@@ -94,9 +94,9 @@
     neovim
     wget
     git
-    #firefox-devedition
-    firefox
+    firefox-devedition-bin
     kitty
+    # inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
     htop
     fastfetch
     btop
@@ -133,6 +133,7 @@
     teams-for-linux
     wireguard-tools
     cargo
+    yakuake
   ];
 
   services.flatpak = {
