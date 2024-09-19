@@ -6,10 +6,10 @@
 
 {
   imports = [
-      ./hardware-configuration.nix
-      ./gnome.nix
-    ];
-  
+    ./hardware-configuration.nix
+    ./gnome.nix
+  ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "iscsi_tcp" ];
 
@@ -40,7 +40,7 @@
     enable = true;
     enable32Bit = true;
   };
-    
+
   # Set your time zone.
   time.timeZone = "America/Denver";
 
@@ -93,11 +93,11 @@
   # services.xserver.libinput.enable = true;
 
   services.openiscsi = {
-    enable = true;  # Enable openiscsi daemon
-    name = "iqn.2024-09.com.nixos:my-nixos-initiator";  # Set your iSCSI initiator name
+    enable = true; # Enable openiscsi daemon
+    name = "iqn.2024-09.com.nixos:my-nixos-initiator"; # Set your iSCSI initiator name
     discoverPortal = "10.0.0.3";
   };
-  
+
   # Custom activation script to ensure iscsid is running and log in to the specific iSCSI target
 
   # Custom systemd service for logging in to a specific iSCSI target
@@ -115,25 +115,25 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-   fileSystems."/home/brad/Games" = {
-     device = "/dev/disk/by-path/ip-10.0.0.3:3260-iscsi-iqn.2005-10.org.freenas.ctl:lingames-lun-0";  # Replace with the correct device path after iSCSI login
-     fsType = "ext4";  # Or the correct filesystem type
-     options = [ "_netdev" "nofail" ];  # Ensures network is up before mounting
-   };
+  fileSystems."/home/brad/Games" = {
+    device = "/dev/disk/by-path/ip-10.0.0.3:3260-iscsi-iqn.2005-10.org.freenas.ctl:lingames-lun-0"; # Replace with the correct device path after iSCSI login
+    fsType = "ext4"; # Or the correct filesystem type
+    options = [ "_netdev" "nofail" ]; # Ensures network is up before mounting
+  };
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
-    # Allow unfree packages
+  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  
+
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
@@ -157,6 +157,7 @@
     thunderbird
     fastfetch
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
+    inputs.zen-browser.packages."${system}".specific
     chromium
     gcc
     htop
@@ -202,11 +203,11 @@
       { name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo"; }
     ];
     packages = [
-#     Example of how to add a package from the beta repo     
-#     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
+      #     Example of how to add a package from the beta repo     
+      #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
       "com.vscodium.codium"
       "com.github.tchx84.Flatseal"
-     ];  
+    ];
   };
 
   # Enable Appimages
@@ -227,7 +228,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-   services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -243,7 +244,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
 
-programs.coolercontrol.enable = true;
+  programs.coolercontrol.enable = true;
 
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

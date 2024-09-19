@@ -11,6 +11,8 @@
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     firefox.url = "github:nix-community/flake-firefox-nightly";
     firefox.inputs.nixpkgs.follows = "nixpkgs";
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
+
 
     # Optional: Homebrew taps for crapple
     homebrew-core = {
@@ -54,11 +56,11 @@
     };
 
     darwinConfigurations = {
-      "MacBook-Air-3" = nix-darwin.lib.darwinSystem {
+      "JRSYS-MBA-01" = nix-darwin.lib.darwinSystem {
         specialArgs = { inherit inputs; };
         system = "aarch64-darwin";
         modules = [
-          ./darwin/hosts/macbook-air-3/configuration.nix
+          ./darwin/hosts/jrsys-mba-01/configuration.nix
         ];
       };
 
@@ -73,7 +75,7 @@
     };
 
     darwinPackages = {
-      "MacBook-Air-3" = self.darwinConfigurations."MacBook-Air-3".pkgs;
+      "JRSYS-MBA-01" = self.darwinConfigurations."JRSYS-MBA-01".pkgs;
       crapple = self.darwinConfigurations.crapple.pkgs;
     };
   };
