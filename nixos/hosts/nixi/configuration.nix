@@ -94,7 +94,7 @@
     neovim
     wget
     git
-    firefox-devedition-bin
+    firefox-devedition
     kitty
     # inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
     htop
