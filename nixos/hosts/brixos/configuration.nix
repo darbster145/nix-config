@@ -208,6 +208,7 @@
       #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
       "com.vscodium.codium"
       "com.github.tchx84.Flatseal"
+    ];
   };
 
   # Enable Appimages
