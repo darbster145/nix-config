@@ -192,6 +192,7 @@
     papirus-icon-theme
     openrgb-with-all-plugins
     gearlever
+    teams-for-linux
   ];
 
   services.flatpak = {
@@ -207,7 +208,6 @@
       #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
       "com.vscodium.codium"
       "com.github.tchx84.Flatseal"
-    ];
   };
 
   # Enable Appimages
