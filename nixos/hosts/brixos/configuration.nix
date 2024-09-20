@@ -39,6 +39,11 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr
+      libva
+      libvdpau-va-gl
+    ];
   };
 
   # Set your time zone.
@@ -157,7 +162,7 @@
     thunderbird
     fastfetch
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
-    inputs.zen-browser.packages."${system}".specific
+    inputs.zen-browser.packages."${system}".specific # cant get 4k video in YT, only in flatpak
     chromium
     gcc
     htop
@@ -193,6 +198,7 @@
     openrgb-with-all-plugins
     gearlever
     teams-for-linux
+    jellyfin-media-player
   ];
 
   services.flatpak = {
@@ -208,6 +214,7 @@
       #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
       "com.vscodium.codium"
       "com.github.tchx84.Flatseal"
+      "io.github.zen_browser.zen"
     ];
   };
 

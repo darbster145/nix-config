@@ -11,7 +11,7 @@
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
     firefox.url = "github:nix-community/flake-firefox-nightly";
     firefox.inputs.nixpkgs.follows = "nixpkgs";
-    zen-browser.url = "github:MarceColl/zen-browser-flake";
+    zen-browser.url = "github:ch4og/zen-browser-flake";
 
 
     # Optional: Homebrew taps for crapple
