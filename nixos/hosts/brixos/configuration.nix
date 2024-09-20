@@ -162,7 +162,7 @@
     thunderbird
     fastfetch
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
-    inputs.zen-browser.packages."${system}".specific # cant get 4k video in YT, only in flatpak
+    inputs.zen-browser.packages."${system}".specific
     chromium
     gcc
     htop
@@ -214,7 +214,7 @@
       #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
       "com.vscodium.codium"
       "com.github.tchx84.Flatseal"
-      "io.github.zen_browser.zen"
+      #"io.github.zen_browser.zen"
     ];
   };
 
