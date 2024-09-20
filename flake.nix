@@ -3,16 +3,39 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    apple-silicon.url = "github:tpwrules/nixos-apple-silicon";
-    home-manager.url = "github:nix-community/home-manager/master";
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    spacebar.url = "github:cmacrae/spacebar/v1.4.0";
-    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
-    firefox.url = "github:nix-community/flake-firefox-nightly";
-    firefox.inputs.nixpkgs.follows = "nixpkgs";
-    zen-browser.url = "github:ch4og/zen-browser-flake";
+    # stable.url = "nixpkgs/nixos-24.05";
+    # master.url = "nixpkgs/master";
 
+    apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spacebar.url = "github:cmacrae/spacebar/v1.4.0";
+
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+    firefox = {
+      url = "github:nix-community/flake-firefox-nightly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    zen-browser = {
+      url = "github:ch4og/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Optional: Homebrew taps for crapple
     homebrew-core = {
