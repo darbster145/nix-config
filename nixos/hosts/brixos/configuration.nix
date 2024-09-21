@@ -184,6 +184,7 @@
     signal-desktop
     zoxide
     fzf
+    discord
     bat
     tldr
     thefuck
