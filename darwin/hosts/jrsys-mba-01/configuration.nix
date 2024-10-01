@@ -21,6 +21,7 @@
     spacebar
     powershell
     cargo
+    kitty
   ];
 
   homebrew = {
@@ -34,16 +35,15 @@
 
     taps = [
       "nikitabobko/homebrew-tap"
-      "koekeishiya/formulae"
+      #"koekeishiya/formulae"
     ];
 
     brews = [
-      "yabai"
-      "skhd"
+      #"yabai"
+      #"skhd"
     ];
 
     casks = [
-      "microsoft-edge"
       "1password"
       "1password-cli"
       "bartender"
@@ -58,7 +58,6 @@
       "mac-mouse-fix"
       "microsoft-office"
       "microsoft-remote-desktop"
-      "notion"
       "raycast"
       "slack"
       "splashtop-business"
@@ -72,7 +71,6 @@
       "shortcat"
       "aerospace"
       "betterdisplay"
-      "kitty"
     ];
   };
 
