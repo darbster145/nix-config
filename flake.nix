@@ -84,6 +84,7 @@
         system = "aarch64-darwin";
         modules = [
           ./darwin/hosts/jrsys-mba-01/configuration.nix
+          nix-homebrew.darwinModules.nix-homebrew
         ];
       };
 
