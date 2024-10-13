@@ -14,21 +14,15 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/97bacbdc-b537-42e5-9e99-1285355a8fbb";
+    { device = "/dev/disk/by-uuid/38a2c469-e36f-4f61-a322-8d568df009f8";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/27F3-5E4B";
+    { device = "/dev/disk/by-uuid/47E9-F634";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
-
-  # fileSystems."/home/brad/Games" = {
-  # device = "/dev/disk/by-uuid/763dce71-5e05-4cb2-9abf-83d5753b5471";
-  # fsType = "ext4";
-  # options = [ "nofail" "_netdev" "auto" "exec" ];
-  #};
 
   swapDevices = [ ];
 

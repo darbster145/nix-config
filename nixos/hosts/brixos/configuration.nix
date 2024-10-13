@@ -10,8 +10,15 @@
     ./gnome.nix
   ];
 
+  boot.kernelParams = [ "acpi_enforce_resources=lax" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "iscsi_tcp" ];
+  boot.kernelModules = [ "iscsi_tcp"  "it87" "coretemp" ];
+  boot.extraModprobeConfig = ''
+    options it87 force_id=0x8689
+  '';
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    it87
+  ];
 
   # Bootloader
   boot.loader = {
@@ -25,6 +32,9 @@
       useOSProber = true;
     };
   };
+
+   virtualisation.virtualbox.host.enable = true;
+   users.extraGroups.vboxusers.members = [ "brad" ];
 
   networking.hostName = "brixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -66,6 +76,11 @@
 
   # Hyprland
   programs.hyprland.enable = true;
+  
+  # KDE Connect
+  programs.kdeconnect = {
+    enable = true;
+  };
 
   # Configure keymap in X11
   services.xserver = {
@@ -96,6 +111,9 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
   services.openiscsi = {
     enable = true; # Enable openiscsi daemon
@@ -168,12 +186,12 @@
     htop
     nvtopPackages.full
     btop
-    #coolercontrol.coolercontrol-gui
-    #linuxKernel.packages.linux_6_6.it87
-    #coolercontrol.coolercontrold
-    #coolercontrol.coolercontrol-liqctld
-    #coolercontrol.coolercontrol-ui-data
-    #lm-sensors
+    coolercontrol.coolercontrol-gui
+    linuxKernel.packages.linux_6_6.it87
+    coolercontrol.coolercontrold
+    coolercontrol.coolercontrol-liqctld
+    coolercontrol.coolercontrol-ui-data
+    lm_sensors
     kitty
     waybar
     dunst
@@ -191,6 +209,7 @@
     lutris
     adwaita-icon-theme
     mangohud
+    goverlay
     protonup
     bottles
     heroic
@@ -200,6 +219,15 @@
     gearlever
     teams-for-linux
     jellyfin-media-player
+    linuxKernel.packages.linux_6_11.it87
+    tangram
+    
+    # Gnome Extensions
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.appindicator
+    gnomeExtensions.tiling-assistant
+    gnomeExtensions.gsconnect
   ];
 
   services.flatpak = {
