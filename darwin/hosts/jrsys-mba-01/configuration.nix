@@ -22,12 +22,33 @@
     powershell
     cargo
     kitty
+    #_1password-gui
+    _1password
+    #bitwarden-cli
+    mkalias
+    raycast
+    slack
+    nmap
+    swift-quit
+    utm
+    zoom-us
+    wireguard-tools
+    wireguard-go
+    youtube-music
+    shortcat
   ];
+
+  nix-homebrew = {
+    enable = true;
+    enableRosetta = true;
+    user = "brad";
+    autoMigrate = true;
+  };
 
   homebrew = {
     enable = true;
     onActivation = {
-      cleanup = "uninstall";
+      cleanup = "zap";
       autoUpdate = true;
       upgrade = true;
     };
@@ -41,13 +62,12 @@
     brews = [
       #"yabai"
       #"skhd"
+      "mas"
     ];
 
     casks = [
+      #"bitwarden"
       "1password"
-      "1password-cli"
-      "bartender"
-      "bitwarden"
       "chromium"
       "crystalfetch"
       "disk-inventory-x"
@@ -58,20 +78,17 @@
       "mac-mouse-fix"
       "microsoft-office"
       "microsoft-remote-desktop"
-      "raycast"
-      "slack"
       "splashtop-business"
-      "swift-quit"
       "topnotch"
       "tunnelblick"
-      "utm"
-      "zoom"
       "zenmap"
-      "yt-music"
-      "shortcat"
       "aerospace"
-      "betterdisplay"
+      "zen-browser"
     ];
+
+    masApps = {
+      # "vscode" = 6444809156;
+    };
   };
 
   fonts.packages = with pkgs; [
@@ -92,6 +109,28 @@
 
   security.pam.enableSudoTouchIdAuth = true;
   system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
+
+  system.activationScripts.applications.text =
+    let
+      env = pkgs.buildEnv {
+        name = "system-applications";
+        paths = config.environment.systemPackages;
+        pathsToLink = "/Applications";
+      };
+    in
+    pkgs.lib.mkForce ''
+      # Set up applications.
+      echo "setting up /Applications..." >&2
+      rm -rf /Applications/Nix\ Apps
+      mkdir -p /Applications/Nix\ Apps
+      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+      while read src; do
+        app_name=$(basename "$src")
+        echo "copying $src" >&2
+        ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+      done
+    '';
+
   system.startup.chime = false;
 
   system.defaults = {
@@ -148,7 +187,7 @@
 
   system.keyboard = {
     enableKeyMapping = true;
-    remapCapsLockToEscape = true;
+    remapCapsLockToEscape = false;
   };
 }
 
