@@ -137,6 +137,7 @@
     wireguard-tools
     cargo
     yakuake
+    tangram
   ];
 
   services.flatpak = {
