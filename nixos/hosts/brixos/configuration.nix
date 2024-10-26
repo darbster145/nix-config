@@ -33,8 +33,12 @@
     };
   };
 
-   virtualisation.virtualbox.host.enable = true;
-   users.extraGroups.vboxusers.members = [ "brad" ];
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "brad" ];
+
+  zramSwap.enable = true;
+
+  powerManagement.enable = true;
 
   networking.hostName = "brixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -93,6 +97,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable Tailscale
+  services.tailscale.enable = true;
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -115,6 +122,11 @@
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
+  # Enable QMK and VIA
+  hardware.keyboard.qmk.enable = true;
+  
+  services.udev.packages = [ pkgs.via ];
+
   services.openiscsi = {
     enable = true; # Enable openiscsi daemon
     name = "iqn.2024-09.com.nixos:my-nixos-initiator"; # Set your iSCSI initiator name
@@ -136,6 +148,17 @@
       RemainAfterExit = true;
     };
     wantedBy = [ "multi-user.target" ];
+  };
+
+  # LACT systemd service
+   systemd.services.lact = {
+    description = "AMDGPU Control Daemon";
+    after = ["multi-user.target"];
+    wantedBy = ["multi-user.target"];
+    serviceConfig = {
+      ExecStart = "${pkgs.lact}/bin/lact daemon";
+    };
+    enable = true;
   };
 
   fileSystems."/home/brad/Games" = {
@@ -201,6 +224,7 @@
     pkgs.gnome.gnome-tweaks
     signal-desktop
     zoxide
+    oh-my-posh
     fzf
     discord
     bat
@@ -221,6 +245,10 @@
     jellyfin-media-player
     linuxKernel.packages.linux_6_11.it87
     tangram
+    libreoffice
+    lact
+    unigine-heaven
+    via
     
     # Gnome Extensions
     gnomeExtensions.blur-my-shell
@@ -228,6 +256,8 @@
     gnomeExtensions.appindicator
     gnomeExtensions.tiling-assistant
     gnomeExtensions.gsconnect
+    gnomeExtensions.hide-top-bar
+
   ];
 
   services.flatpak = {
