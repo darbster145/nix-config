@@ -38,10 +38,17 @@
     shortcat
   ];
 
+  nix-homebrew = {
+    enable = true;
+    enableRosetta = true;
+    user = "brad";
+    autoMigrate = true;
+  };
+
   homebrew = {
     enable = true;
     onActivation = {
-      cleanup = "uninstall";
+      cleanup = "zap";
       autoUpdate = true;
       upgrade = true;
     };
@@ -76,6 +83,7 @@
       "tunnelblick"
       "zenmap"
       "aerospace"
+      "zen-browser"
     ];
 
     masApps = {
