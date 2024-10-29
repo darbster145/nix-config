@@ -22,9 +22,9 @@
     powershell
     cargo
     kitty
-    #_1password-gui
+    #_1password-gui-beta
     _1password
-    #bitwarden-cli
+    #biitwarden-cli
     mkalias
     raycast
     slack
@@ -32,10 +32,12 @@
     swift-quit
     utm
     zoom-us
-    wireguard-tools
-    wireguard-go
+    #wireguard-tools
+    #wireguard-go
     youtube-music
     shortcat
+    bartender
+    aerospace
   ];
 
   nix-homebrew = {
@@ -55,7 +57,6 @@
     caskArgs.no_quarantine = true;
 
     taps = [
-      "nikitabobko/homebrew-tap"
       #"koekeishiya/formulae"
     ];
 
@@ -82,7 +83,6 @@
       "topnotch"
       "tunnelblick"
       "zenmap"
-      "aerospace"
       "zen-browser"
     ];
 
@@ -96,6 +96,10 @@
     nerdfonts
   ];
 
+  # Enable Tailscale
+  services.tailscale.enable = true;
+
+  #services.aerospace.enable = true;
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
   nixpkgs.config.allowUnfree = true;
@@ -146,6 +150,8 @@
       ];
     };
 
+    LaunchServices.LSQuarantine = false;
+
     menuExtraClock = {
       Show24Hour = true;
       ShowSeconds = true;
@@ -182,6 +188,9 @@
       "com.apple.sound.beep.volume" = 1.0;
       NSScrollAnimationEnabled = true;
       "com.apple.swipescrolldirection" = true;
+      AppleShowAllExtensions = true;
+      NSWindowShouldDragOnGesture = true;
+      NSUseAnimatedFocusRing = true;
     };
   };
 
