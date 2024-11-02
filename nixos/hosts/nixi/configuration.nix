@@ -131,6 +131,9 @@
     youtube-music
     box64
     adoptopenjdk-icedtea-web
+    _1password-gui-beta
+    _1password-cli
+
     # Hyperland Programs
     waybar
     brightnessctl
@@ -141,6 +144,9 @@
     cargo
     yakuake
     tangram
+    calls
+    linphone
+    inputs.zen-browser.packages."${system}".specific
   ];
 
   services.flatpak = {

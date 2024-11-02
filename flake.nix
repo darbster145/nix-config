@@ -50,10 +50,6 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-    AeroSpace = {
-      url = "github:nikitabobko/homebrew-tap";
-      flake = false;
-    };
   };
 
   outputs = { self, nixpkgs, apple-silicon, nix-flatpak, nix-darwin, nix-homebrew, firefox, ... } @ inputs: {
