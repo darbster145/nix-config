@@ -20,6 +20,8 @@
     oh-my-posh
     fira-code
     nerdfonts
+    aldente
+    kitty
   ];
 
   homebrew = {
@@ -34,20 +36,19 @@
 
     casks = [
       "firefox"
+      "google-chrome"
       "bitwarden"
-      "thunderbird"
-      "signal"
       "orangedrangon-android-messages"
       "AeroSpace"
-      "aldente"
-      "jellyfin-media-player"
       "istat-menus"
+      "jellyfin-media-player"
       "swift-quit"
       "topnotch"
       "protonvpn"
       "betterdisplay"
-      "kitty"
       "microsoft-office"
+      "thunderbird"
+      "signal"
     ];
 
     caskArgs.no_quarantine = true;
@@ -79,6 +80,9 @@
   # State version and host platform
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  # Enable Tailscale
+  services.tailscale.enable = true;
 
   # Touch ID for sudo
   security.pam.enableSudoTouchIdAuth = true;
@@ -165,4 +169,3 @@
     mutableTaps = false;
   };
 }
-

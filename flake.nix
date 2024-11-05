@@ -7,7 +7,7 @@
     # master.url = "nixpkgs/master";
 
     apple-silicon = {
-      url = "github:tpwrules/nixos-apple-silicon";
+      url = "github:zzywysm/nixos-asahi";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -48,10 +48,6 @@
     };
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
-      flake = false;
-    };
-    AeroSpace = {
-      url = "github:nikitabobko/homebrew-tap";
       flake = false;
     };
   };
