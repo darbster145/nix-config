@@ -100,6 +100,14 @@
   # Enable Tailscale
   services.tailscale.enable = true;
 
+  # Enable Sunshine
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -199,7 +207,8 @@
     wget
     curl
     git
-    bitwarden
+    _1password-gui-beta
+    _1password-cli
     thunderbird
     fastfetch
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
@@ -221,7 +230,7 @@
     wofi
     openiscsi
     stow
-    pkgs.gnome.gnome-tweaks
+    pkgs.gnome-tweaks
     signal-desktop
     zoxide
     oh-my-posh
@@ -249,6 +258,10 @@
     lact
     unigine-heaven
     via
+    barrier
+    input-leap
+    sunshine
+    gnome-remote-desktop
     
     # Gnome Extensions
     gnomeExtensions.blur-my-shell
@@ -301,7 +314,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -312,6 +325,14 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
   programs.coolercontrol.enable = true;
+
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
+
+
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+  services.xrdp.openFirewall = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
