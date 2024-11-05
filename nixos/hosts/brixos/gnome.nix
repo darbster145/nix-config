@@ -1,37 +1,36 @@
 { config, pkgs, ... }:
 
 {
-
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
   services = {
-  xserver = {
-    desktopManager.gnome = {
-      enable = true;
-      extraGSettingsOverridePackages = [pkgs.gnome.mutter];
-      extraGSettingsOverrides = ''
-        [org.gnome.mutter]
-        experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
-      '';
-    };
     displayManager = {
+      autoLogin = {
+        enable = true;
+        user = "brad";
+      };
+    };
+    xserver = {
+      desktopManager.gnome = {
+        enable = true;
+        extraGSettingsOverridePackages = [pkgs.mutter];
+        extraGSettingsOverrides = ''
+          [org.gnome.mutter]
+          experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
+        '';
+      };
+      displayManager = {
         gdm = {
           enable = true;
         };
-        autoLogin = {
-          enable = true;
-          user = "account";
-        };
       };
+    };
   };
-};
+  
 
   environment.gnome.excludePackages = (with pkgs; [
   gnome-photos
   gnome-tour
   xterm
   gnome-console
-]) ++ (with pkgs.gnome; [
   cheese # webcam tool
   gnome-music
   gnome-contacts
@@ -47,5 +46,4 @@
   hitori # sudoku game
   atomix # puzzle game
 ]);
-
 }

@@ -22,9 +22,7 @@
     powershell
     cargo
     kitty
-    #_1password-gui-beta
-    _1password
-    #biitwarden-cli
+    #bitwarden-cli
     mkalias
     raycast
     slack
@@ -38,6 +36,9 @@
     shortcat
     bartender
     aerospace
+    arc-browser
+
+    # zed-editor
   ];
 
   nix-homebrew = {
@@ -69,6 +70,7 @@
     casks = [
       #"bitwarden"
       "1password"
+      "1password-cli"
       "chromium"
       "crystalfetch"
       "disk-inventory-x"
@@ -84,6 +86,7 @@
       "tunnelblick"
       "zenmap"
       "zen-browser"
+      "via"
     ];
 
     masApps = {
@@ -93,7 +96,6 @@
 
   fonts.packages = with pkgs; [
     fira-code
-    nerdfonts
   ];
 
   # Enable Tailscale

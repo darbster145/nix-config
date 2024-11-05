@@ -9,6 +9,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../features/kanata.nix
     ];
 
   boot.kernelParams = [ "apple_dcp.show_notch=1" ];
@@ -24,6 +25,15 @@
     device = "nodev";
   };
   boot.loader.efi.canTouchEfiVariables = false;
+
+  # Enable zram swap
+  zramSwap.enable = true;
+
+  services.logind.extraConfig = ''
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey=ignore
+  '';
+
 
   networking.hostName = "nixi"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -50,10 +60,12 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
+  # Enable KDE6
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  #services.xserver.enable = true;
+  # Enable Gnome
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.desktopManager.gnome = {
   #  enable = true;
@@ -64,17 +76,21 @@
   #  '';
   #};
 
+  # Enable hyprland
   programs.hyprland.enable = true;
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
+
+  # Enable tailscale
+  services.tailscale.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brad = {
@@ -125,6 +141,10 @@
     youtube-music
     box64
     adoptopenjdk-icedtea-web
+    _1password-gui-beta
+    _1password-cli
+    #inputs.zen-browser.packages."${system}".specific
+
     # Hyperland Programs
     waybar
     brightnessctl
@@ -134,6 +154,10 @@
     wireguard-tools
     cargo
     yakuake
+    tangram
+    calls
+    linphone
+
   ];
 
   services.flatpak = {
