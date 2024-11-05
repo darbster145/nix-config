@@ -9,6 +9,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../features/kanata.nix
     ];
 
   boot.kernelParams = [ "apple_dcp.show_notch=1" ];
@@ -59,10 +60,12 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
+  # Enable KDE6
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  #services.xserver.enable = true;
+  # Enable Gnome
   #services.xserver.displayManager.gdm.enable = true;
   #services.xserver.desktopManager.gnome = {
   #  enable = true;
@@ -73,12 +76,10 @@
   #  '';
   #};
 
+  # Enable hyprland
   programs.hyprland.enable = true;
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
+  # Enable Bluetooth
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
 
@@ -90,43 +91,6 @@
 
   # Enable tailscale
   services.tailscale.enable = true;
-
-  # Enable kanata service
-  services.kanata = {
-    enable = true;
-    keyboards = {
-      internalKeyboard = {
-        devices = [
-          "/dev/input/by-path/platform-39b10c000.spi-cs-0-event-kbd"
-        ];
-        extraDefCfg = "process-unmapped-keys yes";
-        config = ''
-          (defsrc
-           caps a s d f j k l ;
-          )
-          (defvar
-           tap-time 150
-           hold-time 200
-          )
-          (defalias
-           caps (tap-hold 100 100 esc lctl)
-           a (tap-hold $tap-time $hold-time a lmet)
-           s (tap-hold $tap-time $hold-time s lalt)
-           d (tap-hold $tap-time $hold-time d lsft)
-           f (tap-hold $tap-time $hold-time f lctl)
-           j (tap-hold $tap-time $hold-time j rctl)
-           k (tap-hold $tap-time $hold-time k rsft)
-           l (tap-hold $tap-time $hold-time l ralt)
-           ; (tap-hold $tap-time $hold-time ; rmet)
-          )
-
-          (deflayer base
-           @caps @a  @s  @d  @f  @j  @k  @l  @;
-          )
-        '';
-      };
-    };
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brad = {
