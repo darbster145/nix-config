@@ -284,7 +284,7 @@
     packages = [
       #     Example of how to add a package from the beta repo     
       #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
-      "com.vscodium.codium"
+      #"com.vscodium.codium"
       "com.github.tchx84.Flatseal"
       #"io.github.zen_browser.zen"
     ];
