@@ -23,8 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    spacebar.url = "github:cmacrae/spacebar/v1.4.0";
-
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
 
     firefox = {

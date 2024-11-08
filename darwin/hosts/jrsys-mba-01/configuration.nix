@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+
+  imports = [
+    ../features/nix-homebrew.nix
+  ];
+
+
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     neovim
@@ -37,62 +43,8 @@
     bartender
     aerospace
     arc-browser
-
     # zed-editor
   ];
-
-  nix-homebrew = {
-    enable = true;
-    enableRosetta = true;
-    user = "brad";
-    autoMigrate = true;
-  };
-
-  homebrew = {
-    enable = true;
-    onActivation = {
-      cleanup = "zap";
-      autoUpdate = true;
-      upgrade = true;
-    };
-    caskArgs.no_quarantine = true;
-
-    taps = [
-      #"koekeishiya/formulae"
-    ];
-
-    brews = [
-      #"yabai"
-      #"skhd"
-      "mas"
-    ];
-
-    casks = [
-      #"bitwarden"
-      "1password"
-      "1password-cli"
-      "chromium"
-      "crystalfetch"
-      "disk-inventory-x"
-      "displaylink"
-      "firefox@developer-edition"
-      "istat-menus"
-      "jiggler"
-      "mac-mouse-fix"
-      "microsoft-office"
-      "microsoft-remote-desktop"
-      "splashtop-business"
-      "topnotch"
-      "tunnelblick"
-      "zenmap"
-      "zen-browser"
-      "via"
-    ];
-
-    masApps = {
-      # "vscode" = 6444809156;
-    };
-  };
 
   fonts.packages = with pkgs; [
     fira-code
@@ -101,7 +53,6 @@
   # Enable Tailscale
   services.tailscale.enable = true;
 
-  #services.aerospace.enable = true;
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
   nixpkgs.config.allowUnfree = true;
@@ -130,7 +81,7 @@
       rm -rf /Applications/Nix\ Apps
       mkdir -p /Applications/Nix\ Apps
       find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-      while read src; do
+      while read -r src; do
         app_name=$(basename "$src")
         echo "copying $src" >&2
         ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
@@ -198,7 +149,7 @@
 
   system.keyboard = {
     enableKeyMapping = true;
-    remapCapsLockToEscape = false;
+    remapCapsLockToEscape = true;
   };
 }
 

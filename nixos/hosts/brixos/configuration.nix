@@ -12,7 +12,7 @@
 
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "iscsi_tcp"  "it87" "coretemp" ];
+  boot.kernelModules = [ "iscsi_tcp" "it87" "coretemp" ];
   boot.extraModprobeConfig = ''
     options it87 force_id=0x8689
   '';
@@ -80,7 +80,7 @@
 
   # Hyprland
   programs.hyprland.enable = true;
-  
+
   # KDE Connect
   programs.kdeconnect = {
     enable = true;
@@ -132,7 +132,7 @@
 
   # Enable QMK and VIA
   hardware.keyboard.qmk.enable = true;
-  
+
   services.udev.packages = [ pkgs.via ];
 
   services.openiscsi = {
@@ -159,10 +159,10 @@
   };
 
   # LACT systemd service
-   systemd.services.lact = {
+  systemd.services.lact = {
     description = "AMDGPU Control Daemon";
-    after = ["multi-user.target"];
-    wantedBy = ["multi-user.target"];
+    after = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = "${pkgs.lact}/bin/lact daemon";
     };
@@ -262,7 +262,7 @@
     input-leap
     sunshine
     gnome-remote-desktop
-    
+
     # Gnome Extensions
     gnomeExtensions.blur-my-shell
     gnomeExtensions.dash-to-dock
