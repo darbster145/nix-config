@@ -6,6 +6,7 @@
     tldr
     zoxide
     fastfetch
+    lazygit
     #google-chrome
     raycast
     htop
@@ -21,7 +22,10 @@
     fira-code
     nerdfonts
     aldente
-    kitty
+    # kitty # Broken on Darwin
+    aerospace
+    _1password-cli
+    # kanata # Broken on Darwin
   ];
 
   homebrew = {
@@ -36,10 +40,12 @@
 
     casks = [
       "firefox"
+      "1password@nightly"
+      "microsoft-remote-desktop"
+      "kitty"
       "google-chrome"
       "bitwarden"
       "orangedrangon-android-messages"
-      "AeroSpace"
       "istat-menus"
       "jellyfin-media-player"
       "swift-quit"
@@ -49,6 +55,7 @@
       "microsoft-office"
       "thunderbird"
       "signal"
+      "zen-browser"
     ];
 
     caskArgs.no_quarantine = true;
@@ -66,7 +73,7 @@
 
   # Allow unfree and broken packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowBroken = true;
+  #nixpkgs.config.allowBroken = true;
 
   # Enable experimental features for flakes
   nix.settings.experimental-features = "nix-command flakes";
@@ -83,6 +90,7 @@
 
   # Enable Tailscale
   services.tailscale.enable = true;
+  
 
   # Touch ID for sudo
   security.pam.enableSudoTouchIdAuth = true;
@@ -163,7 +171,6 @@
       "homebrew/homebrew-core" = inputs.homebrew-core;
       "homebrew/homebrew-cask" = inputs.homebrew-cask;
       "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-      "nikitabobko/homebrew-tap" = inputs.AeroSpace;
     };
 
     mutableTaps = false;
