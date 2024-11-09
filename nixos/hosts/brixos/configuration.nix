@@ -12,7 +12,7 @@
 
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "iscsi_tcp"  "it87" "coretemp" ];
+  boot.kernelModules = [ "iscsi_tcp" "it87" "coretemp" ];
   boot.extraModprobeConfig = ''
     options it87 force_id=0x8689
   '';
@@ -80,7 +80,7 @@
 
   # Hyprland
   programs.hyprland.enable = true;
-  
+
   # KDE Connect
   programs.kdeconnect = {
     enable = true;
@@ -99,6 +99,14 @@
 
   # Enable Tailscale
   services.tailscale.enable = true;
+
+  # Enable Sunshine
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -124,7 +132,7 @@
 
   # Enable QMK and VIA
   hardware.keyboard.qmk.enable = true;
-  
+
   services.udev.packages = [ pkgs.via ];
 
   services.openiscsi = {
@@ -151,10 +159,10 @@
   };
 
   # LACT systemd service
-   systemd.services.lact = {
+  systemd.services.lact = {
     description = "AMDGPU Control Daemon";
-    after = ["multi-user.target"];
-    wantedBy = ["multi-user.target"];
+    after = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       ExecStart = "${pkgs.lact}/bin/lact daemon";
     };
@@ -199,7 +207,8 @@
     wget
     curl
     git
-    bitwarden
+    _1password-gui-beta
+    _1password-cli
     thunderbird
     fastfetch
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
@@ -221,7 +230,7 @@
     wofi
     openiscsi
     stow
-    pkgs.gnome.gnome-tweaks
+    pkgs.gnome-tweaks
     signal-desktop
     zoxide
     oh-my-posh
@@ -249,7 +258,11 @@
     lact
     unigine-heaven
     via
-    
+    barrier
+    input-leap
+    sunshine
+    gnome-remote-desktop
+
     # Gnome Extensions
     gnomeExtensions.blur-my-shell
     gnomeExtensions.dash-to-dock
@@ -271,7 +284,7 @@
     packages = [
       #     Example of how to add a package from the beta repo     
       #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
-      "com.vscodium.codium"
+      #"com.vscodium.codium"
       "com.github.tchx84.Flatseal"
       #"io.github.zen_browser.zen"
     ];
@@ -301,7 +314,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -312,6 +325,14 @@
   system.stateVersion = "24.05"; # Did you read the comment?
 
   programs.coolercontrol.enable = true;
+
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
+
+
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+  services.xrdp.openFirewall = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

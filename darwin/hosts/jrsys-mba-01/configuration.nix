@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+
+  imports = [
+    ../features/nix-homebrew.nix
+  ];
+
+
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     neovim
@@ -22,8 +28,6 @@
     powershell
     cargo
     kitty
-    #_1password-gui
-    _1password
     #bitwarden-cli
     mkalias
     raycast
@@ -32,69 +36,22 @@
     swift-quit
     utm
     zoom-us
-    wireguard-tools
-    wireguard-go
+    #wireguard-tools
+    #wireguard-go
     youtube-music
     shortcat
+    bartender
+    aerospace
+    arc-browser
+    # zed-editor
   ];
-
-  nix-homebrew = {
-    enable = true;
-    enableRosetta = true;
-    user = "brad";
-    autoMigrate = true;
-  };
-
-  homebrew = {
-    enable = true;
-    onActivation = {
-      cleanup = "zap";
-      autoUpdate = true;
-      upgrade = true;
-    };
-    caskArgs.no_quarantine = true;
-
-    taps = [
-      "nikitabobko/homebrew-tap"
-      #"koekeishiya/formulae"
-    ];
-
-    brews = [
-      #"yabai"
-      #"skhd"
-      "mas"
-    ];
-
-    casks = [
-      #"bitwarden"
-      "1password"
-      "chromium"
-      "crystalfetch"
-      "disk-inventory-x"
-      "displaylink"
-      "firefox@developer-edition"
-      "istat-menus"
-      "jiggler"
-      "mac-mouse-fix"
-      "microsoft-office"
-      "microsoft-remote-desktop"
-      "splashtop-business"
-      "topnotch"
-      "tunnelblick"
-      "zenmap"
-      "aerospace"
-      "zen-browser"
-    ];
-
-    masApps = {
-      # "vscode" = 6444809156;
-    };
-  };
 
   fonts.packages = with pkgs; [
     fira-code
-    nerdfonts
   ];
+
+  # Enable Tailscale
+  services.tailscale.enable = true;
 
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
@@ -124,7 +81,7 @@
       rm -rf /Applications/Nix\ Apps
       mkdir -p /Applications/Nix\ Apps
       find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-      while read src; do
+      while read -r src; do
         app_name=$(basename "$src")
         echo "copying $src" >&2
         ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
@@ -145,6 +102,8 @@
         "~/Applications"
       ];
     };
+
+    LaunchServices.LSQuarantine = false;
 
     menuExtraClock = {
       Show24Hour = true;
@@ -182,12 +141,15 @@
       "com.apple.sound.beep.volume" = 1.0;
       NSScrollAnimationEnabled = true;
       "com.apple.swipescrolldirection" = true;
+      AppleShowAllExtensions = true;
+      NSWindowShouldDragOnGesture = true;
+      NSUseAnimatedFocusRing = true;
     };
   };
 
   system.keyboard = {
     enableKeyMapping = true;
-    remapCapsLockToEscape = false;
+    remapCapsLockToEscape = true;
   };
 }
 
