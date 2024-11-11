@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
 
   imports = [
-    ../features/nix-homebrew.nix
+    ../../features/nix-homebrew.nix
   ];
 
 
@@ -43,6 +43,7 @@
     bartender
     aerospace
     arc-browser
+    inputs.zen-browser-darwin.packages."${system}"
     # zed-editor
   ];
 

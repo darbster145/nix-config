@@ -50,11 +50,11 @@
     };
     zen-browser-darwin = {
       url = "github:darbster145/zen-browser-darwin";
-      inputs.nixpkgs.follows= "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, apple-silicon, nix-flatpak, nix-darwin, nix-homebrew, firefox, ... } @ inputs: {
+  outputs = { self, nixpkgs, apple-silicon, nix-flatpak, nix-darwin, nix-homebrew, firefox, home-manager, ... } @ inputs: {
 
     nixosConfigurations = {
       brixos = nixpkgs.lib.nixosSystem {

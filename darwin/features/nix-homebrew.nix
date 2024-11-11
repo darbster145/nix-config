@@ -43,7 +43,6 @@
       "topnotch"
       "tunnelblick"
       "zenmap"
-      "zen-browser"
       "via"
     ];
 
