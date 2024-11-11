@@ -48,6 +48,10 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+    zen-browser-darwin = {
+      url = "github:darbster145/zen-browser-darwin";
+      inputs.nixpkgs.follows= "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, apple-silicon, nix-flatpak, nix-darwin, nix-homebrew, firefox, ... } @ inputs: {

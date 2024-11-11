@@ -22,9 +22,11 @@
     fira-code
     nerdfonts
     aldente
-    # kitty # Broken on Darwin
+    #kitty # Broken on Darwin
     aerospace
     _1password-cli
+    inputs.zen-browser-darwin.packages."${system}"
+    #_1password-gui # Broken on Darwin
     # kanata # Broken on Darwin
   ];
 
@@ -40,6 +42,8 @@
 
     casks = [
       "firefox"
+      "mac-mouse-fix"
+      "barrier"
       "1password@nightly"
       "microsoft-remote-desktop"
       "kitty"
@@ -55,7 +59,7 @@
       "microsoft-office"
       "thunderbird"
       "signal"
-      "zen-browser"
+      #"zen-browser"
     ];
 
     caskArgs.no_quarantine = true;
