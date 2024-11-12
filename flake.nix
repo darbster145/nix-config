@@ -100,11 +100,9 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        # FIXME replace with your hostname
-        your-hostname = nixpkgs.lib.nixosSystem {
+        brixos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            # > Our main nixos configuration file <
             ./nixos/configuration.nix
           ];
         };
@@ -125,3 +123,28 @@
       };
     };
 }
+
+
+#######
+#
+#    nixosConfigurations = {
+#      brixos = nixpkgs.lib.nixosSystem {
+#        specialArgs = { inherit inputs; };
+#        system = "x86_64-linux";
+#        modules = [
+#          ./nixos/hosts/brixos/configuration.nix
+#          nix-flatpak.nixosModules.nix-flatpak
+#        ];
+#      };
+#      nixi = nixpkgs.lib.nixosSystem {
+#        specialArgs = { inherit inputs; };
+#        system = "aarch64-linux";
+#        modules = [
+#          ./nixos/hosts/nixi/configuration.nix
+#          nix-flatpak.nixosModules.nix-flatpak
+#          apple-silicon.nixosModules.apple-silicon-support
+#        ];
+#      };
+#    };
+#
+
