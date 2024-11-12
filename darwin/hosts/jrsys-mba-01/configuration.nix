@@ -44,6 +44,7 @@
     aerospace
     arc-browser
     inputs.zen-browser-darwin.packages."${system}"
+    lazygit
     # zed-editor
   ];
 
