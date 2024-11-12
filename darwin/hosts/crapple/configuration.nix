@@ -26,6 +26,7 @@
     aerospace
     _1password-cli
     inputs.zen-browser-darwin.packages."${system}"
+    teams
     #_1password-gui # Broken on Darwin
     # kanata # Broken on Darwin
   ];
