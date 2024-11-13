@@ -66,6 +66,8 @@
     , home-manager
     , nix-flatpak
     , apple-silicon
+    , nix-darwin
+    , nix-homebrew
     , ...
     } @ inputs:
     let
@@ -119,6 +121,26 @@
             apple-silicon.nixosModules.apple-silicon-support
           ];
         };
+        
+      darwinConfigurations = {
+        "JRSYS-MBA-01" = nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs; };
+          system = "aarch64-darwin";
+          modules = [
+            ./darwin/hosts/jrsys-mba-01/configuration.nix
+            nix-homebrew.darwinModules.nix-homebrew
+          ];
+        };
+
+        crapple = nix-darwin.lib.darwinSystem {
+          specialArgs = { inherit inputs; };
+          system = "aarch64-darwin";
+          modules = [
+            ./darwin/hosts/crapple/configuration.nix
+            nix-homebrew.darwinModules.nix-homebrew
+          ];
+        };
+      };
     };
 
       # Standalone home-manager configuration entrypoint
