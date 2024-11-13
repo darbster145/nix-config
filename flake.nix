@@ -64,6 +64,8 @@
     { self
     , nixpkgs
     , home-manager
+    , nix-flatpak
+    , apple-silicon
     , ...
     } @ inputs:
     let
@@ -108,6 +110,16 @@
           ];
         };
       };
+        nixi = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          system = "aarch64-linux";
+          modules = [
+            ./nixos/hosts/nixi/configuration.nix
+            nix-flatpak.nixosModules.nix-flatpak
+            apple-silicon.nixosModules.apple-silicon-support
+          ];
+        };
+    };
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
@@ -122,30 +134,5 @@
       #    ];
       #  };
       #};
-    };
+  #};
 }
-
-
-#######
-#
-#    nixosConfigurations = {
-#      brixos = nixpkgs.lib.nixosSystem {
-#        specialArgs = { inherit inputs; };
-#        system = "x86_64-linux";
-#        modules = [
-#          ./nixos/hosts/brixos/configuration.nix
-#          nix-flatpak.nixosModules.nix-flatpak
-#        ];
-#      };
-#      nixi = nixpkgs.lib.nixosSystem {
-#        specialArgs = { inherit inputs; };
-#        system = "aarch64-linux";
-#        modules = [
-#          ./nixos/hosts/nixi/configuration.nix
-#          nix-flatpak.nixosModules.nix-flatpak
-#          apple-silicon.nixosModules.apple-silicon-support
-#        ];
-#      };
-#    };
-#
-
