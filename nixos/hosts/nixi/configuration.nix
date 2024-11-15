@@ -121,8 +121,8 @@
     stow
     oh-my-posh
     gcc
-    asahi-nvram
-    asahi-bless
+    inputs.self.packages.${pkgs.system}.asahi-nvram
+    inputs.self.packages.${pkgs.system}.asahi-bless
     asahi-btsync
     asahi-wifisync
     protonvpn-gui
@@ -144,6 +144,7 @@
     _1password-gui-beta
     _1password-cli
     #inputs.zen-browser.packages."${system}".specific
+    nix-prefetch
 
     # Hyperland Programs
     waybar
