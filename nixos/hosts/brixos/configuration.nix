@@ -212,7 +212,8 @@
     thunderbird
     fastfetch
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
-    inputs.zen-browser.packages."${system}".specific
+    #inputs.zen-browser.packages."${system}".specific
+    inputs.self.packages.${pkgs.system}.zen-browser
     chromium
     gcc
     htop
