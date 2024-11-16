@@ -121,6 +121,7 @@
     stow
     oh-my-posh
     gcc
+    inputs.self.packages.${pkgs.system}.zen-browser
     inputs.self.packages.${pkgs.system}.asahi-nvram
     inputs.self.packages.${pkgs.system}.asahi-bless
     asahi-btsync

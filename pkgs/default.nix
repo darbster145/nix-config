@@ -3,4 +3,5 @@
 pkgs: {
   asahi-bless = pkgs.callPackage ./asahi-bless/default.nix { };
   asahi-nvram = pkgs.callPackage ./asahi-nvram/default.nix { };
+  zen-browser = pkgs.callPackage ./zen-browser-unwrapped/package.nix { };
 }
