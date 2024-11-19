@@ -1,10 +1,10 @@
-{ inputs, ... }:
+{ inputs, config, ... }:
 
 {
   nix-homebrew = {
     enable = true;
     enableRosetta = true;
-    user = "brad";
+    user = "bradlee";
     mutableTaps = false;
     taps = {
       "homebrew/homebrew-core" = inputs.homebrew-core;
@@ -20,20 +20,17 @@
       autoUpdate = true;
       upgrade = true;
     };
+
     caskArgs.no_quarantine = true;
 
-    taps = [
-      #"koekeishiya/formulae"
-    ];
+    # Declared by nix-homebrew 
+    taps = builtins.attrNames config.nix-homebrew.taps;
 
     brews = [
-      #"yabai"
-      #"skhd"
       "mas"
     ];
 
     casks = [
-      #"bitwarden"
       "1password"
       "1password-cli"
       "chromium"
