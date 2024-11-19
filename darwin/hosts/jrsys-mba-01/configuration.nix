@@ -4,6 +4,7 @@
 
   imports = [
     ../../features/nix-homebrew.nix
+    ./homebrew.nix
   ];
 
 
