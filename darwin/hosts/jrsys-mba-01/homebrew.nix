@@ -4,7 +4,7 @@
   homebrew = {
     enable = true;
     onActivation = {
-      cleanup = "zap";
+      cleanup = "uninstall";
       autoUpdate = true;
       upgrade = true;
     };
@@ -19,7 +19,7 @@
     ];
 
     casks = [
-      "1password"
+      "1password@nightly"
       "1password-cli"
       "chromium"
       "crystalfetch"
@@ -36,6 +36,7 @@
       "tunnelblick"
       "zenmap"
       "via"
+      "thunderbird@daily"
     ];
 
     masApps = {
