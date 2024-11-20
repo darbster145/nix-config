@@ -33,7 +33,16 @@
     # don’t shutdown when power button is short-pressed
     HandlePowerKey=ignore
   '';
+  
+  # Auto optimize the nix store
+  nix.optimise.automatic = true;
 
+  # Auto Garbage Collect
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 15d";
+  };
 
   networking.hostName = "nixi"; # Define your hostname.
   # Pick only one of the below networking options.
