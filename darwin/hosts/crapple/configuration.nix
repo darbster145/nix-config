@@ -1,6 +1,12 @@
 { pkgs, inputs, ... }:
 
 {
+
+  imports = [
+    ../../features/nix-homebrew.nix
+    ./homebrew.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     neovim
     tldr
@@ -29,41 +35,6 @@
     #_1password-gui # Broken on Darwin
     # kanata # Broken on Darwin
   ];
-
-  homebrew = {
-    enable = true;
-    onActivation = {
-      cleanup = "uninstall";
-      autoUpdate = true;
-      upgrade = true;
-    };
-
-    brews = [];
-
-    casks = [
-      "firefox"
-      "mac-mouse-fix"
-      "barrier"
-      "1password@nightly"
-      "microsoft-remote-desktop"
-      "kitty"
-      "google-chrome"
-      "bitwarden"
-      "orangedrangon-android-messages"
-      "istat-menus"
-      "jellyfin-media-player"
-      "swift-quit"
-      "topnotch"
-      "protonvpn"
-      "betterdisplay"
-      "microsoft-office"
-      "thunderbird"
-      "signal"
-      #"zen-browser"
-    ];
-
-    caskArgs.no_quarantine = true;
-  };
 
   # Set friendly computername
   networking.computerName = "crapple";
@@ -164,19 +135,5 @@
   system.keyboard = {
     enableKeyMapping = true;
     remapCapsLockToEscape = true;
-  };
-
-  nix-homebrew = {
-    enable = true;
-    enableRosetta = true;
-    user = "brad";
-
-    taps = {
-      "homebrew/homebrew-core" = inputs.homebrew-core;
-      "homebrew/homebrew-cask" = inputs.homebrew-cask;
-      "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
-    };
-
-    mutableTaps = false;
   };
 }

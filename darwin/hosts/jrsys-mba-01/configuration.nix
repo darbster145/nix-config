@@ -4,6 +4,7 @@
 
   imports = [
     ../../features/nix-homebrew.nix
+    ./homebrew.nix
   ];
 
 
@@ -44,6 +45,7 @@
     aerospace
     arc-browser
     inputs.zen-browser-darwin.packages."${system}"
+    teams
     # zed-editor
   ];
 
@@ -55,7 +57,17 @@
   services.tailscale.enable = true;
 
   services.nix-daemon.enable = true;
+  
   nix.package = pkgs.nix;
+
+  nix.optimise.automatic = true;
+
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 0; Hour = 0; Minute = 0; };
+    options = "--delete-older-than 15d";
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = "nix-command flakes";
