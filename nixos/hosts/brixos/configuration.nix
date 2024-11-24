@@ -8,6 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ./gnome.nix
+    ./iscsi.nix
   ];
 
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
@@ -32,6 +33,8 @@
       useOSProber = true;
     };
   };
+
+  boot.supportedFilesystems = [ "ntfs" ];
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "brad" ];
@@ -144,19 +147,6 @@
   # Custom activation script to ensure iscsid is running and log in to the specific iSCSI target
 
   # Custom systemd service for logging in to a specific iSCSI target
-  systemd.services.iscsi-login-lingames = {
-    description = "Login to iSCSI target iqn.2005-10.org.freenas.ctl:lingames";
-    after = [ "network.target" "iscsid.service" ];
-    wants = [ "iscsid.service" ];
-    serviceConfig = {
-      ExecStartPre = "${pkgs.openiscsi}/bin/iscsiadm -m discovery -t sendtargets -p 10.0.0.3";
-      ExecStart = "${pkgs.openiscsi}/bin/iscsiadm -m node -T iqn.2005-10.org.freenas.ctl:lingames -p 10.0.0.3 --login";
-      ExecStop = "${pkgs.openiscsi}/bin/iscsiadm -m node -T iqn.2005-10.org.freenas.ctl:lingames -p 10.0.0.3 --logout";
-      Restart = "on-failure";
-      RemainAfterExit = true;
-    };
-    wantedBy = [ "multi-user.target" ];
-  };
 
   # LACT systemd service
   systemd.services.lact = {
@@ -167,12 +157,6 @@
       ExecStart = "${pkgs.lact}/bin/lact daemon";
     };
     enable = true;
-  };
-
-  fileSystems."/home/brad/Games" = {
-    device = "/dev/disk/by-path/ip-10.0.0.3:3260-iscsi-iqn.2005-10.org.freenas.ctl:lingames-lun-0"; # Replace with the correct device path after iSCSI login
-    fsType = "ext4"; # Or the correct filesystem type
-    options = [ "_netdev" "nofail" ]; # Ensures network is up before mounting
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -207,13 +191,14 @@
     wget
     curl
     git
+    cargo
     _1password-gui-beta
     _1password-cli
     thunderbird
     fastfetch
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
-    #inputs.zen-browser.packages."${system}".specific
-    inputs.self.packages.${pkgs.system}.zen-browser
+    inputs.zen-browser.packages."${system}".specific
+    #inputs.self.packages.${pkgs.system}.zen-browser
     chromium
     gcc
     htop
@@ -263,6 +248,7 @@
     input-leap
     sunshine
     gnome-remote-desktop
+    mpv
 
     # Gnome Extensions
     gnomeExtensions.blur-my-shell
