@@ -3,7 +3,7 @@
 
 set -eou pipefail
 
-PACKAGE_PATH=./
+PACKAGE_PATH=./pkgs/by-name/ze/zen-browser-unwrapped
 PACKAGE_NIX="$PACKAGE_PATH"/package.nix
 
 version="$(curl --silent 'https://api.github.com/repos/zen-browser/desktop/releases/latest' | jq --raw-output '.tag_name')"
@@ -18,4 +18,3 @@ firefoxVersion=$(cat "$src"/surfer.json | jq --raw-output '.version.version')
 
 # Update the Firefox version for the derivation.
 update-source-version zen-browser-unwrapped "$firefoxVersion" --version-key=firefoxVersion --source-key=firefoxSrc --file="$PACKAGE_NIX"
-

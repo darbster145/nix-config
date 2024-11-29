@@ -158,17 +158,16 @@ let
     rev = "9d639cd79d6b73081fadb3474dd7d73b89732e7b";
     hash = "sha256-+2JCaPp+c2BRM60xFCeY0pixIyo2a3rpTPaSt1kTfDw=";
   };
-  disableAVX = if stdenv.hostPlatform.system == "aarch64-linux" then "--disable-wasm-avx" else "";
 in
 buildStdenv.mkDerivation (finalAttrs: {
   pname = "zen-browser-unwrapped";
-  version = "1.0.1-a.19";
+  version = "1.0.1-a.22";
 
   src = fetchFromGitHub {
     owner = "zen-browser";
     repo = "desktop";
     rev = finalAttrs.version;
-    hash = "sha256-+eehLsnQoWapkSKo3zWFxaz6N68BryK1XsmSk48zbbk=";
+    hash = "sha256-5O0qrCyS1EIRCiSLtxK6WqCMB2LZzuPmiP1qT4wO85k=";
     fetchSubmodules = true;
   };
 
@@ -276,78 +275,71 @@ buildStdenv.mkDerivation (finalAttrs: {
       libxkbcommon
     ];
 
-  configureFlags =
-    [
-      "--disable-bootstrap"
-      "--disable-updater"
-      "${disableAVX}"
-      "--enable-default-toolkit=cairo-gtk3${lib.optionalString waylandSupport "-wayland"}"
-      "--enable-system-pixman"
-      "--with-distribution-id=org.nixos"
-      "--with-libclang-path=${llvmPackagesBuildBuild.libclang.lib}/lib"
-      "--with-system-ffi"
-      "--with-system-icu"
-      "--with-system-jpeg"
-      "--with-system-libevent"
-      "--with-system-libvpx"
-      "--with-system-nspr"
-      "--with-system-nss"
-      "--with-system-png" # needs APNG support
-      "--with-system-webp"
-      "--with-system-zlib"
-      "--with-wasi-sysroot=${wasiSysRoot}"
-      "--host=${buildStdenv.buildPlatform.config}"
-      "--target=${buildStdenv.hostPlatform.config}"
-    ]
-    ++ [
-      (lib.enableFeature alsaSupport "alsa")
-      (lib.enableFeature ffmpegSupport "ffmpeg")
-      (lib.enableFeature geolocationSupport "necko-wifi")
-      (lib.enableFeature gssSupport "negotiateauth")
-      (lib.enableFeature jackSupport "jack")
-      (lib.enableFeature jemallocSupport "jemalloc")
-      (lib.enableFeature pulseaudioSupport "pulseaudio")
-      (lib.enableFeature sndioSupport "sndio")
-      (lib.enableFeature webrtcSupport "webrtc")
-      # --enable-release adds -ffunction-sections & LTO that require a big amount
-      # of RAM, and the 32-bit memory space cannot handle that linking
-      (lib.enableFeature (!debugBuild && !stdenv.hostPlatform.is32bit) "release")
-      (lib.enableFeature enableDebugSymbols "debug-symbols")
-    ];
+  configureFlags = [
+    "--disable-bootstrap"
+    "--disable-updater"
+    "--enable-default-toolkit=cairo-gtk3${lib.optionalString waylandSupport "-wayland"}"
+    "--enable-system-pixman"
+    "--with-distribution-id=org.nixos"
+    "--with-libclang-path=${llvmPackagesBuildBuild.libclang.lib}/lib"
+    "--with-system-ffi"
+    "--with-system-icu"
+    "--with-system-jpeg"
+    "--with-system-libevent"
+    "--with-system-libvpx"
+    "--with-system-nspr"
+    "--with-system-nss"
+    "--with-system-png" # needs APNG support
+    "--with-system-webp"
+    "--with-system-zlib"
+    "--with-wasi-sysroot=${wasiSysRoot}"
+    "--host=${buildStdenv.buildPlatform.config}"
+    "--target=${buildStdenv.hostPlatform.config}"
+    (lib.enableFeature alsaSupport "alsa")
+    (lib.enableFeature ffmpegSupport "ffmpeg")
+    (lib.enableFeature geolocationSupport "necko-wifi")
+    (lib.enableFeature gssSupport "negotiateauth")
+    (lib.enableFeature jackSupport "jack")
+    (lib.enableFeature jemallocSupport "jemalloc")
+    (lib.enableFeature pulseaudioSupport "pulseaudio")
+    (lib.enableFeature sndioSupport "sndio")
+    (lib.enableFeature webrtcSupport "webrtc")
+    # --enable-release adds -ffunction-sections & LTO that require a big amount
+    # of RAM, and the 32-bit memory space cannot handle that linking
+    (lib.enableFeature (!debugBuild && !stdenv.hostPlatform.is32bit) "release")
+    (lib.enableFeature enableDebugSymbols "debug-symbols")
+  ] ++ lib.optional stdenv.hostPlatform.isAarch "--disable-wasm-avx";
 
-  configureScript = writeShellScript "configureMozconfig" ''
-    ${
-      if stdenv.hostPlatform.system == "aarch64-linux" then
-        ''
-          echo "ac_add_options --with-libclang-path=/usr/lib64" >> ./configs/linux/mozconfig
+  configureScript = writeShellScript "configureMozconfig" (
+    (lib.optionalString stdenv.hostPlatform.isAarch ''
+      echo "ac_add_options --with-libclang-path=/usr/lib64" >> ./configs/linux/mozconfig
 
-          # linux mozconfig
-          sed -i 's/x86-\(64\|64-v3\)/native/g' ./configs/linux/mozconfig
-          sed -i 's/x86_64-pc-linux/aarch64-linux-gnu/g' ./configs/linux/mozconfig
+      # linux mozconfig
+      sed -i 's/x86-\(64\|64-v3\)/native/g' ./configs/linux/mozconfig
+      sed -i 's/x86_64-pc-linux/aarch64-linux-gnu/g' ./configs/linux/mozconfig
 
-          # eme/widevine must be disabled on arm64 (thx google)
-          sed -i '/--enable-eme/s/^/# /' ./configs/common/mozconfig
-          sed -i 's/-msse3//g' ./configs/linux/mozconfig
-          sed -i 's/-mssse3//g' ./configs/linux/mozconfig
-          sed -i 's/-msse4.1//g' ./configs/linux/mozconfig
-          sed -i 's/-msse4.2//g' ./configs/linux/mozconfig
-          sed -i 's/-mavx2//g' ./configs/linux/mozconfig
-          sed -i 's/-mavx//g' ./configs/linux/mozconfig
-          sed -i 's/-mfma//g' ./configs/linux/mozconfig
-          sed -i 's/-maes//g' ./configs/linux/mozconfig
-          sed -i 's/-mpopcnt//g' ./configs/linux/mozconfig
-          sed -i 's/-mpclmul//g' ./configs/linux/mozconfig
-          sed -i 's/+avx2//g' ./configs/linux/mozconfig
-          sed -i 's/+sse4.1//g' ./configs/linux/mozconfig
-        ''
-      else
-        ""
-    }
+      # eme/widevine must be disabled on arm64 (thx google)
+      sed -i '/--enable-eme/s/^/# /' ./configs/common/mozconfig
+      sed -i 's/-msse3//g' ./configs/linux/mozconfig
+      sed -i 's/-mssse3//g' ./configs/linux/mozconfig
+      sed -i 's/-msse4.1//g' ./configs/linux/mozconfig
+      sed -i 's/-msse4.2//g' ./configs/linux/mozconfig
+      sed -i 's/-mavx2//g' ./configs/linux/mozconfig
+      sed -i 's/-mavx//g' ./configs/linux/mozconfig
+      sed -i 's/-mfma//g' ./configs/linux/mozconfig
+      sed -i 's/-maes//g' ./configs/linux/mozconfig
+      sed -i 's/-mpopcnt//g' ./configs/linux/mozconfig
+      sed -i 's/-mpclmul//g' ./configs/linux/mozconfig
+      sed -i 's/+avx2//g' ./configs/linux/mozconfig
+      sed -i 's/+sse4.1//g' ./configs/linux/mozconfig
 
-    for flag in $@; do
-      echo "ac_add_options $flag" >> mozconfig
-    done
-  '';
+    '')
+    + ''
+      for flag in $@; do
+        echo "ac_add_options $flag" >> mozconfig
+      done
+    ''
+  );
 
   # To the person reading this wondering what is going on here, this is what
   # happens when a build process relies on Git. Normally you would use `fetchgit`
@@ -417,8 +409,8 @@ buildStdenv.mkDerivation (finalAttrs: {
       titaniumtown
     ];
     platforms = [
-      "x86_64-linux"
       "aarch64-linux"
+      "x86_64-linux"
     ];
   };
 
@@ -442,4 +434,3 @@ buildStdenv.mkDerivation (finalAttrs: {
     inherit wasiSysRoot;
   };
 })
-
