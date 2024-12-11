@@ -16,6 +16,8 @@
     fastfetch
     ranger
     thefuck
+    remmina
+    #xquartz
     unzip
     zoxide
     fzf
@@ -37,17 +39,17 @@
     swift-quit
     utm
     zoom-us
-    #wireguard-tools
-    #wireguard-go
+    wireguard-tools
+    wireguard-go
     youtube-music
     shortcat
     bartender
     aerospace
     arc-browser
     inputs.zen-browser-darwin.packages."${system}"
-    teams
-    # zed-editor
+    zed-editor
     firefox-devedition-unwrapped
+    #teams
   ];
 
   fonts.packages = with pkgs; [

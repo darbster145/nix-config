@@ -40,6 +40,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser-darwin = {
+      url = "github:darbster145/zen-browser-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Optional: Homebrew taps for crapple
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -53,10 +58,7 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-    zen-browser-darwin = {
-      url = "github:darbster145/zen-browser-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
   };
 
   outputs =

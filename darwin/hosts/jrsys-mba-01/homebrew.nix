@@ -29,6 +29,7 @@
       "jiggler"
       "mac-mouse-fix"
       "microsoft-office"
+      "microsoft-auto-update"
       "microsoft-remote-desktop"
       "splashtop-business"
       "topnotch"
@@ -36,6 +37,7 @@
       "zenmap"
       "via"
       "thunderbird@daily"
+      "microsoft-teams"
     ];
 
     masApps = {
