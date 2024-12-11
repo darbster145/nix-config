@@ -47,11 +47,17 @@
     inputs.zen-browser-darwin.packages."${system}"
     teams
     # zed-editor
+    firefox-devedition-unwrapped
   ];
 
   fonts.packages = with pkgs; [
     fira-code
   ];
+
+  # Enable Janky Borders
+  services.jankyborders = {
+    enable = true;
+  };
 
   # Enable Tailscale
   services.tailscale.enable = true;
@@ -157,6 +163,10 @@
       AppleShowAllExtensions = true;
       NSWindowShouldDragOnGesture = true;
       NSUseAnimatedFocusRing = true;
+      InitialKeyRepeat = 25;
+      KeyRepeat = 1;
+      NSAutomaticCapitalizationEnabled = true;
+      NSDisableAutomaticTermination = true;
     };
   };
 

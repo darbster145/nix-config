@@ -25,7 +25,6 @@
       "crystalfetch"
       "disk-inventory-x"
       "displaylink"
-      "firefox@developer-edition"
       "istat-menus"
       "jiggler"
       "mac-mouse-fix"
