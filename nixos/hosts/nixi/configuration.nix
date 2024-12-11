@@ -1,5 +1,5 @@
 # Edit this configuration file to define what should be installed 
-# your system. Help is available in the configuration.nix(5) man page, on
+# your system. Help is available in the configuration.nix(5) man page on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, apple-silicon, inputs, ... }:
@@ -13,6 +13,26 @@
     ];
 
   boot.kernelParams = [ "apple_dcp.show_notch=1" ];
+
+  nix.buildMachines = [
+    {
+      hostName = "10.0.0.11";   # IP of brixos
+      sshUser = "brad";         # SSH user for remote login
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];# System architecture of the remote machine
+      maxJobs = 32;              # Maximum parallel jobs on the remote builder
+      speedFactor = 1;          # Adjust for prioritizing this builder
+      supportedFeatures = [ "cross-compilation" ];  # Optional: Add specific features if needed
+    }
+  ];
+
+  nix.distributedBuilds = true;   # Enable distributed builds
+  nix.settings.trusted-users = [ "root" "brad" ]; # Ensure brad is a trusted user
+  nix.settings.sandbox = true;   # Enable sandboxing
 
   services.udev.extraRules = ''
     SUBSYSTEM=="power_supply", KERNEL=="macsmc-battery", ATTR{charge_control_end_threshold}="80"
@@ -114,6 +134,8 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.config.allowUnsupportedSystem = true;
+
   # System Packages
   environment.systemPackages = with pkgs; [
     neovim
@@ -121,7 +143,6 @@
     git
     firefox-devedition
     kitty
-    # inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
     htop
     fastfetch
     btop
@@ -130,13 +151,14 @@
     stow
     oh-my-posh
     gcc
-    inputs.self.packages.${pkgs.system}.zen-browser
-    inputs.self.packages.${pkgs.system}.asahi-nvram
-    inputs.self.packages.${pkgs.system}.asahi-bless
+    firefox
+    bitwarden
+    inputs.zen-browser.packages.${pkgs.system}.default
+    asahi-bless
+    asahi-nvram
     asahi-btsync
     asahi-wifisync
     protonvpn-gui
-    protonmail-bridge-gui
     thunderbird
     gearlever
     youtube-music
@@ -153,8 +175,8 @@
     adoptopenjdk-icedtea-web
     _1password-gui-beta
     _1password-cli
-    #inputs.zen-browser.packages."${system}".specific
     nix-prefetch
+    adoptopenjdk-icedtea-web
 
     # Hyperland Programs
     waybar
@@ -168,6 +190,7 @@
     tangram
     calls
     linphone
+    wlogout
 
   ];
 
@@ -199,7 +222,7 @@
     font-awesome
     powerline-fonts
     powerline-symbols
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    #(nerd-fonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

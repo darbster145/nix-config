@@ -7,7 +7,7 @@
     # master.url = "nixpkgs/master";
 
     apple-silicon = {
-      url = "github:zzywysm/nixos-asahi";
+      url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -36,7 +36,7 @@
     };
 
     zen-browser = {
-      url = "github:ch4og/zen-browser-flake";
+      url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -112,7 +112,7 @@
         };
         nixi = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "aarch64-linux";
+          #system = "aarch64-linux";
           modules = [
             ./nixos/hosts/nixi/configuration.nix
             nix-flatpak.nixosModules.nix-flatpak

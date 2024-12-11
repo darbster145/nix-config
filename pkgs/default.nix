@@ -1,7 +1,5 @@
 # Custom packages, that can be defined similarly to ones from nixpkgs
 # You can build them using 'nix build .#example'
 pkgs: {
-  asahi-bless = pkgs.callPackage ./asahi-bless/default.nix { };
-  asahi-nvram = pkgs.callPackage ./asahi-nvram/default.nix { };
-  zen-browser = pkgs.callPackage ./zen-browser-unwrapped/package.nix { };
+  #zen-browser = pkgs.callPackage ./zen-browser-unwrapped/package.nix { };
 }
