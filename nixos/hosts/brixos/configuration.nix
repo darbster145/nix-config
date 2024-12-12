@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, inputs, ... }:
 
 {
@@ -34,6 +30,12 @@
     };
   };
 
+  nix.settings.trusted-users = [ "root" "brad" ]; # Replace with your username
+
+  nix.settings.sandbox = true;
+
+  systemd.tpm2.enable = false;
+
   boot.supportedFilesystems = [ "ntfs" ];
 
   virtualisation.virtualbox.host.enable = true;
@@ -43,14 +45,8 @@
 
   powerManagement.enable = true;
 
-  networking.hostName = "brixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "brixos";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
   networking.networkmanager.enable = true;
 
   hardware.graphics = {
@@ -63,7 +59,6 @@
     ];
   };
 
-  # Set your time zone.
   time.timeZone = "America/Denver";
 
   # Select internationalisation properties.
@@ -119,23 +114,15 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   # Enable QMK and VIA
   hardware.keyboard.qmk.enable = true;
-
   services.udev.packages = [ pkgs.via ];
 
   services.openiscsi = {
@@ -143,10 +130,6 @@
     name = "iqn.2024-09.com.nixos:my-nixos-initiator"; # Set your iSCSI initiator name
     discoverPortal = "10.0.0.3";
   };
-
-  # Custom activation script to ensure iscsid is running and log in to the specific iSCSI target
-
-  # Custom systemd service for logging in to a specific iSCSI target
 
   # LACT systemd service
   systemd.services.lact = {
@@ -159,7 +142,6 @@
     enable = true;
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
@@ -169,8 +151,15 @@
     ];
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    crossSystem = {
+      config = "aarch64-linux";
+    };
+  };
 
   programs.steam = {
     enable = true;
@@ -183,9 +172,6 @@
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/brad/.steam/root/compatibilitytools.d";
   };
 
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -197,12 +183,10 @@
     thunderbird
     fastfetch
     inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
-    inputs.zen-browser.packages."${system}".specific
-    #inputs.self.packages.${pkgs.system}.zen-browser
+    inputs.zen-browser.packages."${system}".default
     chromium
     gcc
     htop
-    nvtopPackages.full
     btop
     coolercontrol.coolercontrol-gui
     linuxKernel.packages.linux_6_6.it87
@@ -249,6 +233,7 @@
     sunshine
     gnome-remote-desktop
     mpv
+    adoptopenjdk-icedtea-web
 
     # Gnome Extensions
     gnomeExtensions.blur-my-shell
@@ -284,15 +269,6 @@
   };
 
   services.hardware.openrgb.enable = true;
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -303,23 +279,19 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
+  # DO NOT CHANGE
+  system.stateVersion = "24.05";
 
   programs.coolercontrol.enable = true;
 
   services.avahi.publish.enable = true;
   services.avahi.publish.userServices = true;
 
-
-  services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
-  services.xrdp.openFirewall = true;
+  services.xrdp = {
+    enable = true;
+    defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+    openFirewall = true;
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
