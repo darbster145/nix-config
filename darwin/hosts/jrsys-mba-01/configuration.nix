@@ -5,51 +5,8 @@
   imports = [
     ../../features/nix-homebrew.nix
     ./homebrew.nix
-  ];
-
-
-  # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    neovim
-    tldr
-    tmux
-    fastfetch
-    ranger
-    thefuck
-    remmina
-    #xquartz
-    unzip
-    zoxide
-    fzf
-    speedtest-cli
-    stow
-    fira-code
-    htop
-    btop
-    oh-my-posh
-    spacebar
-    powershell
-    cargo
-    kitty
-    #bitwarden-cli
-    mkalias
-    raycast
-    slack
-    nmap
-    swift-quit
-    utm
-    zoom-us
-    wireguard-tools
-    wireguard-go
-    youtube-music
-    shortcat
-    bartender
-    aerospace
-    arc-browser
-    inputs.zen-browser-darwin.packages."${system}"
-    zed-editor
-    firefox-devedition-unwrapped
-    #teams
+    ../../features/app-alias.nix
+    ./systemPackages.nix
   ];
 
   fonts.packages = with pkgs; [
@@ -86,28 +43,8 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   security.pam.enableSudoTouchIdAuth = true;
-  system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
 
-  system.activationScripts.applications.text =
-    let
-      env = pkgs.buildEnv {
-        name = "system-applications";
-        paths = config.environment.systemPackages;
-        pathsToLink = "/Applications";
-      };
-    in
-    pkgs.lib.mkForce ''
-      # Set up applications.
-      echo "setting up /Applications..." >&2
-      rm -rf /Applications/Nix\ Apps
-      mkdir -p /Applications/Nix\ Apps
-      find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-      while read -r src; do
-        app_name=$(basename "$src")
-        echo "copying $src" >&2
-        ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-      done
-    '';
+  system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
 
   system.startup.chime = false;
 
