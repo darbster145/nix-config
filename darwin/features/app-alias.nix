@@ -1,3 +1,5 @@
+{ pkgs, config, ... }:
+
 {
   system.activationScripts.applications.text =
     let
