@@ -41,19 +41,17 @@
     _1password-cli
     nix-prefetch
     adoptopenjdk-icedtea-web
+    wireguard-tools
+    libreoffice
+    cargo
+    yakuake
+    teams-for-linux
+    tangram
 
     # Hyperland Programs
     waybar
     brightnessctl
     pavucontrol
-    libreoffice
-    teams-for-linux
-    wireguard-tools
-    cargo
-    yakuake
-    tangram
-    calls
-    linphone
     wlogout
 
   ];

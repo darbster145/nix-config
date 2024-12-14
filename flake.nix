@@ -108,7 +108,7 @@
         brixos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            ./nixos/hosts/brixos/configuration.nix
+            ./hosts/nixos/brixos/configuration.nix
             nix-flatpak.nixosModules.nix-flatpak
           ];
         };
@@ -116,7 +116,7 @@
           specialArgs = { inherit inputs outputs; };
           #system = "aarch64-linux";
           modules = [
-            ./nixos/hosts/nixi/configuration.nix
+            ./hosts/nixos/nixi/configuration.nix
             nix-flatpak.nixosModules.nix-flatpak
             apple-silicon.nixosModules.apple-silicon-support
           ];
@@ -128,7 +128,7 @@
           specialArgs = { inherit inputs; };
           system = "aarch64-darwin";
           modules = [
-            ./darwin/hosts/jrsys-mba-01/configuration.nix
+            ./hosts/darwin/jrsys-mba-01/configuration.nix
             nix-homebrew.darwinModules.nix-homebrew
           ];
         };
@@ -137,7 +137,7 @@
           specialArgs = { inherit inputs; };
           system = "aarch64-darwin";
           modules = [
-            ./darwin/hosts/crapple/configuration.nix
+            ./hosts/darwin/crapple/configuration.nix
             nix-homebrew.darwinModules.nix-homebrew
           ];
         };
