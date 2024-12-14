@@ -24,7 +24,7 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];# System architecture of the remote machine
-      maxJobs = 32;              # Maximum parallel jobs on the remote builder
+      maxJobs = 1;              # Maximum parallel jobs on the remote builder
       speedFactor = 1;          # Adjust for prioritizing this builder
       supportedFeatures = [ "cross-compilation" ];  # Optional: Add specific features if needed
     }
