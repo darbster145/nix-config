@@ -17,6 +17,8 @@
     it87
   ];
 
+  boot.blacklistedKernelModules = [ "kvm_amd" "kvm" ];
+
   # Bootloader
   boot.loader = {
     efi = {
@@ -40,6 +42,8 @@
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "brad" ];
+
+  virtualisation.libvirtd.enable = false;
 
   zramSwap.enable = true;
 
@@ -156,9 +160,6 @@
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
-    crossSystem = {
-      config = "aarch64-linux";
-    };
   };
 
   programs.steam = {
@@ -234,6 +235,7 @@
     gnome-remote-desktop
     mpv
     adoptopenjdk-icedtea-web
+    bitwarden
 
     # Gnome Extensions
     gnomeExtensions.blur-my-shell
