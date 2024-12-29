@@ -45,6 +45,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Optional: Homebrew taps for crapple
     homebrew-core = {
       url = "github:homebrew/homebrew-core";

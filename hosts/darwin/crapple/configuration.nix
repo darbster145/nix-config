@@ -3,11 +3,12 @@
 {
 
   imports = [
-    ../../features/nix-homebrew.nix
+    ../features/nix-homebrew.nix
     ./homebrew.nix
   ];
 
   environment.systemPackages = with pkgs; [
+    inputs.ghostty
     neovim
     tldr
     zoxide
@@ -25,8 +26,6 @@
     thefuck
     stow
     oh-my-posh
-    fira-code
-    nerdfonts
     aldente
     #kitty # Broken on Darwin
     aerospace
@@ -35,6 +34,10 @@
     #_1password-gui # Broken on Darwin
     # kanata # Broken on Darwin
   ];
+
+  #  fonts.pacakges with pkgs = [
+  #    nerd-fonts
+  #  ];
 
   # Set friendly computername
   networking.computerName = "crapple";
