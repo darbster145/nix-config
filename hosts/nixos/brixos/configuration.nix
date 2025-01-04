@@ -175,6 +175,8 @@
 
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    inputs.ghostty.packages.x86_64-linux.default
+    amarok
     wget
     curl
     git
@@ -236,6 +238,7 @@
     mpv
     adoptopenjdk-icedtea-web
     bitwarden
+    kdiskmark
 
     # Gnome Extensions
     gnomeExtensions.blur-my-shell

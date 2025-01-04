@@ -2,7 +2,8 @@
   description = "Your new nix config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/585f76290ed66a3fdc5aae0933b73f9fd3dca7e3";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     # stable.url = "nixpkgs/nixos-24.05";
     # master.url = "nixpkgs/master";
 
@@ -47,7 +48,6 @@
 
     ghostty = {
       url = "github:ghostty-org/ghostty";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Optional: Homebrew taps for crapple
