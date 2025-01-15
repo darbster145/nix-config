@@ -4,7 +4,7 @@
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
     stable-nixpkgs = {
-      url = "nixpkgs/nixos-24.05";
+      url = "nixpkgs/nixos-24.11";
     };
     master-nixpkgs = {
       url = "nixpkgs/master";
@@ -143,7 +143,7 @@
             ./hosts/nixos/hl0/configuration.nix
           ];
         };
-;
+
       };
 
       darwinConfigurations = {
