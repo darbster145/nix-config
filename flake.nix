@@ -1,11 +1,19 @@
 {
-  description = "Your new nix config";
-
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/585f76290ed66a3fdc5aae0933b73f9fd3dca7e3";
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    # stable.url = "nixpkgs/nixos-24.05";
-    # master.url = "nixpkgs/master";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    };
+    stable-nixpkgs = {
+      url = "nixpkgs/nixos-24.05";
+    };
+    master-nixpkgs = {
+      url = "nixpkgs/master";
+    };
+
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     apple-silicon = {
       url = "github:tpwrules/nixos-apple-silicon";
@@ -69,6 +77,8 @@
   outputs =
     { self
     , nixpkgs
+    , stable-nixpkgs
+    , lix-module
     , home-manager
     , nix-flatpak
     , apple-silicon
@@ -115,6 +125,7 @@
           modules = [
             ./hosts/nixos/brixos/configuration.nix
             nix-flatpak.nixosModules.nix-flatpak
+            lix-module.nixosModules.default
           ];
         };
         nixi = nixpkgs.lib.nixosSystem {
@@ -125,7 +136,14 @@
             nix-flatpak.nixosModules.nix-flatpak
             apple-silicon.nixosModules.apple-silicon-support
           ];
+        };  
+        hl0 = stable-nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/nixos/hl0/configuration.nix
+          ];
         };
+;
       };
 
       darwinConfigurations = {

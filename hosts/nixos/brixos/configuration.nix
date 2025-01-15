@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     ./gnome.nix
     ./iscsi.nix
+    ../features/fonts.nix
   ];
 
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
@@ -42,12 +43,18 @@
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "brad" ];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.virtualbox.host.addNetworkInterface = true;
+
+  environment.etc."vbox/networks.conf".text = ''
+    * 192.168.0.0/16
+  '';
 
   virtualisation.libvirtd.enable = false;
 
   zramSwap.enable = true;
 
-  powerManagement.enable = true;
+  #powerManagement.enable = true;
 
   networking.hostName = "brixos";
 
@@ -81,7 +88,17 @@
   };
 
   # Hyprland
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  programs.hyprlock = {
+    enable = true;
+  };
+  services.hypridle = {
+    enable = true;
+  };
 
   # KDE Connect
   programs.kdeconnect = {
@@ -111,7 +128,7 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -149,7 +166,7 @@
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "vboxusers" ];
     packages = with pkgs; [
       #  thunderbird
     ];
@@ -177,9 +194,11 @@
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     inputs.ghostty.packages.x86_64-linux.default
     amarok
+    nodejs
     wget
     curl
     git
+    yazi
     cargo
     _1password-gui-beta
     _1password-cli
@@ -198,9 +217,7 @@
     coolercontrol.coolercontrol-ui-data
     lm_sensors
     kitty
-    waybar
     dunst
-    wofi
     openiscsi
     stow
     pkgs.gnome-tweaks
@@ -229,7 +246,6 @@
     tangram
     libreoffice
     lact
-    unigine-heaven
     via
     barrier
     input-leap
@@ -238,7 +254,25 @@
     mpv
     adoptopenjdk-icedtea-web
     bitwarden
-    kdiskmark
+    zed-editor
+
+    # Hyprland DE Packages
+    xdg-desktop-portal-hyprland
+    kdePackages.xwaylandvideobridge        # Needed to screenshare xwayland programs
+    hyprpolkitagent
+    hyprcursor
+    hyprsunset
+    wlogout
+    waybar
+    dunst
+    udiskie         # Auto Mount USB
+    wl-clipboard
+    rofi-wayland
+    hyprpaper
+    waypaper        # GUI fontend for hyprpaper, swww, etc
+    nwg-dock
+    playerctl
+    zathura
 
     # Gnome Extensions
     gnomeExtensions.blur-my-shell
@@ -249,6 +283,19 @@
     gnomeExtensions.hide-top-bar
 
   ];
+
+
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
+  programs.thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        tumbler
+        thunar-volman
+        thunar-archive-plugin
+        thunar-media-tags-plugin
+      ];
+  };
 
   services.flatpak = {
     enable = true;
