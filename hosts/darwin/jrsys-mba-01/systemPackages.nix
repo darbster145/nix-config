@@ -9,8 +9,6 @@
     fastfetch
     ranger
     thefuck
-    remmina
-    #xquartz
     unzip
     zoxide
     fzf
@@ -30,7 +28,6 @@
     nmap
     swift-quit
     utm
-    zoom-us
     wireguard-tools
     wireguard-go
     youtube-music
@@ -41,6 +38,6 @@
     inputs.zen-browser-darwin.packages."${system}"
     zed-editor
     firefox-devedition-unwrapped
-    #teams
+    #ghostty
   ];
 }
