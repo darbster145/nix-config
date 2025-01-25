@@ -36,8 +36,9 @@
       "tunnelblick"
       "zenmap"
       "via"
-      "thunderbird@daily"
       "microsoft-teams"
+      "ghostty@tip"
+      #"zen-browser@twilight"
     ];
 
     masApps = {

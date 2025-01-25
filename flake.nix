@@ -153,6 +153,7 @@
           modules = [
             ./hosts/darwin/jrsys-mba-01/configuration.nix
             nix-homebrew.darwinModules.nix-homebrew
+            lix-module.nixosModules.default
           ];
         };
 

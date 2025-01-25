@@ -3,9 +3,9 @@
 {
 
   imports = [
-    ../../features/nix-homebrew.nix
+    ../features/nix-homebrew.nix
     ./homebrew.nix
-    ../../features/app-alias.nix
+    ../features/app-alias.nix
     ./systemPackages.nix
   ];
 
@@ -15,7 +15,7 @@
 
   # Enable Janky Borders
   services.jankyborders = {
-    enable = true;
+    enable = false;
   };
 
   # Enable Tailscale
