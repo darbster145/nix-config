@@ -8,7 +8,7 @@
     ../features/fonts.nix
   ];
 
-  boot.kernelParams = [ "acpi_enforce_resources=lax" ];
+  boot.kernelParams = [ "acpi_enforce_resources=lax" "acpi_backlight=video" "acpi_backlight=vendor" "acpi_backlight=native"  ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "iscsi_tcp" "it87" "coretemp" ];
   boot.extraModprobeConfig = ''
@@ -45,6 +45,8 @@
   users.extraGroups.vboxusers.members = [ "brad" ];
   virtualisation.virtualbox.host.enableExtensionPack = true;
   virtualisation.virtualbox.host.addNetworkInterface = true;
+
+  virtualisation.vmware.host.enable = true;
 
   environment.etc."vbox/networks.conf".text = ''
     * 192.168.0.0/16
@@ -96,9 +98,9 @@
   programs.hyprlock = {
     enable = true;
   };
-  services.hypridle = {
-    enable = true;
-  };
+  #services.hypridle = {
+  #  enable = true;
+  #};
 
   # KDE Connect
   programs.kdeconnect = {
@@ -120,15 +122,15 @@
   services.tailscale.enable = true;
 
   # Enable Sunshine
-  services.sunshine = {
-    enable = true;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
+  #services.sunshine = {
+  #  enable = true;
+  #  autoStart = true;
+  #  capSysAdmin = true;
+  #  openFirewall = true;
+  #};
 
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -179,6 +181,8 @@
     allowUnfree = true;
   };
 
+  services.teamviewer.enable = true;
+
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
@@ -193,6 +197,7 @@
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     inputs.ghostty.packages.x86_64-linux.default
+    torzu
     amarok
     nodejs
     wget
@@ -249,12 +254,12 @@
     via
     barrier
     input-leap
-    sunshine
     gnome-remote-desktop
     mpv
     adoptopenjdk-icedtea-web
     bitwarden
     zed-editor
+    hypridle
 
     # Hyprland DE Packages
     xdg-desktop-portal-hyprland
@@ -285,6 +290,9 @@
   ];
 
 
+  programs.light.enable = true;
+
+
   services.gvfs.enable = true;
   services.tumbler.enable = true;
   programs.thunar = {
@@ -295,6 +303,18 @@
         thunar-archive-plugin
         thunar-media-tags-plugin
       ];
+  };
+
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+    plugins = with pkgs; [
+      tmuxPlugins.sensible
+      tmuxPlugins.vim-tmux-navigator
+      tmuxPlugins.tokyo-night-tmux
+      tmuxPlugins.resurrect
+    ];
+    baseIndex = 1;
   };
 
   services.flatpak = {

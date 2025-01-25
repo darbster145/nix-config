@@ -4,7 +4,7 @@
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
     stable-nixpkgs = {
-      url = "nixpkgs/nixos-24.05";
+      url = "nixpkgs/nixos-24.11";
     };
     master-nixpkgs = {
       url = "nixpkgs/master";
@@ -78,6 +78,7 @@
     { self
     , nixpkgs
     , stable-nixpkgs
+    , master-nixpkgs
     , lix-module
     , home-manager
     , nix-flatpak
@@ -120,7 +121,7 @@
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
-        brixos = nixpkgs.lib.nixosSystem {
+        brixos = stable-nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/nixos/brixos/configuration.nix
@@ -143,7 +144,6 @@
             ./hosts/nixos/hl0/configuration.nix
           ];
         };
-;
       };
 
       darwinConfigurations = {
