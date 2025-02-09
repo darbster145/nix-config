@@ -24,6 +24,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/main";
+    };
 
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
@@ -81,6 +85,7 @@
     , master-nixpkgs
     , lix-module
     , home-manager
+    , nixos-wsl
     , nix-flatpak
     , apple-silicon
     , nix-darwin
@@ -129,6 +134,7 @@
             lix-module.nixosModules.default
           ];
         };
+
         nixi = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           #system = "aarch64-linux";
@@ -137,11 +143,21 @@
             nix-flatpak.nixosModules.nix-flatpak
             apple-silicon.nixosModules.apple-silicon-support
           ];
-        };  
+        };
+
         hl0 = stable-nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/nixos/hl0/configuration.nix
+          ];
+        };
+
+	wixos = nixpkgs.lib.nixosSystem {
+	  system = "x86_64-linux";
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            ./hosts/nixos/wixos/configuration.nix
+	    nixos-wsl.nixosModules.default
           ];
         };
       };
