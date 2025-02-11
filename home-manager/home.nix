@@ -46,17 +46,24 @@
 
   # TODO: Set your username
   home = {
-    username = "your-username";
-    homeDirectory = "/home/your-username";
+    username = "bradlee";
+    homeDirectory = "/Users/bradlee";
   };
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  home.packages = with pkgs; [ 
+    steam 
+    cowsay
+  ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userEmail = "swoopmaster22@proton.me";
+    userName = "darbster145";
+  }
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

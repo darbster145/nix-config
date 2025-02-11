@@ -38,6 +38,7 @@
       "via"
       "microsoft-teams"
       "ghostty@tip"
+      "vmware-fusion"
       #"zen-browser@twilight"
     ];
 

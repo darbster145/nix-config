@@ -27,7 +27,6 @@
     slack
     nmap
     swift-quit
-    utm
     wireguard-tools
     wireguard-go
     youtube-music
