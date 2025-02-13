@@ -8,7 +8,7 @@
     ../features/fonts.nix
   ];
 
-  boot.kernelParams = [ "acpi_enforce_resources=lax" "acpi_backlight=video" "acpi_backlight=vendor" "acpi_backlight=native"  ];
+  boot.kernelParams = [ "acpi_enforce_resources=lax" "acpi_backlight=video" "acpi_backlight=vendor" "acpi_backlight=native" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "iscsi_tcp" "it87" "coretemp" ];
   boot.extraModprobeConfig = ''
@@ -263,18 +263,18 @@
 
     # Hyprland DE Packages
     xdg-desktop-portal-hyprland
-    kdePackages.xwaylandvideobridge        # Needed to screenshare xwayland programs
+    kdePackages.xwaylandvideobridge # Needed to screenshare xwayland programs
     hyprpolkitagent
     hyprcursor
     hyprsunset
     wlogout
     waybar
     dunst
-    udiskie         # Auto Mount USB
+    udiskie # Auto Mount USB
     wl-clipboard
     rofi-wayland
     hyprpaper
-    waypaper        # GUI fontend for hyprpaper, swww, etc
+    waypaper # GUI fontend for hyprpaper, swww, etc
     nwg-dock
     playerctl
     zathura
@@ -296,13 +296,13 @@
   services.gvfs.enable = true;
   services.tumbler.enable = true;
   programs.thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        tumbler
-        thunar-volman
-        thunar-archive-plugin
-        thunar-media-tags-plugin
-      ];
+    enable = true;
+    plugins = with pkgs.xfce; [
+      tumbler
+      thunar-volman
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+    ];
   };
 
   programs.tmux = {

@@ -24,7 +24,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/main";
     };
@@ -152,12 +152,12 @@
           ];
         };
 
-	wixos = nixpkgs.lib.nixosSystem {
-	  system = "x86_64-linux";
+        wixos = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/nixos/wixos/configuration.nix
-	    nixos-wsl.nixosModules.default
+            nixos-wsl.nixosModules.default
           ];
         };
       };

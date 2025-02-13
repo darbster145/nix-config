@@ -5,8 +5,9 @@
     [
       ./hardware-configuration.nix
       ../features/kanata.nix
-      ../features/remoteBuilders.nix
+      #../features/remoteBuilders.nix
       ../features/hyprland.nix
+      ../../features/zsh.nix
     ];
 
 
@@ -31,7 +32,7 @@
     # don’t shutdown when power button is short-pressed
     HandlePowerKey=ignore
   '';
-  
+
   # Auto optimize the nix store
   nix.optimise.automatic = true;
 
@@ -59,19 +60,19 @@
   services.xserver.enable = true;
 
   # Enable KDE6
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  #services.displayManager.sddm.enable = true;
+  #services.desktopManager.plasma6.enable = true;
 
-  # Enable Gnome
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome = {
-  #  enable = true;
-  #  extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
-  #  extraGSettingsOverrides = ''
-  #    [org.gnome.mutter]
-  #    experimental-features=['scale-monitor-framebuffer']
-  #  '';
-  #};
+  #  Enable Gnome
+  services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome = {
+  #   enable = true;
+  #   extraGSettingsOverridePackages = [ pkgs.mutter ];
+  #   extraGSettingsOverrides = ''
+  #     [org.gnome.mutter]
+  #     experimental-features=['scale-monitor-framebuffer']
+  #   '';
+  # };
 
 
   # Enable Bluetooth
@@ -92,8 +93,7 @@
     isNormalUser = true;
     description = "Brad";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-    ];
+    shell = pkgs.zsh;
   };
 
   security.sudo.wheelNeedsPassword = false;
@@ -107,6 +107,10 @@
     neovim
     wget
     git
+    nix-tree
+    ghostty
+    unzip
+    #inputs.ghostty.packages.aarch64-linux.default
     firefox-devedition
     kitty
     htop
@@ -117,7 +121,6 @@
     stow
     oh-my-posh
     gcc
-    firefox
     bitwarden
     inputs.zen-browser.packages.${pkgs.system}.default
     asahi-bless
@@ -137,19 +140,17 @@
     tmux
     ungoogled-chromium
     youtube-music
-    box64
     adoptopenjdk-icedtea-web
-    _1password-gui-beta
-    _1password-cli
     nix-prefetch
     adoptopenjdk-icedtea-web
+    rofi-wayland
+    nix-tree
 
     # Hyperland Programs
     waybar
     brightnessctl
     pavucontrol
     libreoffice
-    teams-for-linux
     wireguard-tools
     cargo
     yakuake
@@ -159,6 +160,18 @@
     wlogout
 
   ];
+
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      tumbler
+      thunar-volman
+      thunar-archive-plugin
+      thunar-media-tags-plugin
+    ];
+  };
 
   services.flatpak = {
     enable = true;
@@ -199,16 +212,14 @@
   #   enableSSHSupport = true;
   # };
 
-  # List services that you want to enable:
-
   # SSH 
   services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = true;
+  networking.firewall = {
+    enable = true;
+    # allowedTCPPorts = [ ... ];
+    # allowedUDPPorts = [ ... ];
+  };
 
   # DO NOT CHANGE
   system.stateVersion = "24.11";
