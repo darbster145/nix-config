@@ -29,10 +29,6 @@
       url = "github:nix-community/NixOS-WSL/main";
     };
 
-    nix-flatpak = {
-      url = "github:gmodena/nix-flatpak";
-    };
-
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,11 +36,6 @@
 
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    firefox = {
-      url = "github:nix-community/flake-firefox-nightly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -86,7 +77,6 @@
     , lix-module
     , home-manager
     , nixos-wsl
-    , nix-flatpak
     , apple-silicon
     , nix-darwin
     , nix-homebrew
@@ -105,6 +95,10 @@
       # This is a function that generates an attribute by calling a function you
       # pass to it, with each system as an argument
       forAllSystems = nixpkgs.lib.genAttrs systems;
+
+      # TODO - Get single stable package generation working
+      # stable-pkgs = forAllSystems (system: stable-nixpkgs.legacyPackages.${system});
+
     in
     {
       # Your custom packages
@@ -130,17 +124,14 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/nixos/brixos/configuration.nix
-            nix-flatpak.nixosModules.nix-flatpak
             lix-module.nixosModules.default
           ];
         };
 
         nixi = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          #system = "aarch64-linux";
           modules = [
             ./hosts/nixos/nixi/configuration.nix
-            nix-flatpak.nixosModules.nix-flatpak
             apple-silicon.nixosModules.apple-silicon-support
           ];
         };

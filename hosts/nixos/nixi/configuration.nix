@@ -5,9 +5,10 @@
     [
       ./hardware-configuration.nix
       ../features/kanata.nix
-      #../features/remoteBuilders.nix
+      ../features/remoteBuilders.nix
       ../features/hyprland.nix
       ../../features/zsh.nix
+      ../../features/tmux.nix
     ];
 
 
@@ -43,8 +44,12 @@
     options = "--delete-older-than 15d";
   };
 
-  networking.hostName = "nixi";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "nixi";
+    networkmanager = {
+      enable = true;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "America/Denver";
@@ -76,11 +81,13 @@
 
 
   # Enable Bluetooth
-  hardware.bluetooth.enable = true; # enables support for Bluetooth
-  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  #services.printing.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -102,12 +109,20 @@
 
   nixpkgs.config.allowUnsupportedSystem = true;
 
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
   # System Packages
   environment.systemPackages = with pkgs; [
-    neovim
+    trashy
+    zoxide
     wget
+    moonlight-qt
     git
     nix-tree
+    yazi
     ghostty
     unzip
     #inputs.ghostty.packages.aarch64-linux.default
@@ -131,7 +146,6 @@
     thunderbird
     gearlever
     youtube-music
-    wofi
     jellyfin-media-player
     remmina
     openconnect
@@ -143,51 +157,11 @@
     adoptopenjdk-icedtea-web
     nix-prefetch
     adoptopenjdk-icedtea-web
-    rofi-wayland
     nix-tree
-
-    # Hyperland Programs
-    waybar
-    brightnessctl
-    pavucontrol
-    libreoffice
-    wireguard-tools
-    cargo
-    yakuake
-    tangram
-    calls
-    linphone
-    wlogout
-
+    #libreoffice
+    bc
+    jq
   ];
-
-  services.gvfs.enable = true;
-  services.tumbler.enable = true;
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      tumbler
-      thunar-volman
-      thunar-archive-plugin
-      thunar-media-tags-plugin
-    ];
-  };
-
-  services.flatpak = {
-    enable = true;
-    uninstallUnmanaged = true;
-    update.onActivation = true;
-    remotes = [
-      { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
-      { name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo"; }
-    ];
-    packages = [
-      #     Example of how to add a package from the beta repo     
-      #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
-      "com.vscodium.codium"
-      "com.github.tchx84.Flatseal"
-    ];
-  };
 
   # Enable Appimages
   programs.appimage = {
@@ -197,11 +171,76 @@
 
   # Fonts
   fonts.packages = with pkgs; [
-    fira-code
     font-awesome
     powerline-fonts
     powerline-symbols
-    #(nerd-fonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    nerd-fonts._3270
+    nerd-fonts.agave
+    nerd-fonts.anonymice
+    nerd-fonts.arimo
+    nerd-fonts.aurulent-sans-mono
+    nerd-fonts.bigblue-terminal
+    nerd-fonts.bitstream-vera-sans-mono
+    nerd-fonts.blex-mono
+    nerd-fonts.caskaydia-cove
+    nerd-fonts.caskaydia-mono
+    nerd-fonts.code-new-roman
+    nerd-fonts.comic-shanns-mono
+    nerd-fonts.commit-mono
+    nerd-fonts.cousine
+    nerd-fonts.d2coding
+    nerd-fonts.daddy-time-mono
+    nerd-fonts.departure-mono
+    nerd-fonts.dejavu-sans-mono
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.envy-code-r
+    nerd-fonts.fantasque-sans-mono
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
+    nerd-fonts.geist-mono
+    nerd-fonts.go-mono
+    nerd-fonts.gohufont
+    nerd-fonts.hack
+    nerd-fonts.hasklug
+    nerd-fonts.heavy-data
+    nerd-fonts.hurmit
+    nerd-fonts.im-writing
+    nerd-fonts.inconsolata
+    nerd-fonts.inconsolata-go
+    nerd-fonts.inconsolata-lgc
+    nerd-fonts.intone-mono
+    nerd-fonts.iosevka
+    nerd-fonts.iosevka-term
+    nerd-fonts.iosevka-term-slab
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.lekton
+    nerd-fonts.liberation
+    nerd-fonts.lilex
+    nerd-fonts.martian-mono
+    nerd-fonts.meslo-lg
+    nerd-fonts.monaspace
+    nerd-fonts.monofur
+    nerd-fonts.monoid
+    nerd-fonts.mononoki
+    nerd-fonts.mplus
+    nerd-fonts.noto
+    nerd-fonts.open-dyslexic
+    nerd-fonts.overpass
+    nerd-fonts.profont
+    nerd-fonts.proggy-clean-tt
+    nerd-fonts.recursive-mono
+    nerd-fonts.roboto-mono
+    nerd-fonts.shure-tech-mono
+    nerd-fonts.sauce-code-pro
+    nerd-fonts.space-mono
+    nerd-fonts.symbols-only
+    nerd-fonts.terminess-ttf
+    nerd-fonts.tinos
+    nerd-fonts.ubuntu
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.ubuntu-sans
+    nerd-fonts.victor-mono
+    nerd-fonts.zed-mono
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
