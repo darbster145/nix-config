@@ -5,9 +5,9 @@
     [
       ./hardware-configuration.nix
       ../features/kanata.nix
-      ../features/remoteBuilders.nix
+      #../features/remoteBuilders.nix
       ../features/hyprland.nix
-      ../../features/zsh.nix
+      #../../features/zsh.nix
       ../../features/tmux.nix
     ];
 
@@ -109,14 +109,10 @@
 
   nixpkgs.config.allowUnsupportedSystem = true;
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
-
   # System Packages
   environment.systemPackages = with pkgs; [
     trashy
+    home-manager
     zoxide
     wget
     moonlight-qt

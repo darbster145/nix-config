@@ -180,6 +180,14 @@
             ./home-manager/jrsys-mba-01.nix
           ];
         };
+
+        "brad@nixi" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home-manager/nixi.nix
+          ];
+        };
       };
     };
 }
