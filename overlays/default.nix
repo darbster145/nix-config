@@ -1,5 +1,5 @@
 # This file defines overlays
-{inputs, ...}: {
+{ inputs, ... }: {
   # This one brings our custom packages from the 'pkgs' directory
   additions = final: _prev: import ../pkgs final.pkgs;
 
@@ -11,15 +11,6 @@
     # ...
     # });
   };
-
-    zen-browser = pkgs.firefox.overrideAttrs (oldAttrs: rec {
-      patches = [
-      (pkgs.fetchpatch {
-        url = "https://github.com/ncmpcpp/ncmpcpp/pull/482.patch";
-      hash = lib.fakeHash;
-    })
-  ];
-})
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs.unstable'

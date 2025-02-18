@@ -4,6 +4,7 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     neovim
+    home-manager
     tldr
     tmux
     fastfetch
@@ -38,5 +39,7 @@
     zed-editor
     firefox-devedition-unwrapped
     #ghostty
+    yazi
+    tmux
   ];
 }

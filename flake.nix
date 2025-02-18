@@ -84,7 +84,7 @@
     } @ inputs:
     let
       inherit (self) outputs;
-      # Supported systems for your flake packages, shell, etc.
+      # Supported systems for flake packages, shell, etc.
       systems = [
         "aarch64-linux"
         "i686-linux"
@@ -92,8 +92,8 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
+      # This is a function that generates an attribute by calling a function
+      # passed to it, with each system as an argument
       forAllSystems = nixpkgs.lib.genAttrs systems;
 
       # TODO - Get single stable package generation working
@@ -101,7 +101,7 @@
 
     in
     {
-      # Your custom packages
+      # Custom packages
       # Accessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
       # Formatter for your nix files, available through 'nix fmt'
@@ -117,8 +117,6 @@
       # These are usually stuff you would upstream into home-manager
       homeManagerModules = import ./modules/home-manager;
 
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         brixos = stable-nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
@@ -160,7 +158,7 @@
           modules = [
             ./hosts/darwin/jrsys-mba-01/configuration.nix
             nix-homebrew.darwinModules.nix-homebrew
-            lix-module.nixosModules.default
+            #lix-module.nixosModules.default
           ];
         };
 
@@ -173,20 +171,18 @@
           ];
         };
       };
-    };
 
-  # Standalone home-manager configuration entrypoint
-  # Available through 'home-manager --flake .#your-username@your-hostname'
-  #homeConfigurations = {
-  #  # FIXME replace with your username@hostname
-  #  "your-username@your-hostname" = home-manager.lib.homeManagerConfiguration {
-  #    pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-  #    extraSpecialArgs = { inherit inputs outputs; };
-  #    modules = [
-  #      # > Our main home-manager configuration file <
-  #      ./home-manager/home.nix
-  #    ];
-  #  };
-  #};
-  #};
+      homeConfigurations = {
+        "bradlee@JRSYS-MBA-01" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home-manager/jrsys-mba-01.nix
+          ];
+        };
+      };
+    };
 }
+
+
+

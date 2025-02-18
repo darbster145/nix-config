@@ -7,22 +7,24 @@
     ./homebrew.nix
     ../features/app-alias.nix
     ./systemPackages.nix
+    ../features/tmux.nix
   ];
 
   fonts.packages = with pkgs; [
     fira-code
   ];
 
-  # Enable Janky Borders
-  services.jankyborders = {
-    enable = false;
-  };
+  environment.systemPackages = with pkgs; [
+    tmux
+  ];
+
+  ids.gids.nixbld = 350;
 
   # Enable Tailscale
   services.tailscale.enable = true;
 
-  services.nix-daemon.enable = true;
-  
+  nix.enable = true;
+
   nix.package = pkgs.nix;
 
   nix.optimise.automatic = true;
@@ -37,7 +39,10 @@
 
   nix.settings.experimental-features = "nix-command flakes";
 
+  environment.variables.EDITOR = "nvim";
+
   programs.zsh.enable = true;
+
   system.configurationRevision = null;
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";
