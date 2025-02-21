@@ -4,6 +4,7 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     neovim
+    zsh
     home-manager
     tldr
     tmux
