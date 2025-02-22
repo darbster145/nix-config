@@ -8,13 +8,14 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    inputs.ghostty
     neovim
+    utm
     tldr
+    google-chrome
+    moonlight-qt
     zoxide
     fastfetch
     lazygit
-    #google-chrome
     raycast
     htop
     btop
@@ -29,9 +30,9 @@
     aldente
     #kitty # Broken on Darwin
     aerospace
-    _1password-cli
     inputs.zen-browser-darwin.packages."${system}"
-    #_1password-gui # Broken on Darwin
+    thunderbird-latest-unwrapped
+    firefox-devedition-unwrapped
     # kanata # Broken on Darwin
   ];
 
@@ -46,7 +47,6 @@
   networking.hostName = "crapple";
 
   # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
   # Allow unfree and broken packages

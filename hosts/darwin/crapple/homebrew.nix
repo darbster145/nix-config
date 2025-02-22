@@ -19,24 +19,19 @@
     ];
 
     casks = [
-      "firefox"
+      "ghostty"
+      "parallels"
+      "bitwarden"
       "mac-mouse-fix"
       "barrier"
-      "1password@nightly"
       "microsoft-remote-desktop"
-      "kitty"
-      "google-chrome"
-      "bitwarden"
       "orangedrangon-android-messages"
       "istat-menus"
       "jellyfin-media-player"
       "swift-quit"
       "topnotch"
       "protonvpn"
-      "betterdisplay"
-      "microsoft-office"
-      "thunderbird"
-      "signal"
+      "crystalfetch"
     ];
 
 
