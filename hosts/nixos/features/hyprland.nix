@@ -26,7 +26,6 @@
     pavucontrol
     wireguard-tools
     cargo
-    yakuake
     calls
     linphone
     wlogout
@@ -40,6 +39,7 @@
     nautilus
     swww
     waypaper
+    dunst
   ];
 
   services.gvfs.enable = true;

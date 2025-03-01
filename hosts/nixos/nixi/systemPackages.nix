@@ -1,11 +1,10 @@
-{ inputs, pkgs, config, ...}:
+{ inputs, pkgs, config, ... }:
 
 {
   environment.systemPackages = with pkgs; [
     neovim
     wget
     git
-    firefox-devedition
     kitty
     htop
     fastfetch
@@ -15,7 +14,6 @@
     stow
     oh-my-posh
     gcc
-    firefox
     bitwarden
     inputs.zen-browser.packages.${pkgs.system}.default
     asahi-bless

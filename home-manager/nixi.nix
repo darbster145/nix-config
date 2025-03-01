@@ -10,6 +10,9 @@
     ./features/cli/neovim.nix
     ./features/cli/git.nix
     ./features/cli/zsh.nix
+    ./features/cli/zoxide.nix
+    ./features/cli/tmux.nix
+    ./features/cli/yazi.nix
   ];
 
   nixpkgs = {

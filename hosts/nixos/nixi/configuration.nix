@@ -103,6 +103,8 @@
     shell = pkgs.zsh;
   };
 
+  programs.zsh.enable = true;
+
   security.sudo.wheelNeedsPassword = false;
 
   nixpkgs.config.allowUnfree = true;
