@@ -118,7 +118,7 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        brixos = stable-nixpkgs.lib.nixosSystem {
+        brixos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/nixos/brixos/configuration.nix

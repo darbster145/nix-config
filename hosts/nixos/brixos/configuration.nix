@@ -25,6 +25,9 @@
     efi = {
       canTouchEfiVariables = true;
     };
+   # systemd-boot = {
+  #  	enable = true;
+#};
     grub = {
       enable = true;
       efiSupport = true;
@@ -41,12 +44,12 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "brad" ];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  virtualisation.virtualbox.host.addNetworkInterface = true;
+  #virtualisation.virtualbox.host.enable = true;
+  #users.extraGroups.vboxusers.members = [ "brad" ];
+  #virtualisation.virtualbox.host.enableExtensionPack = true;
+  #virtualisation.virtualbox.host.addNetworkInterface = true;
 
-  virtualisation.vmware.host.enable = true;
+  #virtualisation.vmware.host.enable = true;
 
   environment.etc."vbox/networks.conf".text = ''
     * 192.168.0.0/16
@@ -209,7 +212,6 @@
     _1password-cli
     thunderbird
     fastfetch
-    inputs.firefox.packages.${pkgs.system}.firefox-nightly-bin
     inputs.zen-browser.packages."${system}".default
     chromium
     gcc
@@ -317,23 +319,6 @@
     baseIndex = 1;
   };
 
-  services.flatpak = {
-    enable = true;
-    uninstallUnmanaged = true;
-    update.onActivation = true;
-    remotes = [
-      { name = "flathub"; location = "https://dl.flathub.org/repo/flathub.flatpakrepo"; }
-      { name = "flathub-beta"; location = "https://flathub.org/beta-repo/flathub-beta.flatpakrepo"; }
-    ];
-    packages = [
-      #     Example of how to add a package from the beta repo     
-      #     { appId = "com.brave.Browser"; origin = "flathub-beta"; }
-      #"com.vscodium.codium"
-      "com.github.tchx84.Flatseal"
-      #"io.github.zen_browser.zen"
-    ];
-  };
-
   # Enable Appimages
   programs.appimage = {
     enable = true;
@@ -352,7 +337,7 @@
   networking.firewall.enable = false;
 
   # DO NOT CHANGE
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";
 
   programs.coolercontrol.enable = true;
 
