@@ -1,4 +1,4 @@
-{ config, ...}:
+{ config, ... }:
 
 {
   homebrew = {
@@ -39,7 +39,6 @@
       "microsoft-teams"
       "ghostty@tip"
       "vmware-fusion"
-      #"zen-browser@twilight"
     ];
 
     masApps = {

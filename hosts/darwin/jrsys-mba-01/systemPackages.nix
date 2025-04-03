@@ -10,7 +10,7 @@
     tmux
     fastfetch
     ranger
-    thefuck
+    #thefuck
     unzip
     zoxide
     fzf
@@ -23,7 +23,6 @@
     spacebar
     powershell
     cargo
-    kitty
     mkalias
     raycast
     slack
@@ -37,10 +36,11 @@
     aerospace
     arc-browser
     inputs.zen-browser-darwin.packages."${system}"
-    zed-editor
+    #zed-editor
     firefox-devedition-unwrapped
     #ghostty
     yazi
     tmux
+    nix-tree
   ];
 }

@@ -47,7 +47,7 @@
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
 
