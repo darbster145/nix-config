@@ -35,7 +35,7 @@
     };
 
     nix-homebrew = {
-      url = "git+https://github.com/zhaofengli/nix-homebrew?ref=refs/pull/71/merge";
+      url = "github:zhaofengli-wip/nix-homebrew";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
