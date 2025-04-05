@@ -40,7 +40,7 @@
     };
 
     zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
+      url = "github:darbster145/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -194,6 +194,14 @@
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/nixi.nix
+          ];
+        };
+
+	"brad@brixos" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home-manager/brixos.nix
           ];
         };
       };

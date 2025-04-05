@@ -8,6 +8,7 @@
     ../features/fonts.nix
   ];
 
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelParams = [ "acpi_enforce_resources=lax" "acpi_backlight=video" "acpi_backlight=vendor" "acpi_backlight=native" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [ "iscsi_tcp" "it87" "coretemp" ];
@@ -25,15 +26,17 @@
     efi = {
       canTouchEfiVariables = true;
     };
-   # systemd-boot = {
-  #  	enable = true;
-#};
-    grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
-      useOSProber = true;
-    };
+    systemd-boot = {
+    	enable = true;
+	#edk2-uefi-shell.enable = true;
+	windows = {
+	  windows11 = {
+	    title = "Windows 11";
+	    efiDeviceHandle = "HD1b";
+	    sortKey = "z_windows";
+	  };
+        };
+     };
   };
 
   nix.settings.trusted-users = [ "root" "brad" ]; # Replace with your username
@@ -62,6 +65,10 @@
   #powerManagement.enable = true;
 
   networking.hostName = "brixos";
+  networking.interfaces.enp16s0.wakeOnLan = {
+    enable = true;
+    policy = [ "magic" ];
+  };
 
   networking.networkmanager.enable = true;
 
@@ -69,7 +76,7 @@
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [
-      rocmPackages.clr
+      rocmPackages.clr.icd
       libva
       libvdpau-va-gl
     ];
@@ -172,9 +179,8 @@
     isNormalUser = true;
     description = "Brad";
     extraGroups = [ "networkmanager" "wheel" "video" "vboxusers" ];
-    packages = with pkgs; [
-      #  thunderbird
-    ];
+    shell = pkgs.zsh;
+    ignoreShellProgramCheck = true;
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -196,6 +202,8 @@
   environment.sessionVariables = {
     STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/brad/.steam/root/compatibilitytools.d";
   };
+
+  programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -249,7 +257,7 @@
     gearlever
     teams-for-linux
     jellyfin-media-player
-    linuxKernel.packages.linux_6_11.it87
+    #linuxKernel.packages.linux_6_11.it87
     tangram
     libreoffice
     lact
@@ -261,7 +269,8 @@
     adoptopenjdk-icedtea-web
     bitwarden
     zed-editor
-    hypridle
+    #hypridle
+    home-manager
 
     # Hyprland DE Packages
     xdg-desktop-portal-hyprland
@@ -280,6 +289,7 @@
     nwg-dock
     playerctl
     zathura
+    hashcat
 
     # Gnome Extensions
     gnomeExtensions.blur-my-shell

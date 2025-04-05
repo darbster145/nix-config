@@ -20,7 +20,7 @@
   environment.systemPackages = with pkgs; [
     wlogout
     brightnessctl
-    hypridle
+    #hypridle
     waybar
     brightnessctl
     pavucontrol

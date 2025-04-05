@@ -16,5 +16,9 @@
       fuzzback
       net-speed
     ];
+
+    extraConfig = ''
+      unbind -T root C-l
+    '';
   };
 }
