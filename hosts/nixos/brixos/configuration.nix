@@ -6,12 +6,14 @@
     ./gnome.nix
     ./iscsi.nix
     ../features/fonts.nix
+    ../features/hyprland.nix
+    ./ollama.nix
   ];
 
   boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelParams = [ "acpi_enforce_resources=lax" "acpi_backlight=video" "acpi_backlight=vendor" "acpi_backlight=native" ];
+  boot.kernelParams = [ "acpi_enforce_resources=lax" "acpi_backlight=video" "acpi_backlight=vendor" "acpi_backlight=native" "amdgpu.ppfeaturemask=0xffffffff" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "iscsi_tcp" "it87" "coretemp" ];
+  boot.kernelModules = [ "iscsi_tcp" "it87" "coretemp" "amdgpu" ];
   boot.extraModprobeConfig = ''
     options it87 force_id=0x8689
   '';
@@ -79,6 +81,8 @@
       rocmPackages.clr.icd
       libva
       libvdpau-va-gl
+      mesa
+      vaapiVdpau
     ];
   };
 
@@ -99,24 +103,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  programs.hyprlock = {
-    enable = true;
-  };
-  #services.hypridle = {
-  #  enable = true;
-  #};
-
-  # KDE Connect
-  programs.kdeconnect = {
-    enable = true;
-  };
-
   # Configure keymap in X11
   services.xserver = {
     enable = true;
@@ -132,12 +118,12 @@
   services.tailscale.enable = true;
 
   # Enable Sunshine
-  #services.sunshine = {
-  #  enable = true;
-  #  autoStart = true;
-  #  capSysAdmin = true;
-  #  openFirewall = true;
-  #};
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -174,6 +160,7 @@
     };
     enable = true;
   };
+
 
   users.users.brad = {
     isNormalUser = true;
@@ -269,7 +256,6 @@
     adoptopenjdk-icedtea-web
     bitwarden
     zed-editor
-    #hypridle
     home-manager
 
     # Hyprland DE Packages
@@ -290,20 +276,9 @@
     playerctl
     zathura
     hashcat
-
-    # Gnome Extensions
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.appindicator
-    gnomeExtensions.tiling-assistant
-    gnomeExtensions.gsconnect
-    gnomeExtensions.hide-top-bar
-
   ];
 
-
   programs.light.enable = true;
-
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;
@@ -315,18 +290,6 @@
       thunar-archive-plugin
       thunar-media-tags-plugin
     ];
-  };
-
-  programs.tmux = {
-    enable = true;
-    clock24 = true;
-    plugins = with pkgs; [
-      tmuxPlugins.sensible
-      tmuxPlugins.vim-tmux-navigator
-      tmuxPlugins.tokyo-night-tmux
-      tmuxPlugins.resurrect
-    ];
-    baseIndex = 1;
   };
 
   # Enable Appimages
@@ -341,10 +304,10 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  #networking.firewall.allowedTCPPorts = [ ... ];
+  #networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # DO NOT CHANGE
   system.stateVersion = "24.11";

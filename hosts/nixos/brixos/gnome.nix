@@ -40,4 +40,19 @@
     hitori # sudoku game
     atomix # puzzle game
   ]);
+
+  environment.systemPackages =  with pkgs; [
+    # Gnome Extensions
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.appindicator
+    gnomeExtensions.tiling-assistant
+    gnomeExtensions.gsconnect
+    gnomeExtensions.hide-top-bar
+    gnomeExtensions.date-menu-formatter
+    gnomeExtensions.impatience
+    gnomeExtensions.media-controls
+    gnomeExtensions.open-bar
+    gnomeExtensions.quick-web-search
+  ];
 }
