@@ -10,10 +10,23 @@
     ./ollama.nix
   ];
 
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  boot.kernelParams = [ "acpi_enforce_resources=lax" "acpi_backlight=video" "acpi_backlight=vendor" "acpi_backlight=native" "amdgpu.ppfeaturemask=0xffffffff" ];
+  boot.initrd.kernelModules = [ 
+    "amdgpu"
+  ];
+  boot.kernelParams = [ 
+    "acpi_enforce_resources=lax" 
+    "acpi_backlight=video" 
+    "acpi_backlight=vendor" 
+    "acpi_backlight=native" 
+    # Needed for LACT AMDGPU Overclocking Support
+    "amdgpu.ppfeaturemask=0xffffffff" 
+  ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "iscsi_tcp" "it87" "coretemp" "amdgpu" ];
+  boot.kernelModules = [ "iscsi_tcp" 
+    "it87" 
+    "coretemp" 
+    "amdgpu" 
+  ];
   boot.extraModprobeConfig = ''
     options it87 force_id=0x8689
   '';
