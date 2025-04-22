@@ -20,14 +20,6 @@
 
   ids.gids.nixbld = 350;
 
-  # Enable Tailscale
-  services.tailscale.enable = true;
-
-  # Needed to Allow tailscaled to set MagicDNS on macOS
-  networking.knownNetworkServices = [
-    "Wi-Fi"
-  ];
-
   nix.enable = true;
 
   nix.package = pkgs.nix;

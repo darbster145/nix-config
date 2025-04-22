@@ -16,7 +16,6 @@
 
     brews = [
       "mas"
-      "tsui"
     ];
 
     casks = [
@@ -40,6 +39,8 @@
       "microsoft-teams"
       "ghostty@tip"
       "vmware-fusion"
+      "obsidian"
+      "tailscale"
     ];
 
     masApps = {

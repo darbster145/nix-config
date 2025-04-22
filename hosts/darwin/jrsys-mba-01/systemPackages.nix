@@ -28,8 +28,6 @@
     slack
     nmap
     swift-quit
-    wireguard-tools
-    wireguard-go
     youtube-music
     shortcat
     bartender
@@ -37,7 +35,7 @@
     arc-browser
     inputs.zen-browser-darwin.packages."${system}"
     #zed-editor
-    firefox-devedition-unwrapped
+    firefox-unwrapped
     #ghostty
     yazi
     tmux
