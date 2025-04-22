@@ -12,7 +12,7 @@
     utm
     tldr
     google-chrome
-    moonlight-qt
+    #moonlight-qt
     zoxide
     fastfetch
     lazygit
@@ -32,16 +32,17 @@
     aerospace
     inputs.zen-browser-darwin.packages."${system}"
     thunderbird-latest-unwrapped
-    firefox-devedition-unwrapped
+    firefox-unwrapped
     # kanata # Broken on Darwin
   ];
 
-  #  fonts.pacakges with pkgs = [
-  #    nerd-fonts
-  #  ];
-
   # Set friendly computername
   networking.computerName = "crapple";
+
+  # Needed to Allow tailscaled to set MagicDNS on macOS
+  networking.knownNetworkServices = [
+    "Wi-Fi"
+  ];
 
   # Set hostname
   networking.hostName = "crapple";
@@ -67,11 +68,14 @@
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   # Enable Tailscale
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    overrideLocalDns = true;
+  };
   
 
   # Touch ID for sudo
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # Disable startup chime
   system.startup.chime = false;

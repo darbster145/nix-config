@@ -16,6 +16,7 @@
 
     brews = [
       "mas"
+      "tsui"
     ];
 
     casks = [

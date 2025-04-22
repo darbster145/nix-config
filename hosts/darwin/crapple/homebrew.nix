@@ -16,10 +16,12 @@
 
     brews = [
       "mas"
+      "tsui"
     ];
 
     casks = [
       "ghostty"
+      "obs"
       "parallels"
       "bitwarden"
       "mac-mouse-fix"
@@ -32,6 +34,7 @@
       "topnotch"
       "protonvpn"
       "crystalfetch"
+      "microsoft-teams"
     ];
 
 
