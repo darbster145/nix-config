@@ -6,19 +6,26 @@
     syntaxHighlighting.enable = true;
 
     shellAliases = {
-      #nn = "nvim ~/.config/nix-config/hosts/nixos/nixi/configuration.nix";
-      nf = "nvim ~/.config/nix-config/flake.nix";
-      #nr = "sudo nixos-rebuild switch --flake ~/.config/nix-config/flake.nix --impure";
       cd = "z";
       tm = "trash";
-
-      nn = "nvim $HOME/.config/nix-config/hosts/darwin/jrsys-mba-01/configuration.nix";
-      nr = "darwin-rebuild switch --flake $HOME/.config/nix-config/";
       vmstop = "vmrun stop ~/.vms/Other\ Linux\ 6.x\ kernel\ 64-bit\ Arm\ 2.vmwarevm nogui";
       vmstart = "vmrun start ~/.vms/Other\ Linux\ 6.x\ kernel\ 64-bit\ Arm\ 2.vmwarevm nogui";
+      ts = "tailscale";
+
+      # Git Aliases
+      gs = "git status --short";
+      ga = "git add .";
+      gd = "git diff";
+      gc = "git commit";
+      gcl = "git clone";
+      gp = "git pull";
+      gu = "git push";
+      gl = "git log";
+      gb = "git branch";
+      gi = "git init";
     };
 
-    initExtra = ''
+    initContent = ''
             # Initialize oh-my-posh
             eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.toml)"
 

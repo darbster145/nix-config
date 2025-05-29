@@ -4,10 +4,10 @@
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
     stable-nixpkgs = {
-      url = "nixpkgs/nixos-24.11";
+      url = "github:NixOS/nixpkgs/nixos-24.11";
     };
     master-nixpkgs = {
-      url = "nixpkgs/master";
+      url = "github:NixOS/nixpkgs/master";
     };
 
     lix-module = {
@@ -36,7 +36,6 @@
 
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     zen-browser = {
@@ -197,7 +196,7 @@
           ];
         };
 
-	"brad@brixos" = home-manager.lib.homeManagerConfiguration {
+        "brad@brixos" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [

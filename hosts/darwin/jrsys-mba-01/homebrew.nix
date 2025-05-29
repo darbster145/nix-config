@@ -16,6 +16,7 @@
 
     brews = [
       "mas"
+      "tsui"
     ];
 
     casks = [
@@ -30,7 +31,7 @@
       "mac-mouse-fix"
       "microsoft-office"
       "microsoft-auto-update"
-      "microsoft-remote-desktop"
+      "windows-app"
       "splashtop-business"
       "topnotch"
       "tunnelblick"
@@ -38,9 +39,12 @@
       "via"
       "microsoft-teams"
       "ghostty@tip"
-      "vmware-fusion"
       "obsidian"
+      "macfuse"
+      "vmware-fusion"
+      "obs"
       "tailscale"
+      "moonlight"
     ];
 
     masApps = {

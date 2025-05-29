@@ -8,6 +8,7 @@
     ../features/app-alias.nix
     ./systemPackages.nix
     ../features/tmux.nix
+    ../../nixos/features/fonts.nix
   ];
 
   fonts.packages = with pkgs; [
@@ -20,17 +21,20 @@
 
   ids.gids.nixbld = 350;
 
-  nix.enable = true;
+  # Needed for Determinate Nix
+  nix.enable = false;
 
   nix.package = pkgs.nix;
 
-  nix.optimise.automatic = true;
+  #nix.optimise.automatic = true;
 
-  nix.gc = {
-    automatic = true;
-    interval = { Weekday = 0; Hour = 0; Minute = 0; };
-    options = "--delete-older-than 15d";
-  };
+  system.primaryUser = "bradlee";
+
+  # nix.gc = {
+  #   automatic = true;
+  #   interval = { Weekday = 0; Hour = 0; Minute = 0; };
+  #   options = "--delete-older-than 15d";
+  # };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -46,7 +50,7 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
+  #system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
 
   system.startup.chime = false;
 

@@ -5,6 +5,8 @@
   environment.systemPackages = with pkgs; [
     neovim
     zsh
+    sshfs
+    macfuse-stubs
     home-manager
     tldr
     tmux
@@ -40,5 +42,7 @@
     yazi
     tmux
     nix-tree
+    speedtest-cli
+    utm
   ];
 }
