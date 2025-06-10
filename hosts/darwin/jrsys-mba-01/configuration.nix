@@ -48,7 +48,13 @@
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local = {
+    enable = true;
+    touchIdAuth = true;
+    reattach = true; # Needed for tmux
+    watchIdAuth = true;
+  };
+
 
   #system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
 
