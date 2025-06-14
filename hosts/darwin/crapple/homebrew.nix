@@ -26,8 +26,7 @@
       "bitwarden"
       "mac-mouse-fix"
       "barrier"
-      "microsoft-remote-desktop"
-      "orangedrangon-android-messages"
+      "windows-app"
       "istat-menus"
       "jellyfin-media-player"
       "swift-quit"
@@ -35,6 +34,9 @@
       "protonvpn"
       "crystalfetch"
       "microsoft-teams"
+      "azure-data-studio"
+      "tailscale"
+      "moonlight"
     ];
 
 

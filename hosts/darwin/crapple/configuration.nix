@@ -7,6 +7,8 @@
     ./homebrew.nix
   ];
 
+  system.primaryUser = "brad";
+
   environment.systemPackages = with pkgs; [
     neovim
     utm
@@ -24,7 +26,6 @@
     fzf
     ranger
     bartender
-    thefuck
     stow
     oh-my-posh
     aldente
@@ -38,11 +39,6 @@
 
   # Set friendly computername
   networking.computerName = "crapple";
-
-  # Needed to Allow tailscaled to set MagicDNS on macOS
-  networking.knownNetworkServices = [
-    "Wi-Fi"
-  ];
 
   # Set hostname
   networking.hostName = "crapple";
@@ -67,15 +63,9 @@
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  # Enable Tailscale
-  services.tailscale = {
-    enable = true;
-    overrideLocalDns = true;
-  };
-  
-
   # Touch ID for sudo
   security.pam.services.sudo_local.touchIdAuth = true;
+  security.pam.services.sudo_local.reattach = true;
 
   # Disable startup chime
   system.startup.chime = false;
