@@ -34,7 +34,13 @@
     it87
   ];
 
-  boot.blacklistedKernelModules = [ "kvm_amd" "kvm" ];
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 15d";
+  };
+
+  nix.optimise.automatic = true;
 
   # Bootloader
   boot.loader = {
@@ -54,26 +60,11 @@
      };
   };
 
-  nix.settings.trusted-users = [ "root" "brad" ]; # Replace with your username
+  nix.settings.trusted-users = [ "root" "brad" "nixremote" ]; # Replace with your username
 
   nix.settings.sandbox = true;
 
-  systemd.tpm2.enable = false;
-
   boot.supportedFilesystems = [ "ntfs" ];
-
-  #virtualisation.virtualbox.host.enable = true;
-  #users.extraGroups.vboxusers.members = [ "brad" ];
-  #virtualisation.virtualbox.host.enableExtensionPack = true;
-  #virtualisation.virtualbox.host.addNetworkInterface = true;
-
-  #virtualisation.vmware.host.enable = true;
-
-  environment.etc."vbox/networks.conf".text = ''
-    * 192.168.0.0/16
-  '';
-
-  virtualisation.libvirtd.enable = false;
 
   zramSwap.enable = true;
 
@@ -139,7 +130,7 @@
   };
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -183,7 +174,18 @@
     ignoreShellProgramCheck = true;
   };
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  users.users.nixremote = {
+    isSystemUser = true;
+    createHome = false;
+    group = "nixremote";
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHZfKCrQflxi3PIq2cDKZY30fzgEKMlEb+qNL8Z64beg"
+    ];
+  };
+
+  users.groups.nixremote = {};
+
+  #boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Allow unfree packages
   nixpkgs.config = {
@@ -208,7 +210,8 @@
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     inputs.ghostty.packages.x86_64-linux.default
-    torzu
+    unrar
+    sshfs
     amarok
     nodejs
     wget
@@ -216,14 +219,13 @@
     git
     yazi
     cargo
-    _1password-gui-beta
-    _1password-cli
     thunderbird
     fastfetch
     inputs.zen-browser.packages."${system}".default
     chromium
     gcc
     htop
+    dnsutils
     btop
     coolercontrol.coolercontrol-gui
     linuxKernel.packages.linux_6_6.it87
@@ -231,7 +233,7 @@
     coolercontrol.coolercontrol-liqctld
     coolercontrol.coolercontrol-ui-data
     lm_sensors
-    kitty
+    azuredatastudio
     dunst
     openiscsi
     stow
@@ -243,7 +245,7 @@
     discord
     bat
     tldr
-    thefuck
+    pay-respects
     lutris
     adwaita-icon-theme
     mangohud
@@ -263,13 +265,14 @@
     lact
     via
     barrier
-    input-leap
     gnome-remote-desktop
     mpv
     adoptopenjdk-icedtea-web
     bitwarden
     zed-editor
     home-manager
+    lazysql
+    sqlcmd
 
     # Hyprland DE Packages
     xdg-desktop-portal-hyprland
@@ -290,8 +293,6 @@
     zathura
     hashcat
   ];
-
-  programs.light.enable = true;
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;
@@ -314,13 +315,16 @@
   services.hardware.openrgb.enable = true;
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    allowSFTP = true;
+  };
 
   # Open ports in the firewall.
   #networking.firewall.allowedTCPPorts = [ ... ];
   #networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = true;
+  networking.firewall.enable = false;
 
   # DO NOT CHANGE
   system.stateVersion = "24.11";
@@ -335,6 +339,11 @@
     defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
     openFirewall = true;
   };
+    systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

@@ -10,11 +10,6 @@
       url = "github:NixOS/nixpkgs/master";
     };
 
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     apple-silicon = {
       url = "github:darbster145/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -73,7 +68,6 @@
     , nixpkgs
     , stable-nixpkgs
     , master-nixpkgs
-    , lix-module
     , home-manager
     , nixos-wsl
     , apple-silicon
@@ -119,9 +113,9 @@
       nixosConfigurations = {
         brixos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
+          system = "x86_64-linux";
           modules = [
             ./hosts/nixos/brixos/configuration.nix
-            lix-module.nixosModules.default
           ];
         };
 
