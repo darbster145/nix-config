@@ -45,6 +45,7 @@
       "obs"
       "tailscale"
       "moonlight"
+      "rancher"
     ];
 
     masApps = {

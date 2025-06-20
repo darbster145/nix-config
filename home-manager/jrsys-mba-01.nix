@@ -45,6 +45,10 @@
     homeDirectory = "/Users/bradlee";
   };
 
+  home.sessionPath = [
+    "$HOME/.rd/bin"
+  ];
+
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
