@@ -4,7 +4,7 @@
   homebrew = {
     enable = true;
     onActivation = {
-      cleanup = "uninstall";
+      cleanup = "none";
       autoUpdate = true;
       upgrade = true;
     };
@@ -38,14 +38,13 @@
       "zenmap"
       "via"
       "microsoft-teams"
-      "ghostty@tip"
       "obsidian"
       "macfuse"
       "vmware-fusion"
       "obs"
       "tailscale"
-      "moonlight"
-      "rancher"
+      "ghostty"
+      "freelens"
     ];
 
     masApps = {

@@ -9,6 +9,7 @@
     ./systemPackages.nix
     ../features/tmux.nix
     ../../nixos/features/fonts.nix
+    ../features/linux-builder.nix
   ];
 
   fonts.packages = with pkgs; [
@@ -20,9 +21,6 @@
   ];
 
   ids.gids.nixbld = 350;
-
-  # Needed for Determinate Nix
-  nix.enable = false;
 
   nix.package = pkgs.nix;
 

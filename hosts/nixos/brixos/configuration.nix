@@ -10,22 +10,23 @@
     ./ollama.nix
   ];
 
-  boot.initrd.kernelModules = [ 
+  boot.initrd.kernelModules = [
     "amdgpu"
   ];
-  boot.kernelParams = [ 
-    "acpi_enforce_resources=lax" 
-    "acpi_backlight=video" 
-    "acpi_backlight=vendor" 
-    "acpi_backlight=native" 
+  boot.kernelParams = [
+    "acpi_enforce_resources=lax"
+    "acpi_backlight=video"
+    "acpi_backlight=vendor"
+    "acpi_backlight=native"
     # Needed for LACT AMDGPU Overclocking Support
-    "amdgpu.ppfeaturemask=0xffffffff" 
+    "amdgpu.ppfeaturemask=0xffffffff"
   ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [ "iscsi_tcp" 
-    "it87" 
-    "coretemp" 
-    "amdgpu" 
+  boot.kernelModules = [
+    "iscsi_tcp"
+    "it87"
+    "coretemp"
+    "amdgpu"
   ];
   boot.extraModprobeConfig = ''
     options it87 force_id=0x8689
@@ -48,16 +49,16 @@
       canTouchEfiVariables = true;
     };
     systemd-boot = {
-    	enable = true;
-	#edk2-uefi-shell.enable = true;
-	windows = {
-	  windows11 = {
-	    title = "Windows 11";
-	    efiDeviceHandle = "HD1b";
-	    sortKey = "z_windows";
-	  };
+      enable = true;
+      #edk2-uefi-shell.enable = true;
+      windows = {
+        windows11 = {
+          title = "Windows 11";
+          efiDeviceHandle = "HD1b";
+          sortKey = "z_windows";
         };
-     };
+      };
+    };
   };
 
   nix.settings.trusted-users = [ "root" "brad" "nixremote" ]; # Replace with your username
@@ -183,7 +184,7 @@
     ];
   };
 
-  users.groups.nixremote = {};
+  users.groups.nixremote = { };
 
   #boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -209,7 +210,9 @@
 
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    inputs.ghostty.packages.x86_64-linux.default
+    #inputs.ghostty.packages.x86_64-linux.default
+    ghostty
+    kubectl
     unrar
     sshfs
     amarok
@@ -339,7 +342,7 @@
     defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
     openFirewall = true;
   };
-    systemd.targets.sleep.enable = false;
+  systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;

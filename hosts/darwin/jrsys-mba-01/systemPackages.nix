@@ -4,6 +4,7 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     neovim
+    nixos-rebuild
     zsh
     sshfs
     macfuse-stubs
@@ -12,7 +13,6 @@
     tmux
     fastfetch
     ranger
-    #thefuck
     unzip
     zoxide
     fzf
@@ -31,18 +31,19 @@
     nmap
     swift-quit
     youtube-music
-    shortcat
     bartender
     aerospace
-    arc-browser
     inputs.zen-browser-darwin.packages."${system}"
     #zed-editor
     firefox-unwrapped
-    #ghostty
     yazi
     tmux
     nix-tree
     speedtest-cli
     utm
+    kubectl
+    k9s
+    kubernetes-helm
+    helmfile
   ];
 }

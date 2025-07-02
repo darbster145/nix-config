@@ -23,6 +23,8 @@
       gl = "git log";
       gb = "git branch";
       gi = "git init";
+
+      k = "kubectl";
     };
 
     initContent = ''
