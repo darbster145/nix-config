@@ -11,6 +11,7 @@
     ./features/cli/neovim.nix
     ./features/cli/tmux.nix
     ./features/cli/zsh.nix
+    #./features/sketchybar.nix
   ];
 
   nixpkgs = {

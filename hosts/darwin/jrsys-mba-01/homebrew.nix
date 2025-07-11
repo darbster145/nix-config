@@ -4,7 +4,7 @@
   homebrew = {
     enable = true;
     onActivation = {
-      cleanup = "none";
+      cleanup = "zap";
       autoUpdate = true;
       upgrade = true;
     };
@@ -42,7 +42,7 @@
       "macfuse"
       "vmware-fusion"
       "obs"
-      "tailscale"
+      "tailscale-app"
       "ghostty"
       "freelens"
     ];

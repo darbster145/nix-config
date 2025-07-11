@@ -9,7 +9,7 @@
     ./systemPackages.nix
     ../features/tmux.nix
     ../../nixos/features/fonts.nix
-    ../features/linux-builder.nix
+    #../features/linux-builder.nix
   ];
 
   fonts.packages = with pkgs; [

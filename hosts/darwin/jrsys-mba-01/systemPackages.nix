@@ -34,16 +34,16 @@
     bartender
     aerospace
     inputs.zen-browser-darwin.packages."${system}"
-    #zed-editor
+    zed-editor
     firefox-unwrapped
     yazi
     tmux
     nix-tree
     speedtest-cli
-    utm
     kubectl
     k9s
     kubernetes-helm
     helmfile
+    kanata-with-cmd
   ];
 }
