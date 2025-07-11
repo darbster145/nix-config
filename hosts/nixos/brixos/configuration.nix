@@ -198,14 +198,9 @@
 
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    <<<<<<< Updated
-    upstream
-    #inputs.ghostty.packages.x86_64-linux.default
-    ghostty
+    inputs.ghostty.packages.x86_64-linux.default
+    #ghostty
     kubectl
-    =======
-    >>>>>>> Stashed
-    changes
     unrar
     obsidian
     inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
