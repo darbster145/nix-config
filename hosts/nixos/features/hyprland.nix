@@ -26,8 +26,6 @@
     pavucontrol
     wireguard-tools
     cargo
-    calls
-    linphone
     wlogout
     hyprshot
     hyprlock

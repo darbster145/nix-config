@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, ghostty, ... }:
 
 {
   imports = [
@@ -7,7 +7,7 @@
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
-    ./ollama.nix
+    #./ollama.nix
   ];
 
   boot.initrd.kernelModules = [
@@ -88,6 +88,7 @@
       libvdpau-va-gl
       mesa
       vaapiVdpau
+      mesa.opencl
     ];
   };
 
@@ -170,23 +171,10 @@
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
-    extraGroups = [ "networkmanager" "wheel" "video" "vboxusers" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
-
-  users.users.nixremote = {
-    isSystemUser = true;
-    createHome = false;
-    group = "nixremote";
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHZfKCrQflxi3PIq2cDKZY30fzgEKMlEb+qNL8Z64beg"
-    ];
-  };
-
-  users.groups.nixremote = { };
-
-  #boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # Allow unfree packages
   nixpkgs.config = {
@@ -210,10 +198,17 @@
 
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    <<<<<<< Updated
+    upstream
     #inputs.ghostty.packages.x86_64-linux.default
     ghostty
     kubectl
+    =======
+    >>>>>>> Stashed
+    changes
     unrar
+    obsidian
+    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     sshfs
     amarok
     nodejs
@@ -230,11 +225,7 @@
     htop
     dnsutils
     btop
-    coolercontrol.coolercontrol-gui
     linuxKernel.packages.linux_6_6.it87
-    coolercontrol.coolercontrold
-    coolercontrol.coolercontrol-liqctld
-    coolercontrol.coolercontrol-ui-data
     lm_sensors
     azuredatastudio
     dunst
@@ -262,21 +253,23 @@
     gearlever
     teams-for-linux
     jellyfin-media-player
-    #linuxKernel.packages.linux_6_11.it87
-    tangram
     libreoffice
     lact
     via
     barrier
-    gnome-remote-desktop
     mpv
     adoptopenjdk-icedtea-web
     bitwarden
     zed-editor
     home-manager
-    lazysql
-    sqlcmd
-
+    kubectl
+    k9s
+    pciutils
+    amdgpu_top
+    nethogs
+    wirelesstools
+    iotop
+    gtop
     # Hyprland DE Packages
     xdg-desktop-portal-hyprland
     kdePackages.xwaylandvideobridge # Needed to screenshare xwayland programs
@@ -294,7 +287,8 @@
     nwg-dock
     playerctl
     zathura
-    hashcat
+    banana-cursor
+    davinci-resolve
   ];
 
   services.gvfs.enable = true;
@@ -324,7 +318,7 @@
   };
 
   # Open ports in the firewall.
-  #networking.firewall.allowedTCPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 11987 ];
   #networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;

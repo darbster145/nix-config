@@ -11,7 +11,7 @@
     };
 
     apple-silicon = {
-      url = "github:darbster145/nixos-apple-silicon";
+      url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -43,10 +43,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
-
     # Optional: Homebrew taps for crapple
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -59,6 +55,9 @@
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
+    };
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
     };
 
   };
@@ -73,6 +72,7 @@
     , apple-silicon
     , nix-darwin
     , nix-homebrew
+    , ghostty
     , ...
     } @ inputs:
     let
@@ -113,7 +113,6 @@
       nixosConfigurations = {
         brixos = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
-          system = "x86_64-linux";
           modules = [
             ./hosts/nixos/brixos/configuration.nix
           ];

@@ -5,19 +5,18 @@
         "flake-compat": "flake-compat",
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "rust-overlay": "rust-overlay"
+        ]
       },
       "locked": {
-        "lastModified": 1742442237,
-        "narHash": "sha256-W0jd5FoOuQUnpBrAc7H/EoXrq9FpcR88ZfcqMU5MXBw=",
-        "owner": "darbster145",
+        "lastModified": 1751622568,
+        "narHash": "sha256-EE3NBsej517VRa1x+ylAghrvngftxf1KgfHlE9OYyXE=",
+        "owner": "nix-community",
         "repo": "nixos-apple-silicon",
-        "rev": "05cc7945361db3974df3a919f061b7511e20db0f",
+        "rev": "eba4b40c816e5aff8951ae231ac237e8aab8ec1d",
         "type": "github"
       },
       "original": {
-        "owner": "darbster145",
+        "owner": "nix-community",
         "repo": "nixos-apple-silicon",
         "type": "github"
       }
@@ -182,11 +181,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1752266242,
-        "narHash": "sha256-QjGPHQWcfqDeBm77WT4m8KlcxbWhZ5iUWTbDVjJfNaM=",
+        "lastModified": 1752267168,
+        "narHash": "sha256-TmSBIWrAAfTqR/9ehr1ToYA7O+wI65oUH0txnVw5384=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "f9b917045501ceed23f3807010391e66cbf0cd96",
+        "rev": "1b025dfc537b3c418b2bcd83df3aba72b8d825c8",
         "type": "github"
       },
       "original": {
@@ -197,11 +196,11 @@
     },
     "master-nixpkgs": {
       "locked": {
-        "lastModified": 1752265913,
-        "narHash": "sha256-VCijcwJ+eipMsMAtgMDC1HHnsCjkI1Ik3KLzSMQpwkw=",
+        "lastModified": 1752267763,
+        "narHash": "sha256-wXJ0LDIz3SSkONMk1VOcNhr6GJttUOH2X3JGrtkdO0k=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "87f9b0ebacf7331301f40d71c0b3829975aaf084",
+        "rev": "056ea1afe3e1713c1bab2e04e2fcd05c78fdcb52",
         "type": "github"
       },
       "original": {
@@ -330,22 +329,6 @@
         "stable-nixpkgs": "stable-nixpkgs",
         "zen-browser": "zen-browser",
         "zen-browser-darwin": "zen-browser-darwin"
-      }
-    },
-    "rust-overlay": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1686795910,
-        "narHash": "sha256-jDa40qRZ0GRQtP9EMZdf+uCbvzuLnJglTUI2JoHfWDc=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "5c2b97c0a9bc5217fc3dfb1555aae0fb756d99f9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
       }
     },
     "stable-nixpkgs": {
