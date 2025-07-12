@@ -36,8 +36,15 @@
     playerctl
     nautilus
     swww
-    waypaper
+    hyprpaper
     dunst
+    hyprcursor
+    nwg-look
+    libsForQt5.kwallet
+    libsForQt5.kwallet-pam
+    kdePackages.kwallet
+    kdePackages.kwallet-pam
+    walker
   ];
 
   services.gvfs.enable = true;
@@ -53,7 +60,7 @@
   };
 
   environment.sessionVariables = {
-    "HYPRSHOT_DIR" = "~/Pictures";
+    "HYPRSHOT_DIR" = "/home/brad/Pictures";
     "GDK_DISABLE" = "gles-api";
     "GSK_RENDERER" = "gl";
   };

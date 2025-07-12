@@ -5,10 +5,9 @@
     [
       ./hardware-configuration.nix
       ../features/kanata.nix
-      #../features/remoteBuilders.nix
       ../features/hyprland.nix
-      #../../features/zsh.nix
       ../../features/tmux.nix
+      ../features/fonts.nix
     ];
 
 
@@ -64,27 +63,16 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable KDE6
-  #services.displayManager.sddm.enable = true;
-  #services.desktopManager.plasma6.enable = true;
-
   #  Enable Gnome
   services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome = {
-  #   enable = true;
-  #   extraGSettingsOverridePackages = [ pkgs.mutter ];
-  #   extraGSettingsOverrides = ''
-  #     [org.gnome.mutter]
-  #     experimental-features=['scale-monitor-framebuffer']
-  #   '';
-  # };
-
 
   # Enable Bluetooth
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
+
+  services.blueman.enable = true;
 
   # Enable CUPS to print documents.
   #services.printing.enable = true;
@@ -117,15 +105,12 @@
     home-manager
     zoxide
     wget
-    moonlight-qt
     git
     nix-tree
     yazi
     ghostty
     unzip
-    #inputs.ghostty.packages.aarch64-linux.default
     firefox-devedition
-    kitty
     htop
     fastfetch
     btop
@@ -151,14 +136,17 @@
     lazygit
     tmux
     ungoogled-chromium
-    youtube-music
-    adoptopenjdk-icedtea-web
     nix-prefetch
     adoptopenjdk-icedtea-web
     nix-tree
     #libreoffice
     bc
     jq
+    kubectl
+    k9s
+    blueman
+    banana-cursor
+    obsidian
   ];
 
   # Enable Appimages

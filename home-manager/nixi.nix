@@ -34,10 +34,20 @@
   };
 
   home.packages = with pkgs; [
+    banana-cursor
   ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
+
+  home.pointerCursor = {
+    enable = true;
+    package = pkgs.banana-cursor;
+    name = "banana-cursor";
+    hyprcursor.enable = true;
+    hyprcursor.size = 24;
+  };
+
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
