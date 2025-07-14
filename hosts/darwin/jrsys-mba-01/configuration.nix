@@ -12,29 +12,22 @@
     #../features/linux-builder.nix
   ];
 
-  fonts.packages = with pkgs; [
-    fira-code
-  ];
-
-  environment.systemPackages = with pkgs; [
-    tmux
-  ];
-
   ids.gids.nixbld = 350;
 
   nix.package = pkgs.nix;
 
-  #nix.optimise.automatic = true;
-
   system.primaryUser = "bradlee";
 
-  # nix.gc = {
-  #   automatic = true;
-  #   interval = { Weekday = 0; Hour = 0; Minute = 0; };
-  #   options = "--delete-older-than 15d";
-  # };
+  nix.optimise.automatic = true;
+
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 0; Hour = 0; Minute = 0; };
+    options = "--delete-older-than 15d";
+  };
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 
   nix.settings.experimental-features = "nix-command flakes";
 
@@ -52,7 +45,6 @@
     reattach = true; # Needed for tmux
     watchIdAuth = true;
   };
-
 
   #system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
 
@@ -89,11 +81,7 @@
       _FXShowPosixPathInTitle = true;
     };
 
-    loginwindow.LoginwindowText = "sugundezz";
-
-    screencapture.location = "~/Pictures/screenshots";
-
-    screensaver.askForPasswordDelay = 10;
+    screencapture.location = "/Users/bradlee/Pictures/screenshots";
 
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
     spaces.spans-displays = false;
