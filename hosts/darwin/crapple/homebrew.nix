@@ -35,8 +35,8 @@
       "crystalfetch"
       "microsoft-teams"
       "azure-data-studio"
-      "tailscale"
       "moonlight"
+      "tailscale-app"
     ];
 
 

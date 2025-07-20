@@ -23,8 +23,17 @@
       gl = "git log";
       gb = "git branch";
       gi = "git init";
+<<<<<<< Updated upstream
 
       k = "kubectl";
+=======
+      
+      # Kubernetes Aliases
+      k = "kubectl";
+      k9 = "k9s";
+      h = "helm";
+      hf = "helmfile";
+>>>>>>> Stashed changes
     };
 
     initContent = ''

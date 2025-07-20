@@ -14,7 +14,6 @@
     utm
     tldr
     google-chrome
-    #moonlight-qt
     zoxide
     fastfetch
     lazygit
@@ -29,12 +28,15 @@
     stow
     oh-my-posh
     aldente
-    #kitty # Broken on Darwin
     aerospace
     inputs.zen-browser-darwin.packages."${system}"
     thunderbird-latest-unwrapped
     firefox-unwrapped
     # kanata # Broken on Darwin
+    kubectl
+    kubernetes-helm
+    helmfile
+    k9s
   ];
 
   # Set friendly computername

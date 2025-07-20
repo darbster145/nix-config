@@ -112,11 +112,19 @@
         "zon2nix": "zon2nix"
       },
       "locked": {
+<<<<<<< Updated upstream
         "lastModified": 1752468632,
         "narHash": "sha256-3Hmq3XMTPg12zWmNsDgxTCsXDthBi+Umfv/XeNsa9Es=",
         "owner": "ghostty-org",
         "repo": "ghostty",
         "rev": "37c2c3a4ba696e90f0be2b7c2c0cd6f613dbf70a",
+=======
+        "lastModified": 1751688341,
+        "narHash": "sha256-yw8rGAhmR808cbjUhTNde9dHSi7EIoTHfrQGhr1zN1s=",
+        "owner": "ghostty-org",
+        "repo": "ghostty",
+        "rev": "f04a388f00199ae271a428606fd1f993c202ab64",
+>>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
@@ -132,11 +140,19 @@
         ]
       },
       "locked": {
+<<<<<<< Updated upstream
         "lastModified": 1752467539,
         "narHash": "sha256-4kaR+xmng9YPASckfvIgl5flF/1nAZOplM+Wp9I5SMI=",
         "owner": "nix-community",
         "repo": "home-manager",
         "rev": "1e54837569e0b80797c47be4720fab19e0db1616",
+=======
+        "lastModified": 1751693185,
+        "narHash": "sha256-+LKghTO5wWBcR/MJAeoSarWR7c7dO6GyA8+jM8DHV08=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "36c57c6a1d03a5efbf5e23c04dbe21259d25f992",
+>>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
@@ -165,11 +181,19 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
+<<<<<<< Updated upstream
         "lastModified": 1752500895,
         "narHash": "sha256-qbbwtyPUpRsvgsjGFgAA8QpbukzZVE09XCVlYkWddsE=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
         "rev": "96a068d8c9ee76c393c49873ea72ba35d7ba87c3",
+=======
+        "lastModified": 1751725607,
+        "narHash": "sha256-2It0d0fa595Kpms2yDshgrv7Lmp5W3/K3n6F0/0zk2I=",
+        "owner": "homebrew",
+        "repo": "homebrew-cask",
+        "rev": "c65c8539a841f9ddeb76486a8b16c68f74ee4575",
+>>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
@@ -181,11 +205,19 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
+<<<<<<< Updated upstream
         "lastModified": 1752503529,
         "narHash": "sha256-Gp0j8QT9qbfaqbve2iYJ8Iccz+bIzsfLwvZ0MDqO8KM=",
         "owner": "homebrew",
         "repo": "homebrew-core",
         "rev": "bf50310705fd2368347b72d215c1f46c991cb6ce",
+=======
+        "lastModified": 1751726388,
+        "narHash": "sha256-drCnxrPXt5t+wgW+FHMAcjljq2XoZ0kNgQEtWrxii3w=",
+        "owner": "homebrew",
+        "repo": "homebrew-core",
+        "rev": "4aa404870cbc74b52a96306a621aadc92a8da647",
+>>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
@@ -196,11 +228,19 @@
     },
     "master-nixpkgs": {
       "locked": {
+<<<<<<< Updated upstream
         "lastModified": 1752502984,
         "narHash": "sha256-P6P2CPL7juTh0a3fyW/9OBv8ISmImsEdX1lGuslUw5o=",
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "67e2045bdd8442f5510f69c8effc374adcbef1bc",
+=======
+        "lastModified": 1751727825,
+        "narHash": "sha256-UzPYi/GwhnhJ+oyBCm66mFk8eHOtZvdFaNa9/Jq4Y0c=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e9865339933fb31a492c8cac52a72b9e7af9ba22",
+>>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
@@ -299,11 +339,19 @@
     },
     "nixpkgs_3": {
       "locked": {
+<<<<<<< Updated upstream
         "lastModified": 1752077645,
         "narHash": "sha256-HM791ZQtXV93xtCY+ZxG1REzhQenSQO020cu6rHtAPk=",
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "be9e214982e20b8310878ac2baa063a961c1bdf6",
+=======
+        "lastModified": 1751625545,
+        "narHash": "sha256-4E7wWftF1ExK5ZEDzj41+9mVgxtuRV3wWCId7QAYMAU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c860cf0b3a0829f0f6cf344ca8de83a2bbfab428",
+>>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
@@ -369,11 +417,19 @@
         ]
       },
       "locked": {
+<<<<<<< Updated upstream
         "lastModified": 1752293576,
         "narHash": "sha256-84tAzrC/kioWRmG0jLt1HWRP/wHON7zjLtXCwWRNI/g=",
         "owner": "youwen5",
         "repo": "zen-browser-flake",
         "rev": "1a40cdcb093a0025631ef692caa53130f821dd77",
+=======
+        "lastModified": 1751688498,
+        "narHash": "sha256-6kYe6ozYDvsHAxV1zbSxg0oRWF4TzTfOUUJsR6MJlYY=",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "rev": "b5d422dc2b28eb77a21fbdf60aca9a6e63d5a1ab",
+>>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
@@ -389,11 +445,19 @@
         ]
       },
       "locked": {
+<<<<<<< Updated upstream
         "lastModified": 1752504096,
         "narHash": "sha256-6hfywzZi/a3+ymgoXKxt2M9WrvLMbKrdKriUTyHj3SY=",
         "owner": "darbster145",
         "repo": "zen-browser-darwin",
         "rev": "a9f6dacd746d5eea960f9927a4dc3775eac9faa4",
+=======
+        "lastModified": 1751471978,
+        "narHash": "sha256-2tesDitumpEFYpJeGW6ikOuzlvshN2gwfY7EPNehheM=",
+        "owner": "darbster145",
+        "repo": "zen-browser-darwin",
+        "rev": "f9d2d9e5ec56d37b5526dfeed4aca451ba85e305",
+>>>>>>> Stashed changes
         "type": "github"
       },
       "original": {
