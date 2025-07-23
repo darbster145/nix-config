@@ -12,7 +12,6 @@
     tldr
     tmux
     fastfetch
-    ranger
     unzip
     zoxide
     fzf
@@ -20,7 +19,6 @@
     stow
     fira-code
     htop
-    btop
     oh-my-posh
     spacebar
     powershell
@@ -30,7 +28,6 @@
     slack
     nmap
     swift-quit
-    youtube-music
     bartender
     aerospace
     inputs.zen-browser-darwin.packages."${system}"
