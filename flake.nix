@@ -4,7 +4,7 @@
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
     stable-nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-24.11";
+      url = "nixpkgs/nixos-25.05";
     };
     master-nixpkgs = {
       url = "github:NixOS/nixpkgs/master";
@@ -119,7 +119,9 @@
         };
 
         nixi = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { 
+	    inherit inputs outputs; 
+	  };
           modules = [
             ./hosts/nixos/nixi/configuration.nix
             apple-silicon.nixosModules.apple-silicon-support
@@ -127,7 +129,11 @@
         };
 
         hl0 = stable-nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+          specialArgs = { 
+	    inherit inputs outputs; 
+	  };
+
+	  system = "x86_64-linux";
           modules = [
             ./hosts/nixos/hl0/configuration.nix
           ];
