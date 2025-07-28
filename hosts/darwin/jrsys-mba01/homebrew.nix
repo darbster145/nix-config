@@ -40,7 +40,7 @@
       "microsoft-teams"
       "obsidian"
       "macfuse"
-      "vmware-fusion"
+      #"vmware-fusion"
       "obs"
       "tailscale-app"
       "ghostty"

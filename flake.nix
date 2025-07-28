@@ -150,11 +150,11 @@
       };
 
       darwinConfigurations = {
-        "JRSYS-MBA-01" = nix-darwin.lib.darwinSystem {
+        "JRSYS-MBA01" = nix-darwin.lib.darwinSystem {
           specialArgs = { inherit inputs; };
           system = "aarch64-darwin";
           modules = [
-            ./hosts/darwin/jrsys-mba-01/configuration.nix
+            ./hosts/darwin/jrsys-mba01/configuration.nix
             nix-homebrew.darwinModules.nix-homebrew
             #lix-module.nixosModules.default
           ];
@@ -171,11 +171,11 @@
       };
 
       homeConfigurations = {
-        "bradlee@JRSYS-MBA-01" = home-manager.lib.homeManagerConfiguration {
+        "bradlee@JRSYS-MBA01" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./home-manager/jrsys-mba-01.nix
+            ./home-manager/jrsys-mba01.nix
           ];
         };
 

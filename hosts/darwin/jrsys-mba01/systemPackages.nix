@@ -38,9 +38,11 @@
     nix-tree
     speedtest-cli
     kubectl
+    talosctl
     k9s
     kubernetes-helm
     helmfile
     kanata-with-cmd
+    utm
   ];
 }
