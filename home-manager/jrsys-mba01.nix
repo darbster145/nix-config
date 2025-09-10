@@ -5,13 +5,16 @@
 , config
 , pkgs
 , ...
-}: {
+}: 
+
+{
   imports = [
     ./features/cli/git.nix
     ./features/cli/neovim.nix
     ./features/cli/tmux.nix
     ./features/cli/zsh.nix
     #./features/sketchybar.nix
+    ./features/zen-browser.nix
   ];
 
   nixpkgs = {
@@ -54,8 +57,11 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
 
-    remmina
   ];
+
+  programs.zen-browser = {
+    enable = true;
+  };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

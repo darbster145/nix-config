@@ -4,6 +4,7 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     neovim
+    ripgrep
     nixos-rebuild
     zsh
     sshfs
@@ -30,8 +31,8 @@
     swift-quit
     bartender
     aerospace
-    inputs.zen-browser-darwin.packages."${system}"
-    zed-editor
+    #inputs.zen-browser-darwin.packages."${system}"
+    #zed-editor
     firefox-unwrapped
     yazi
     tmux
@@ -44,5 +45,6 @@
     helmfile
     kanata-with-cmd
     utm
+    bitwarden-desktop
   ];
 }

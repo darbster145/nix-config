@@ -111,5 +111,6 @@
     enableKeyMapping = true;
     remapCapsLockToEscape = true;
   };
+
 }
 

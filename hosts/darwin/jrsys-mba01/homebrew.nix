@@ -17,6 +17,7 @@
     brews = [
       "mas"
       "tsui"
+      "kanata"
     ];
 
     casks = [
@@ -25,7 +26,6 @@
       "chromium"
       "crystalfetch"
       "disk-inventory-x"
-      "displaylink"
       "istat-menus"
       "jiggler"
       "mac-mouse-fix"
@@ -45,6 +45,8 @@
       "tailscale-app"
       "ghostty"
       "freelens"
+      "karabiner-elements"
+      "lm-studio"
     ];
 
     masApps = {
