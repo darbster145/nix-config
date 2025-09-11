@@ -41,7 +41,6 @@
     hyprcursor
     nwg-look
     libsForQt5.kwallet
-    libsForQt5.kwallet-pam
     kdePackages.kwallet
     kdePackages.kwallet-pam
     walker

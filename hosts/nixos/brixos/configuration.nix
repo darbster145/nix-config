@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ghostty, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -7,7 +7,7 @@
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
-    #./ollama.nix
+    ./ollama.nix
   ];
 
   boot.initrd.kernelModules = [
@@ -121,7 +121,10 @@
   services.printing.enable = true;
 
   # Enable Tailscale
-  services.tailscale.enable = true;
+  #services.tailscale = {
+  #  enable = true;
+  # useRoutingFeatures = "both";
+  #};
 
   # Enable Sunshine
   services.sunshine = {
@@ -198,12 +201,13 @@
 
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    inputs.ghostty.packages.x86_64-linux.default
-    #ghostty
+    #inputs.ghostty.packages.x86_64-linux.default
+    ghostty
+    azuredatastudio
     kubectl
+    rustup
     unrar
     obsidian
-    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
     sshfs
     amarok
     nodejs
@@ -212,7 +216,6 @@
     git
     yazi
     cargo
-    thunderbird
     fastfetch
     inputs.zen-browser.packages."${system}".default
     chromium
@@ -222,7 +225,6 @@
     btop
     linuxKernel.packages.linux_6_6.it87
     lm_sensors
-    azuredatastudio
     dunst
     openiscsi
     stow
@@ -246,8 +248,6 @@
     papirus-icon-theme
     openrgb-with-all-plugins
     gearlever
-    teams-for-linux
-    jellyfin-media-player
     libreoffice
     lact
     via
@@ -283,7 +283,7 @@
     playerctl
     zathura
     banana-cursor
-    davinci-resolve
+    #davinci-resolve
   ];
 
   services.gvfs.enable = true;
@@ -313,7 +313,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 11987 ];
+  #networking.firewall.allowedTCPPorts = [ 11987 47989 ];
   #networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
@@ -323,14 +323,24 @@
 
   programs.coolercontrol.enable = true;
 
-  services.avahi.publish.enable = true;
-  services.avahi.publish.userServices = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    publish = {
+      enable = true;
+      userServices = true;
+      workstation = true;
+      addresses = true;
+      hinfo = true;
+    };
+  };
 
   services.xrdp = {
     enable = true;
     defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
     openFirewall = true;
   };
+
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;

@@ -45,7 +45,10 @@
       "tailscale-app"
       "ghostty"
       "freelens"
+<<<<<<< Updated upstream
       "karabiner-elements"
+=======
+>>>>>>> Stashed changes
       "lm-studio"
     ];
 
