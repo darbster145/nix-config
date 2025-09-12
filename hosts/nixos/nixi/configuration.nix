@@ -28,10 +28,10 @@
   # Enable zram swap
   zramSwap.enable = true;
 
-  services.logind.extraConfig = ''
-    # don’t shutdown when power button is short-pressed
-    HandlePowerKey=ignore
-  '';
+  # services.logind.settings.Login = ''
+  #   # don’t shutdown when power button is short-pressed
+  #   HandlePowerKey=ignore
+  # '';
 
   # Auto optimize the nix store
   nix.optimise.automatic = true;
@@ -52,13 +52,6 @@
 
   # Set your time zone.
   time.timeZone = "America/Denver";
-
-  # enable GPU support and audio
-  hardware.asahi = {
-    useExperimentalGPUDriver = true;
-    experimentalGPUInstallMode = "replace";
-    setupAsahiSound = true;
-  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -81,7 +74,10 @@
   services.libinput.enable = true;
 
   # Enable tailscale
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brad = {
@@ -110,7 +106,6 @@
     yazi
     ghostty
     unzip
-    firefox-devedition
     htop
     fastfetch
     btop
@@ -129,13 +124,13 @@
     thunderbird
     gearlever
     youtube-music
-    jellyfin-media-player
     remmina
     openconnect
     openconnect_openssl
     lazygit
     tmux
     ungoogled-chromium
+    firefox-bin
     nix-prefetch
     adoptopenjdk-icedtea-web
     nix-tree
@@ -144,6 +139,9 @@
     jq
     kubectl
     k9s
+    kubernetes-helm
+    helmfile
+    talosctl
     blueman
     banana-cursor
     obsidian
