@@ -18,9 +18,9 @@
 
   system.primaryUser = "bradlee";
 
-  nix.optimise.automatic = true;
-
-
+  nix.optimise = {
+    automatic = false;
+  };
 
   nix.gc = {
     automatic = true;
@@ -47,8 +47,6 @@
     reattach = true; # Needed for tmux
     watchIdAuth = true;
   };
-
-  #system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
 
   system.startup.chime = false;
 
