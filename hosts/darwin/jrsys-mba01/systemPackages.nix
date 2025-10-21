@@ -27,7 +27,6 @@
     slack
     nmap
     aerospace
-    firefox-unwrapped
     yazi
     nix-tree
     speedtest-cli

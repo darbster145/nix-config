@@ -5,7 +5,7 @@
 , config
 , pkgs
 , ...
-}: 
+}:
 
 {
   imports = [
@@ -53,15 +53,20 @@
     "$HOME/.rd/bin"
   ];
 
+  #programs.firefox = {
+  #  enable = true;
+  #  package = pkgs.firefox-bin;
+  #};
+
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
 
   ];
 
-  programs.zen-browser = {
-    enable = true;
-  };
+  # programs.zen-browser = {
+  #   enable = true;
+  # };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

@@ -33,6 +33,10 @@
       url = "github:zhaofengli-wip/nix-homebrew";
     };
 
+    nixpkgs-firefox-darwin = {
+      url = "github:bandithedoge/nixpkgs-firefox-darwin";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
     };
@@ -118,9 +122,9 @@
         };
 
         nixi = nixpkgs.lib.nixosSystem {
-          specialArgs = { 
-	    inherit inputs outputs; 
-	  };
+          specialArgs = {
+            inherit inputs outputs;
+          };
           modules = [
             ./hosts/nixos/nixi/configuration.nix
             apple-silicon.nixosModules.apple-silicon-support
@@ -128,11 +132,11 @@
         };
 
         hl0 = stable-nixpkgs.lib.nixosSystem {
-          specialArgs = { 
-	    inherit inputs outputs; 
-	  };
+          specialArgs = {
+            inherit inputs outputs;
+          };
 
-	  system = "x86_64-linux";
+          system = "x86_64-linux";
           modules = [
             ./hosts/nixos/hl0/configuration.nix
           ];

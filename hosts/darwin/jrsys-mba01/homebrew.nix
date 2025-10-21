@@ -48,6 +48,7 @@
       "bartender"
       "utm"
       "displaylink"
+      "firefox"
     ];
 
     masApps = {
