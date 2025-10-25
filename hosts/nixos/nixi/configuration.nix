@@ -8,6 +8,7 @@
       ../features/hyprland.nix
       ../../features/tmux.nix
       ../features/fonts.nix
+      #../brixos/gnome.nix
     ];
 
 
@@ -27,6 +28,15 @@
 
   # Enable zram swap
   zramSwap.enable = true;
+
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      mesa
+      libva
+      libdrm
+    ];
+  };
 
   # services.logind.settings.Login = ''
   #   # don’t shutdown when power button is short-pressed
@@ -83,7 +93,7 @@
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "render" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 
@@ -98,7 +108,10 @@
   # System Packages
   environment.systemPackages = with pkgs; [
     trashy
+    legcord
+    libreoffice
     home-manager
+    widevine-cdm
     zoxide
     wget
     git
@@ -115,7 +128,7 @@
     oh-my-posh
     gcc
     bitwarden
-    inputs.zen-browser.packages.${pkgs.system}.default
+    inputs.zen-browser.packages.${pkgs.system}.twilight
     asahi-bless
     asahi-nvram
     asahi-btsync

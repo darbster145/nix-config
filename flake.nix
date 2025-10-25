@@ -3,9 +3,11 @@
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
+
     stable-nixpkgs = {
       url = "nixpkgs/nixos-25.05";
     };
+
     master-nixpkgs = {
       url = "github:NixOS/nixpkgs/master";
     };
@@ -41,24 +43,29 @@
       url = "github:0xc000022070/zen-browser-flake";
     };
 
-    # zen-browser-darwin = {
-    #   url = "github:darbster145/zen-browser-darwin";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    elephant.url = "github:abenz1267/elephant";
+
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
+    };
 
     # Optional: Homebrew taps for crapple
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
       flake = false;
     };
+
     homebrew-cask = {
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+
     homebrew-bundle = {
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };

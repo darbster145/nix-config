@@ -1,6 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
+
+  imports = [
+    inputs.walker.nixosModules.default
+  ];
+
   programs.hyprland = {
     enable = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
@@ -43,8 +48,12 @@
     libsForQt5.kwallet
     kdePackages.kwallet
     kdePackages.kwallet-pam
-    walker
   ];
+
+  programs.walker = {
+    enable = true;
+    runAsService = true;
+  };
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;
