@@ -31,7 +31,7 @@
     hyprlock
     wl-clipboard
     clipse
-    rofi-wayland
+    rofi
     wofi
     playerctl
     nautilus
