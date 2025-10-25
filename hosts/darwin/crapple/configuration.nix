@@ -5,6 +5,7 @@
   imports = [
     ../features/nix-homebrew.nix
     ./homebrew.nix
+    ./systemPackages.nix
   ];
 
   system.primaryUser = "brad";
@@ -29,7 +30,7 @@
     oh-my-posh
     aldente
     aerospace
-    inputs.zen-browser-darwin.packages."${system}"
+    inputs.zen-browser.packages."${system}".default
     thunderbird-latest-unwrapped
     firefox-unwrapped
     kubectl
@@ -64,23 +65,14 @@
   system.stateVersion = 4;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  # Touch ID for sudo
-  security.pam.services.sudo_local.touchIdAuth = true;
-  security.pam.services.sudo_local.reattach = true;
-
   # Disable startup chime
   system.startup.chime = false;
-
-  # Shell aliases
-  environment.shellAliases = {
-    ll = "ls -al";
-  };
 
   # System defaults like dock, clock, finder, etc.
   system.defaults = {
     dock = {
       autohide = true;
-      autohide-delay = 0.0;
+      autohide-delay = 0.24;
       mru-spaces = false;
       magnification = false;
       mineffect = "scale";
@@ -93,17 +85,6 @@
     menuExtraClock = {
       Show24Hour = true;
       ShowSeconds = true;
-    };
-
-    finder = {
-      AppleShowAllExtensions = true;
-      AppleShowAllFiles = true;
-      FXPreferredViewStyle = "Nlsv";
-      FXDefaultSearchScope = "SCcf";
-      QuitMenuItem = true;
-      ShowPathbar = true;
-      ShowStatusBar = true;
-      _FXShowPosixPathInTitle = true;
     };
 
     loginwindow.LoginwindowText = "sugundezz";
@@ -127,11 +108,51 @@
       "com.apple.sound.beep.volume" = 1.0;
       NSScrollAnimationEnabled = true;
       "com.apple.swipescrolldirection" = true;
+      AppleShowAllExtensions = true;
+      NSWindowShouldDragOnGesture = true;
+      NSUseAnimatedFocusRing = true;
+      InitialKeyRepeat = 25;
+      KeyRepeat = 1;
+      NSAutomaticCapitalizationEnabled = true;
+      NSDisableAutomaticTermination = true;
     };
+
+    finder = {
+      AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
+      FXPreferredViewStyle = "Nlsv";
+      FXDefaultSearchScope = "SCcf";
+      QuitMenuItem = true;
+      ShowPathbar = true;
+      ShowStatusBar = true;
+      _FXShowPosixPathInTitle = true;
+    };
+
+    LaunchServices.LSQuarantine = false;
+
   };
 
   system.keyboard = {
     enableKeyMapping = true;
     remapCapsLockToEscape = true;
   };
+
+
+  nix.optimise.automatic = true;
+
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 0; Hour = 0; Minute = 0; };
+    options = "--delete-older-than 15d";
+  };
+
+  environment.variables.EDITOR = "nvim";
+
+  security.pam.services.sudo_local = {
+    enable = true;
+    touchIdAuth = true;
+    reattach = true; # Needed for tmux
+    watchIdAuth = true;
+  };
+
 }

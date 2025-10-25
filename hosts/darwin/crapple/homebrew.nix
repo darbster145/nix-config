@@ -37,6 +37,8 @@
       "azure-data-studio"
       "moonlight"
       "tailscale-app"
+      "freelens"
+      "bartender"
     ];
 
 

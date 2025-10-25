@@ -18,9 +18,13 @@
 
   system.primaryUser = "bradlee";
 
+<<<<<<< Updated upstream
   nix.optimise = {
     automatic = false;
   };
+=======
+  nix.optimise.automatic = true;
+>>>>>>> Stashed changes
 
   nix.gc = {
     automatic = true;
