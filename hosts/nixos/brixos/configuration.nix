@@ -7,7 +7,7 @@
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
-    #./ollama.nix
+    ./ollama.nix
   ];
 
   boot.initrd.kernelModules = [
@@ -65,6 +65,7 @@
 
   nix.settings.sandbox = true;
 
+  boot.supportedFilesystems = [ "ntfs" ];
 
   zramSwap.enable = true;
 
@@ -120,10 +121,10 @@
   services.printing.enable = true;
 
   # Enable Tailscale
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "both";
-  };
+  #services.tailscale = {
+  #  enable = true;
+  # useRoutingFeatures = "both";
+  #};
 
   # Enable Sunshine
   services.sunshine = {
@@ -250,6 +251,7 @@
     libreoffice
     lact
     via
+    barrier
     mpv
     adoptopenjdk-icedtea-web
     bitwarden
@@ -265,6 +267,7 @@
     gtop
     # Hyprland DE Packages
     xdg-desktop-portal-hyprland
+    kdePackages.xwaylandvideobridge # Needed to screenshare xwayland programs
     hyprpolkitagent
     hyprcursor
     hyprsunset
@@ -273,6 +276,7 @@
     dunst
     udiskie # Auto Mount USB
     wl-clipboard
+    rofi-wayland
     hyprpaper
     waypaper # GUI fontend for hyprpaper, swww, etc
     nwg-dock

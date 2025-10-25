@@ -18,13 +18,9 @@
 
   system.primaryUser = "bradlee";
 
-<<<<<<< Updated upstream
-  nix.optimise = {
-    automatic = false;
-  };
-=======
   nix.optimise.automatic = true;
->>>>>>> Stashed changes
+
+
 
   nix.gc = {
     automatic = true;
@@ -51,6 +47,8 @@
     reattach = true; # Needed for tmux
     watchIdAuth = true;
   };
+
+  #system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
 
   system.startup.chime = false;
 

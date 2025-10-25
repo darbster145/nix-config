@@ -18,16 +18,24 @@
     fzf
     speedtest-cli
     stow
+    fira-code
     htop
     oh-my-posh
+    spacebar
     powershell
     cargo
     mkalias
     raycast
     slack
     nmap
+    swift-quit
+    bartender
     aerospace
+    #inputs.zen-browser-darwin.packages."${system}"
+    #zed-editor
+    firefox-unwrapped
     yazi
+    tmux
     nix-tree
     speedtest-cli
     kubectl
@@ -36,6 +44,7 @@
     kubernetes-helm
     helmfile
     kanata-with-cmd
+    utm
     bitwarden-desktop
   ];
 }

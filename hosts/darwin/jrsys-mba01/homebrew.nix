@@ -24,6 +24,7 @@
       "1password@nightly"
       "1password-cli"
       "chromium"
+      "crystalfetch"
       "disk-inventory-x"
       "istat-menus"
       "jiggler"
@@ -39,21 +40,20 @@
       "microsoft-teams"
       "obsidian"
       "macfuse"
+      #"vmware-fusion"
       "obs"
       "tailscale-app"
       "ghostty"
       "freelens"
+<<<<<<< Updated upstream
       "karabiner-elements"
+=======
+>>>>>>> Stashed changes
       "lm-studio"
-      "bartender"
-      "utm"
-      "displaylink"
-      "firefox"
     ];
 
     masApps = {
       # "vscode" = 6444809156;
-      "Apple Configurator" = 1037126344;
     };
   };
 }

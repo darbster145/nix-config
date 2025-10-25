@@ -15,10 +15,6 @@
         enable = true;
         wayland = true;
       };
-      autoLogin = {
-        enable = true;
-        user = "brad";
-      };
     };
   };
 
