@@ -28,6 +28,7 @@
       k9 = "k9s";
       h = "helm";
       hf = "helmfile";
+      t = "talosctl";
     };
 
     initContent = ''

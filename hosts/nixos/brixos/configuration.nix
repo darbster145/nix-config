@@ -205,6 +205,8 @@
     ghostty
     azuredatastudio
     kubectl
+    talosctl
+    lens
     rustup
     unrar
     obsidian
