@@ -28,11 +28,9 @@
     raycast
     slack
     nmap
-    swift-quit
-    bartender
     aerospace
-    #inputs.zen-browser-darwin.packages."${system}"
-    #zed-editor
+    inputs.zen-browser.packages."${system}".default
+    zed-editor
     firefox-unwrapped
     yazi
     tmux
@@ -44,7 +42,6 @@
     kubernetes-helm
     helmfile
     kanata-with-cmd
-    utm
     bitwarden-desktop
   ];
 }

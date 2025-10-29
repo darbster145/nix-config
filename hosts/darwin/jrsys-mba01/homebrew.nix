@@ -40,16 +40,13 @@
       "microsoft-teams"
       "obsidian"
       "macfuse"
-      #"vmware-fusion"
       "obs"
       "tailscale-app"
       "ghostty"
       "freelens"
-<<<<<<< Updated upstream
       "karabiner-elements"
-=======
->>>>>>> Stashed changes
-      "lm-studio"
+      "bartender"
+      "displaylink"
     ];
 
     masApps = {
