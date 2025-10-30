@@ -47,6 +47,7 @@
       "karabiner-elements"
       "bartender"
       "displaylink"
+      "firefox@nightly"
     ];
 
     masApps = {

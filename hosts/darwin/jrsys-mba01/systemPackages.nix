@@ -31,7 +31,6 @@
     aerospace
     inputs.zen-browser.packages."${system}".default
     zed-editor
-    firefox-unwrapped
     yazi
     tmux
     nix-tree
