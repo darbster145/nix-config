@@ -5,7 +5,7 @@
 , config
 , pkgs
 , ...
-}: 
+}:
 
 {
   imports = [
@@ -14,7 +14,7 @@
     ./features/cli/tmux.nix
     ./features/cli/zsh.nix
     #./features/sketchybar.nix
-    ./features/zen-browser.nix
+    #./features/zen-browser.nix
   ];
 
   nixpkgs = {
@@ -59,18 +59,8 @@
 
   ];
 
-  programs.zen-browser = {
-    enable = true;
-  };
-
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git =
-    {
-      enable = true;
-      userEmail = "swoopmaster22@proton.me";
-      userName = "darbster145";
-    };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
