@@ -17,7 +17,7 @@
     brews = [
       "mas"
       "tsui"
-      "kanata"
+      #"kanata"
     ];
 
     casks = [

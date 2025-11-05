@@ -45,8 +45,8 @@
 
   # TODO: Set your username
   home = {
-    username = "bradlee";
-    homeDirectory = "/Users/bradlee";
+    username = "brad";
+    homeDirectory = "/Users/brad";
   };
 
   home.sessionPath = [

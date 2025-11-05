@@ -16,7 +16,7 @@
 
   nix.package = pkgs.nix;
 
-  system.primaryUser = "bradlee";
+  system.primaryUser = "brad";
 
   nix.optimise.automatic = true;
 
@@ -83,7 +83,7 @@
       _FXShowPosixPathInTitle = true;
     };
 
-    screencapture.location = "/Users/bradlee/Pictures/screenshots";
+    screencapture.location = "/Users/brad/Pictures/screenshots";
 
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
     spaces.spans-displays = false;
