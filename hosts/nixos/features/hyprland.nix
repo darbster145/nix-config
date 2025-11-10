@@ -50,10 +50,9 @@
     kdePackages.kwallet-pam
   ];
 
-  #programs.walker = {
-  #  enable = true;
-  #  #runAsService = true;
-  #};
+  programs.walker = {
+    enable = true;
+  };
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;

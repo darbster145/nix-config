@@ -11,7 +11,6 @@
       #../brixos/gnome.nix
     ];
 
-
   boot.kernelParams = [ "apple_dcp.show_notch=1" ];
 
   services.udev.extraRules = ''
@@ -127,7 +126,7 @@
     stow
     oh-my-posh
     gcc
-    bitwarden
+    bitwarden-desktop
     inputs.zen-browser.packages.${pkgs.system}.twilight
     asahi-bless
     asahi-nvram
