@@ -29,7 +29,6 @@
     slack
     nmap
     aerospace
-    inputs.zen-browser.packages."${system}".default
     zed-editor
     yazi
     tmux
@@ -42,5 +41,8 @@
     helmfile
     kanata-with-cmd
     bitwarden-desktop
+    lazygit
+    wireshark
   ];
+
 }

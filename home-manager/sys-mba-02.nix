@@ -14,7 +14,7 @@
     ./features/cli/tmux.nix
     ./features/cli/zsh.nix
     #./features/sketchybar.nix
-    #./features/zen-browser.nix
+    ./features/zen-browser.nix
   ];
 
   nixpkgs = {
