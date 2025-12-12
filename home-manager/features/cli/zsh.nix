@@ -8,8 +8,8 @@
     shellAliases = {
       cd = "z";
       tm = "trash";
-      vmstop = "vmrun stop ~/.vms/Other\ Linux\ 6.x\ kernel\ 64-bit\ Arm\ 2.vmwarevm nogui";
-      vmstart = "vmrun start ~/.vms/Other\ Linux\ 6.x\ kernel\ 64-bit\ Arm\ 2.vmwarevm nogui";
+      vmstop = "vmrun stop ~/.vms/Nixos.vmwarevm nogui";
+      vmstart = "vmrun start ~/.vms/NixOS.vmwarevm nogui";
       ts = "tailscale";
 
       # Git Aliases
@@ -29,6 +29,8 @@
       h = "helm";
       hf = "helmfile";
       t = "talosctl";
+      vmrun = "/Applications/VMwareFusion.app/Contents/Library/vmrun";
+
     };
 
     initContent = ''

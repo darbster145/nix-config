@@ -41,13 +41,13 @@
       "obsidian"
       "macfuse"
       "obs"
-      "tailscale-app"
       "ghostty"
       "freelens"
       "karabiner-elements"
       "bartender"
       "displaylink"
       "firefox@nightly"
+      "tailscale-app"
     ];
 
     masApps = {

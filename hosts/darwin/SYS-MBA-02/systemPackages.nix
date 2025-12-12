@@ -29,7 +29,6 @@
     slack
     nmap
     aerospace
-    zed-editor
     yazi
     tmux
     nix-tree
@@ -43,6 +42,9 @@
     bitwarden-desktop
     lazygit
     wireshark
+    lunar
+    fluxcd
+    podman-desktop
   ];
 
 }
