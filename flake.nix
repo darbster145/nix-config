@@ -5,7 +5,7 @@
     };
 
     stable-nixpkgs = {
-      url = "nixpkgs/nixos-25.05";
+      url = "nixpkgs/nixos-25.11";
     };
 
     master-nixpkgs = {

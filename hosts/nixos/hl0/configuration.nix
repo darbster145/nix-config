@@ -10,28 +10,26 @@
   ];
 
   # Kernel and modules
-  boot.kernelParams = [ "i915.enable_guc=2" ];
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelParams = [ "i915.enable_guc=3" ];
+  boot.initrd.kernelModules = [  ];
   boot.initrd.availableKernelModules = [ "virtio_pci" "virtio_blk" "virtio_scsi" "virtio_net" ];
 
-  boot.kernelModules = [ "amdgpu" ];
-
-
-  # Enable the AMD GPU driver and hardware acceleration
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-
-  hardware.enableRedistributableFirmware = true;
+  boot.kernelModules = [  ];
 
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      rocmPackages.clr
-      amdvlk
-      vaapiVdpau
+      intel-media-driver
+      vpl-gpu-rt
+      intel-compute-runtime
     ];
   };
+
+  environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
+
+  hardware.enableRedistributableFirmware = true;
 
   services.qemuGuest.enable = true;
 
@@ -42,6 +40,21 @@
   };
   fileSystems."/mnt/immich/postgres" = {
     device = "10.0.0.3:/mnt/gofast/docker-volumes/immich/postgres";
+    fsType = "nfs";
+  };
+
+  fileSystems."/mnt/gofast/docker-volumes" = {
+    device = "10.0.0.3:/mnt/gofast/docker-volumes";
+    fsType = "nfs";
+  };
+
+fileSystems."/mnt/notonedrive/docker-volumes" = {
+    device = "10.0.0.3:/mnt/notonedrive/docker-volumes";
+    fsType = "nfs";
+  };
+
+fileSystems."/mnt/notonedrive/media" = {
+    device = "10.0.0.3:/mnt/notonedrive/media";
     fsType = "nfs";
   };
 
@@ -104,7 +117,7 @@
     btop
     git
     clinfo
-    vulkan-tools
+    intel-gpu-tools
   ];
 
   # Services
