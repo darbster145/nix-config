@@ -44,7 +44,9 @@
     wireshark
     lunar
     fluxcd
+    utm
     podman-desktop
+    python3
   ];
 
 }

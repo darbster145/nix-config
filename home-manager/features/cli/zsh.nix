@@ -29,7 +29,7 @@
       h = "helm";
       hf = "helmfile";
       t = "talosctl";
-      vmrun = "/Applications/VMwareFusion.app/Contents/Library/vmrun";
+      vmrun = ''/Applications/VMware\ Fusion.app/Contents/Library/vmrun'';
 
     };
 
