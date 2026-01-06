@@ -1,7 +1,9 @@
+{ pkgs, ... }:
+
 {
   services.ollama = {
     enable = true;
-    acceleration = "rocm";
+    package = pkgs.ollama-rocm;
     loadModels = [
       "deepseek-r1:14b"
       "deepseek-r1:32b"
@@ -13,6 +15,9 @@
       "gemma3:27b"
     ];
     rocmOverrideGfx = "11.0.0";
+    environmentVariables = {
+      HCC_AMDGPU_TARGET = "gfx1100";
+    };
     openFirewall = true;
   };
 

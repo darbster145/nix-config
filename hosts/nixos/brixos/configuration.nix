@@ -7,7 +7,8 @@
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
-    ./ollama.nix
+    #./ollama.nix
+    ./incus.nix
   ];
 
   boot.initrd.kernelModules = [
@@ -24,15 +25,10 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [
     "iscsi_tcp"
-    "it87"
     "coretemp"
     "amdgpu"
-  ];
-  boot.extraModprobeConfig = ''
-    options it87 force_id=0x8689
-  '';
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    it87
+    "nct6775"
+    "asus_ec_sensors"
   ];
 
   nix.gc = {
@@ -61,7 +57,7 @@
     };
   };
 
-  nix.settings.trusted-users = [ "root" "brad" "nixremote" ]; # Replace with your username
+  nix.settings.trusted-users = [ "root" "brad" ]; # Replace with your username
 
   nix.settings.sandbox = true;
 
@@ -72,7 +68,7 @@
   #powerManagement.enable = true;
 
   networking.hostName = "brixos";
-  networking.interfaces.enp16s0.wakeOnLan = {
+  networking.interfaces.enp7s0.wakeOnLan = {
     enable = true;
     policy = [ "magic" ];
   };
@@ -87,7 +83,7 @@
       libva
       libvdpau-va-gl
       mesa
-      vaapiVdpau
+      libva-vdpau-driver
       mesa.opencl
     ];
   };
@@ -120,11 +116,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable Tailscale
-  #services.tailscale = {
-  #  enable = true;
-  # useRoutingFeatures = "both";
-  #};
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
 
   # Enable Sunshine
   services.sunshine = {
@@ -169,7 +164,6 @@
     };
     enable = true;
   };
-
 
   users.users.brad = {
     isNormalUser = true;
@@ -243,7 +237,7 @@
     adwaita-icon-theme
     mangohud
     goverlay
-    protonup
+    protonup-ng
     bottles
     heroic
     trash-cli
@@ -253,10 +247,9 @@
     libreoffice
     lact
     via
-    barrier
     mpv
     adoptopenjdk-icedtea-web
-    bitwarden
+    bitwarden-desktop
     zed-editor
     home-manager
     kubectl
@@ -269,7 +262,7 @@
     gtop
     # Hyprland DE Packages
     xdg-desktop-portal-hyprland
-    kdePackages.xwaylandvideobridge # Needed to screenshare xwayland programs
+    #kdePackages.xwaylandvideobridge # Needed to screenshare xwayland programs
     hyprpolkitagent
     hyprcursor
     hyprsunset
@@ -278,7 +271,6 @@
     dunst
     udiskie # Auto Mount USB
     wl-clipboard
-    rofi-wayland
     hyprpaper
     waypaper # GUI fontend for hyprpaper, swww, etc
     nwg-dock
@@ -347,7 +339,6 @@
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
-
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
