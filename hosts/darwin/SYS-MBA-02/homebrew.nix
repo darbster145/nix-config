@@ -48,7 +48,6 @@
       "displaylink"
       "firefox@nightly"
       "tailscale-app"
-      "munki"
     ];
 
     masApps = {
