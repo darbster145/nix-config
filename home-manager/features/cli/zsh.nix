@@ -11,6 +11,7 @@
       vmstop = "vmrun stop ~/.vms/Nixos.vmwarevm nogui";
       vmstart = "vmrun start ~/.vms/NixOS.vmwarevm nogui";
       ts = "tailscale";
+      ff = "fastfetch";
 
       # Git Aliases
       gs = "git status --short";
@@ -55,7 +56,6 @@
               exec tmux
             fi
 
-            fastfetch
     '';
   };
 }
