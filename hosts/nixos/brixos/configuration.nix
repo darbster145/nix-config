@@ -8,7 +8,7 @@
     ../features/fonts.nix
     ../features/hyprland.nix
     #./ollama.nix
-    ./incus.nix
+    #./incus.nix
   ];
 
   boot.initrd.kernelModules = [
