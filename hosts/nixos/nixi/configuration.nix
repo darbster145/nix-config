@@ -136,12 +136,12 @@
     oh-my-posh
     gcc
     bitwarden-desktop
-    inputs.zen-browser.packages.${pkgs.system}.twilight
+    inputs.zen-browser.packages.${pkgs.system}.default
     asahi-bless
     asahi-nvram
     asahi-btsync
     asahi-wifisync
-    protonvpn-gui
+    #protonvpn-gui
     thunderbird
     gearlever
     youtube-music
@@ -173,15 +173,6 @@
     enable = true;
     binfmt = true;
   };
-
-  # Fonts
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # SSH 
   services.openssh.enable = true;

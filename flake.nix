@@ -4,6 +4,10 @@
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
 
+    nixpkgs-asahi = {
+      url = "github:NixOS/nixpkgs/c5ae371f1a6a7fd27823";
+    };
+
     stable-nixpkgs = {
       url = "nixpkgs/nixos-25.11";
     };
@@ -71,6 +75,7 @@
   outputs =
     { self
     , nixpkgs
+    , nixpkgs-asahi
     , stable-nixpkgs
     , master-nixpkgs
     , home-manager
@@ -124,7 +129,7 @@
           ];
         };
 
-        nixi = nixpkgs.lib.nixosSystem {
+        nixi = nixpkgs-asahi.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs;
           };
