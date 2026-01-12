@@ -47,6 +47,7 @@
     utm
     podman-desktop
     python3
+    freelens
   ];
 
 }
