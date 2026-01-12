@@ -20,6 +20,7 @@
     ];
 
     casks = [
+      "bartender"
       "ghostty"
       "obs"
       "parallels"
@@ -37,6 +38,7 @@
       "azure-data-studio"
       "moonlight"
       "tailscale-app"
+      "freelens@nightly"
     ];
 
 

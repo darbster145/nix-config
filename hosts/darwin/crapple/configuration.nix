@@ -13,7 +13,6 @@
     neovim
     utm
     tldr
-    google-chrome
     zoxide
     fastfetch
     lazygit
@@ -24,12 +23,10 @@
     fd
     fzf
     ranger
-    bartender
     stow
     oh-my-posh
     aldente
     aerospace
-    inputs.zen-browser-darwin.packages."${system}"
     thunderbird-latest-unwrapped
     firefox-unwrapped
     # kanata # Broken on Darwin
@@ -38,6 +35,14 @@
     helmfile
     k9s
   ];
+
+  nix.optimise.automatic = true;
+
+  nix.gc = {
+    automatic = true;
+    interval = { Weekday = 0; Hour = 0; Minute = 0; };
+    options = "--delete-older-than 15d";
+  };
 
   # Set friendly computername
   networking.computerName = "crapple";

@@ -13,6 +13,7 @@
     ./features/cli/zsh.nix
     ./features/cli/yazi.nix
     ./features/cli/zoxide.nix
+    ./features/zen-browser.nix
   ];
 
   nixpkgs = {
