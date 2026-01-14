@@ -5,7 +5,7 @@
   imports = [
     ../features/nix-homebrew.nix
     ./homebrew.nix
-    #../features/app-alias.nix
+    ../features/app-alias.nix
     ./systemPackages.nix
     ../features/tmux.nix
     ../../nixos/features/fonts.nix
@@ -20,8 +20,6 @@
 
   nix.optimise.automatic = true;
 
-
-
   nix.gc = {
     automatic = true;
     interval = { Weekday = 0; Hour = 0; Minute = 0; };
@@ -30,6 +28,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
 
   nix.settings.experimental-features = "nix-command flakes";
 
@@ -47,8 +46,6 @@
     reattach = true; # Needed for tmux
     watchIdAuth = true;
   };
-
-  #system.activationScripts.postUserActivation.text = ''/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u '';
 
   system.startup.chime = false;
 

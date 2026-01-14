@@ -1,7 +1,6 @@
 { inputs, config, pkgs, ... }:
 
 {
-  # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     neovim
     ripgrep
@@ -14,11 +13,12 @@
     tmux
     fastfetch
     unzip
+    disk-inventory-x
+    remmina
     zoxide
     fzf
     speedtest-cli
     stow
-    fira-code
     htop
     oh-my-posh
     spacebar
@@ -45,9 +45,15 @@
     lunar
     fluxcd
     utm
-    podman-desktop
+    #podman-desktop
     python3
-    freelens
+    #freelens-bin
+    _1password-gui-beta
+    _1password-cli
+    macfuse-stubs
+    ghostty-bin
+    google-chrome
+    zenmap
   ];
 
 }

@@ -21,11 +21,7 @@
     ];
 
     casks = [
-      "1password@nightly"
-      "1password-cli"
-      "chromium"
       "crystalfetch"
-      "disk-inventory-x"
       "istat-menus"
       "jiggler"
       "mac-mouse-fix"
@@ -35,12 +31,9 @@
       "splashtop-business"
       "topnotch"
       "tunnelblick"
-      "zenmap"
       "via"
       "obsidian"
-      "macfuse"
       "obs"
-      "ghostty"
       "karabiner-elements"
       "bartender"
       "displaylink"
