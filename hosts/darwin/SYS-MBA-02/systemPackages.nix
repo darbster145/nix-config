@@ -19,7 +19,7 @@
     fzf
     speedtest-cli
     stow
-    htop
+    btop
     oh-my-posh
     spacebar
     powershell
@@ -47,7 +47,7 @@
     utm
     #podman-desktop
     python3
-    #freelens-bin
+    inputs.self.packages.${pkgs.system}.freelens-bin
     _1password-gui-beta
     _1password-cli
     macfuse-stubs

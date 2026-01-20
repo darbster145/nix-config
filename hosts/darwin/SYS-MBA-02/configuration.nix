@@ -5,7 +5,7 @@
   imports = [
     ../features/nix-homebrew.nix
     ./homebrew.nix
-    ../features/app-alias.nix
+    #../features/app-alias.nix
     ./systemPackages.nix
     ../features/tmux.nix
     ../../nixos/features/fonts.nix
