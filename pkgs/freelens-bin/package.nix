@@ -4,7 +4,7 @@
 , lib
 , appimageTools
 , makeWrapper
-, _7zz
+, undmg
 ,
 }:
 
@@ -29,7 +29,6 @@ let
     aarch64-darwin = {
       url = "https://github.com/freelensapp/freelens/releases/download/v${version}/Freelens-${version}-macos-arm64.dmg";
       hash = "sha256-JFhzIhqdvcY3ssbKBoKyEcnX65C9OyVfTnGuuZJDAuw=";
-
     };
   };
 
@@ -60,7 +59,7 @@ if stdenv.hostPlatform.isDarwin then
       version
       src
       meta
-      _7zz
+      undmg
       ;
   }
 else
