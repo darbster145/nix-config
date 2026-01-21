@@ -163,6 +163,7 @@
     kubernetes-helm
     helmfile
     talosctl
+    inputs.self.packages.${pkgs.system}.freelens-bin
     blueman
     banana-cursor
     obsidian

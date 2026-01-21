@@ -16,7 +16,7 @@ let
   sources = {
     x86_64-linux = {
       url = "https://github.com/freelensapp/freelens/releases/download/v${version}/Freelens-${version}-linux-amd64.AppImage";
-      hash = "sha256-VeWTfJf66Cq4ZyR/mO0kzm8wD+Auo1MZvXPYC1Bbf7U=";
+      hash = "sha256-sgbsGUp/TKQZhPZgMpbIJy7n+BW0UGkp55jFHLO5T8s=";
     };
     aarch64-linux = {
       url = "https://github.com/freelensapp/freelens/releases/download/v${version}/Freelens-${version}-linux-arm64.AppImage";

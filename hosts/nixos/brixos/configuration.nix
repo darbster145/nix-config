@@ -200,7 +200,7 @@
     azuredatastudio
     kubectl
     talosctl
-    lens
+    inputs.self.packages.${pkgs.system}.freelens-bin
     rustup
     unrar
     obsidian
