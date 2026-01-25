@@ -27,8 +27,7 @@
     oh-my-posh
     aldente
     aerospace
-    thunderbird-latest-unwrapped
-    firefox-unwrapped
+#firefox-unwrapped
     # kanata # Broken on Darwin
     kubectl
     kubernetes-helm
