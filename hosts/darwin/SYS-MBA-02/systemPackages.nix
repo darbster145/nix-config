@@ -52,7 +52,7 @@
     _1password-cli
     macfuse-stubs
     ghostty-bin
-    google-chrome
+    ###google-chrome
     zenmap
   ];
 
