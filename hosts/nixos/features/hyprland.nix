@@ -3,7 +3,7 @@
 {
 
   imports = [
-    inputs.walker.nixosModules.default
+    #inputs.walker.nixosModules.default
   ];
 
   programs.hyprland = {
@@ -48,11 +48,12 @@
     libsForQt5.kwallet
     kdePackages.kwallet
     kdePackages.kwallet-pam
+    walker
   ];
 
-  #programs.walker = {
-  #  enable = true;
-  #};
+  services.elephant = {
+    enable = true;
+  };
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;

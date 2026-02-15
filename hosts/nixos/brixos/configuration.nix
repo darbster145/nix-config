@@ -7,7 +7,7 @@
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
-    #./ollama.nix
+    ./ollama.nix
     #./incus.nix
   ];
 
@@ -197,6 +197,7 @@
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #inputs.ghostty.packages.x86_64-linux.default
     ghostty
+    unzip
     azuredatastudio
     kubectl
     talosctl
@@ -211,6 +212,7 @@
     curl
     git
     yazi
+    protonvpn-gui
     cargo
     fastfetch
     inputs.zen-browser.packages."${system}".default
