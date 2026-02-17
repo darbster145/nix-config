@@ -15,6 +15,7 @@
     ./features/cli/zsh.nix
     #./features/sketchybar.nix
     ./features/zen-browser.nix
+    ./features/opencode.nix
   ];
 
   nixpkgs = {

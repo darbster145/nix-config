@@ -141,19 +141,19 @@
           specialArgs = {
             inherit inputs outputs;
           };
-
           system = "x86_64-linux";
           modules = [
             ./hosts/nixos/hl0/configuration.nix
           ];
         };
 
-        wixos = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
+        onix = stable-nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          system = "aarch64-linux";
           modules = [
-            ./hosts/nixos/wixos/configuration.nix
-            nixos-wsl.nixosModules.default
+            ./hosts/nixos/onix/configuration.nix
           ];
         };
       };

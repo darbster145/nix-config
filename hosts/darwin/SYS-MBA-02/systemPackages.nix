@@ -48,12 +48,17 @@
     #podman-desktop
     python3
     inputs.self.packages.${pkgs.system}.freelens-bin
-    _1password-gui-beta
-    _1password-cli
     macfuse-stubs
     ghostty-bin
     ###google-chrome
     zenmap
   ];
+
+  programs._1password = {
+    enable = true;
+  };
+  programs._1password-gui = {
+    package = pkgs._1password-ui-beta;
+  };
 
 }
