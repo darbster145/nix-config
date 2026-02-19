@@ -58,7 +58,8 @@
     enable = true;
   };
   programs._1password-gui = {
-    package = pkgs._1password-ui-beta;
+    enable = true;
+    package = pkgs._1password-gui-beta;
   };
 
 }
