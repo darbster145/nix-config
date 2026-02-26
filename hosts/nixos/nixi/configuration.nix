@@ -6,7 +6,6 @@
       ./hardware-configuration.nix
       ../features/kanata.nix
       ../features/hyprland.nix
-      ../../features/tmux.nix
       ../features/fonts.nix
       #../brixos/gnome.nix
     ];

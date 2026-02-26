@@ -11,10 +11,10 @@
 
   # Kernel and modules
   boot.kernelParams = [ "i915.enable_guc=3" ];
-  boot.initrd.kernelModules = [  ];
+  boot.initrd.kernelModules = [ ];
   boot.initrd.availableKernelModules = [ "virtio_pci" "virtio_blk" "virtio_scsi" "virtio_net" ];
 
-  boot.kernelModules = [  ];
+  boot.kernelModules = [ ];
 
   hardware.graphics = {
     enable = true;
@@ -48,12 +48,12 @@
     fsType = "nfs";
   };
 
-fileSystems."/mnt/notonedrive/docker-volumes" = {
+  fileSystems."/mnt/notonedrive/docker-volumes" = {
     device = "10.0.0.3:/mnt/notonedrive/docker-volumes";
     fsType = "nfs";
   };
 
-fileSystems."/mnt/notonedrive/media" = {
+  fileSystems."/mnt/notonedrive/media" = {
     device = "10.0.0.3:/mnt/notonedrive/media";
     fsType = "nfs";
   };
@@ -102,7 +102,7 @@ fileSystems."/mnt/notonedrive/media" = {
     isNormalUser = true;
     description = "darbster";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -117,6 +117,8 @@ fileSystems."/mnt/notonedrive/media" = {
     btop
     git
     clinfo
+    iptables
+    iproute2
     intel-gpu-tools
   ];
 
@@ -126,6 +128,10 @@ fileSystems."/mnt/notonedrive/media" = {
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "server";
+  };
+
+  services.fail2ban = {
+    enable = true;
   };
 
   # Auto updates

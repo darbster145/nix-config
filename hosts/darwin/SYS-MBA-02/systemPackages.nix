@@ -10,14 +10,12 @@
     macfuse-stubs
     home-manager
     tldr
-    tmux
     fastfetch
     unzip
     disk-inventory-x
     remmina
     zoxide
     fzf
-    speedtest-cli
     stow
     btop
     oh-my-posh
@@ -45,12 +43,9 @@
     lunar
     fluxcd
     utm
-    #podman-desktop
     python3
     inputs.self.packages.${pkgs.system}.freelens-bin
-    macfuse-stubs
     ghostty-bin
-    ###google-chrome
     zenmap
   ];
 

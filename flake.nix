@@ -1,29 +1,21 @@
 {
   inputs = {
-    nixpkgs = {
+    nixpkgs-unstable = {
       url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     };
 
-    nixpkgs-asahi = {
-      url = "github:NixOS/nixpkgs/c5ae371f1a6a7fd27823";
-    };
-
-    stable-nixpkgs = {
+    nixpkgs = {
       url = "nixpkgs/nixos-25.11";
-    };
-
-    master-nixpkgs = {
-      url = "github:NixOS/nixpkgs/master";
     };
 
     apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     home-manager = {
       url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     nixos-wsl = {
@@ -32,7 +24,7 @@
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     nix-homebrew = {
@@ -42,7 +34,6 @@
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
     };
-
 
     walker = {
       url = "github:abenz1267/walker";
@@ -72,10 +63,8 @@
 
   outputs =
     { self
+    , nixpkgs-unstable
     , nixpkgs
-    , nixpkgs-asahi
-    , stable-nixpkgs
-    , master-nixpkgs
     , home-manager
     , nixos-wsl
     , apple-silicon
@@ -96,7 +85,7 @@
       ];
       # This is a function that generates an attribute by calling a function
       # passed to it, with each system as an argument
-      forAllSystems = nixpkgs.lib.genAttrs systems;
+      forAllSystems = nixpkgs-unstable.lib.genAttrs systems;
 
       # TODO - Get single stable package generation working
       # stable-pkgs = forAllSystems (system: stable-nixpkgs.legacyPackages.${system});
@@ -105,10 +94,10 @@
     {
       # Custom packages
       # Accessible through 'nix build', 'nix shell', etc
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+      packages = forAllSystems (system: import ./pkgs nixpkgs-unstable.legacyPackages.${system});
       # Formatter for your nix files, available through 'nix fmt'
       # Other options beside 'alejandra' include 'nixpkgs-fmt'
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      formatter = forAllSystems (system: nixpkgs-unstable.legacyPackages.${system}.alejandra);
 
       # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays { inherit inputs; };
@@ -120,14 +109,14 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
-        brixos = nixpkgs.lib.nixosSystem {
+        brixos = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             ./hosts/nixos/brixos/configuration.nix
           ];
         };
 
-        nixi = nixpkgs-asahi.lib.nixosSystem {
+        nixi = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs;
           };
@@ -137,7 +126,7 @@
           ];
         };
 
-        hl0 = stable-nixpkgs.lib.nixosSystem {
+        hl0 = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs;
           };
@@ -147,7 +136,7 @@
           ];
         };
 
-        onix = stable-nixpkgs.lib.nixosSystem {
+        onix = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs;
           };
@@ -181,7 +170,7 @@
 
       homeConfigurations = {
         "brad@SYS-MBA-02" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          pkgs = nixpkgs-unstable.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/sys-mba-02.nix
@@ -189,7 +178,7 @@
         };
 
         "brad@crapple" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          pkgs = nixpkgs-unstable.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/crapple.nix
@@ -197,7 +186,7 @@
         };
 
         "brad@nixi" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-linux;
+          pkgs = nixpkgs-unstable.legacyPackages.aarch64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/nixi.nix
@@ -205,7 +194,7 @@
         };
 
         "brad@brixos" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/brixos.nix
