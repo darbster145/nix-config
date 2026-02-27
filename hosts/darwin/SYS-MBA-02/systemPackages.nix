@@ -18,7 +18,6 @@
     raycast
     slack
     nmap
-    aerospace
     yazi
     kanata-with-cmd
     wireshark
