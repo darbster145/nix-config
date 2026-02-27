@@ -24,9 +24,6 @@
     # Nix utilities
     nix-tree      # Explore nix store dependencies
 
-    # Shell & terminal utilities
-    oh-my-posh    # Shell prompt theme engine
-
     # Utilities
     bc            # Command-line calculator
     jq            # JSON processor

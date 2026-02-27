@@ -18,6 +18,7 @@
     ./features/zen-browser.nix
     ./features/opencode.nix
     ./features/aerospace.nix
+    ./features/oh-my-posh.nix
   ];
 
   nixpkgs = {
