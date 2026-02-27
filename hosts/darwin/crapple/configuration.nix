@@ -12,27 +12,13 @@
   environment.systemPackages = with pkgs; [
     neovim
     utm
-    tldr
     zoxide
-    fastfetch
-    lazygit
     raycast
-    htop
-    btop
-    ripgrep
-    fd
-    fzf
     ranger
-    stow
-    oh-my-posh
     aldente
     aerospace
 #firefox-unwrapped
     # kanata # Broken on Darwin
-    kubectl
-    kubernetes-helm
-    helmfile
-    k9s
   ];
 
   nix.optimise.automatic = true;

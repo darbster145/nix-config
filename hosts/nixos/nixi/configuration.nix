@@ -116,25 +116,14 @@
   environment.systemPackages = with pkgs; [
     trashy
     legcord
-    libreoffice
     home-manager
     widevine-cdm
     zoxide
-    wget
     git
-    nix-tree
     yazi
     ghostty
-    unzip
-    htop
-    fastfetch
-    btop
-    signal-desktop
     appimage-run
-    stow
-    oh-my-posh
     gcc
-    bitwarden-desktop
     inputs.zen-browser.packages.${pkgs.system}.default
     asahi-bless
     asahi-nvram
@@ -147,25 +136,13 @@
     remmina
     openconnect
     openconnect_openssl
-    lazygit
-    tmux
     ungoogled-chromium
     firefox-bin
     nix-prefetch
     adoptopenjdk-icedtea-web
-    nix-tree
-    #libreoffice
-    bc
-    jq
-    kubectl
-    k9s
-    kubernetes-helm
-    helmfile
-    talosctl
     inputs.self.packages.${pkgs.system}.freelens-bin
     blueman
     banana-cursor
-    obsidian
   ];
 
   # Enable Appimages

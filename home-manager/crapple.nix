@@ -7,12 +7,12 @@
 , ...
 }: {
   imports = [
-    ./features/cli/git.nix
-    ./features/cli/neovim.nix
+    ./features/base/default.nix
     ./features/cli/tmux.nix
-    ./features/cli/zsh.nix
     ./features/cli/yazi.nix
     ./features/cli/zoxide.nix
+    ./features/development/kubernetes.nix
+    ./features/development/version-control.nix
     ./features/zen-browser.nix
   ];
 

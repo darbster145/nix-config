@@ -197,43 +197,28 @@
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #inputs.ghostty.packages.x86_64-linux.default
     ghostty
-    unzip
     azuredatastudio
-    kubectl
-    talosctl
     inputs.self.packages.${pkgs.system}.freelens-bin
     rustup
     unrar
-    obsidian
     sshfs
     amarok
     nodejs
-    wget
-    curl
     git
     yazi
     protonvpn-gui
     cargo
-    fastfetch
     inputs.zen-browser.packages."${system}".default
     chromium
     gcc
-    htop
     dnsutils
-    btop
     linuxKernel.packages.linux_6_6.it87
     lm_sensors
     dunst
     openiscsi
-    stow
     pkgs.gnome-tweaks
-    signal-desktop
     zoxide
-    oh-my-posh
-    fzf
     discord
-    bat
-    tldr
     pay-respects
     lutris
     adwaita-icon-theme
@@ -246,16 +231,12 @@
     papirus-icon-theme
     openrgb-with-all-plugins
     gearlever
-    libreoffice
     lact
     via
     mpv
     adoptopenjdk-icedtea-web
-    bitwarden-desktop
     zed-editor
     home-manager
-    kubectl
-    k9s
     pciutils
     amdgpu_top
     nethogs

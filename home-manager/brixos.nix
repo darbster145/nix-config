@@ -7,12 +7,13 @@
 , ...
 }: {
   imports = [
-    ./features/cli/neovim.nix
-    ./features/cli/git.nix
-    ./features/cli/zsh.nix
-    ./features/cli/zoxide.nix
+    ./features/base/default.nix
     ./features/cli/tmux.nix
     ./features/cli/yazi.nix
+    ./features/cli/zoxide.nix
+    ./features/development/kubernetes.nix
+    ./features/development/version-control.nix
+    ./features/desktop/apps.nix
   ];
 
   nixpkgs = {

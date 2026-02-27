@@ -9,13 +9,15 @@
 
 {
   imports = [
-    ./features/cli/git.nix
-    ./features/cli/neovim.nix
+    ./features/base/default.nix
     ./features/cli/tmux.nix
-    ./features/cli/zsh.nix
+    ./features/development/kubernetes.nix
+    ./features/development/version-control.nix
+    ./features/desktop/apps.nix
     #./features/sketchybar.nix
     ./features/zen-browser.nix
     ./features/opencode.nix
+    ./features/aerospace.nix
   ];
 
   nixpkgs = {
@@ -57,7 +59,7 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
-
+    obsidian
   ];
 
   # Enable home-manager and git

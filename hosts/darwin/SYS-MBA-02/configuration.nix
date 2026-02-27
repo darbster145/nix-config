@@ -5,11 +5,8 @@
   imports = [
     ../features/nix-homebrew.nix
     ./homebrew.nix
-    #../features/app-alias.nix
     ./systemPackages.nix
-    ../features/tmux.nix
     ../../nixos/features/fonts.nix
-    #../features/linux-builder.nix
   ];
 
   ids.gids.nixbld = 350;
