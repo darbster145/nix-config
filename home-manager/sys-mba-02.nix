@@ -19,7 +19,9 @@
     ./features/opencode.nix
     ./features/aerospace.nix
     ./features/oh-my-posh.nix
+    ./features/ghostty.nix
   ];
+
 
   nixpkgs = {
     # You can add overlays here

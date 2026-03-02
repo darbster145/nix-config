@@ -8,11 +8,6 @@
         name = "darbster145";
         email = "swoopmaster22@proton.me";
       };
-      aliases = {
-        gp = "git pull";
-        gc = "git commit";
-        gs = "git status";
-      };
 
       extraConfig = {
         core = {
@@ -50,6 +45,20 @@
         };
       };
     };
+  };
+
+  # Git shell aliases - following modular pattern (like kubernetes.nix)
+  programs.zsh.shellAliases = {
+    gs = "git status --short";
+    ga = "git add .";
+    gd = "git diff";
+    gc = "git commit";
+    gcl = "git clone";
+    gp = "git pull";
+    gu = "git push";
+    gl = "git log";
+    gb = "git branch";
+    gi = "git init";
   };
 }
 

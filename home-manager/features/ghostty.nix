@@ -1,6 +1,9 @@
+{ pkgs, ... }:
+
 {
   programs.ghostty = {
     enable = true;
+    package = pkgs.ghostty-bin;
     enableZshIntegration = true;
     installBatSyntax = true;
     installVimSyntax = true;

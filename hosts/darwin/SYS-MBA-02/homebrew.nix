@@ -32,7 +32,6 @@
       "topnotch"
       "tunnelblick"
       "via"
-      "obsidian"
       "obs"
       "karabiner-elements"
       "bartender"

@@ -5,57 +5,18 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    # General utility aliases (tool-specific aliases are in their respective feature modules)
     shellAliases = {
-      cd = "z";
       tm = "trash";
-      vmstop = "vmrun stop ~/.vms/Nixos.vmwarevm nogui";
-      vmstart = "vmrun start ~/.vms/NixOS.vmwarevm nogui";
       ts = "tailscale";
       ff = "fastfetch";
-
-      # Git Aliases
-      gs = "git status --short";
-      ga = "git add .";
-      gd = "git diff";
-      gc = "git commit";
-      gcl = "git clone";
-      gp = "git pull";
-      gu = "git push";
-      gl = "git log";
-      gb = "git branch";
-      gi = "git init";
-      # Kubernetes Aliases
-      k = "kubectl";
-      k9 = "k9s";
-      h = "helm";
-      hf = "helmfile";
-      t = "talosctl";
-      vmrun = ''/Applications/VMware\ Fusion.app/Contents/Library/vmrun'';
-
     };
 
     initContent = ''
-            # Initialize oh-my-posh
-            eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/base.toml)"
-
-            # Initialize zoxide
-            eval "$(zoxide init zsh)"
-
-            # Yazi change directory on exit
-            function y() {
-      	      local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-      	      yazi "$@" --cwd-file="$tmp"
-      	      if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-      		builtin cd -- "$cwd"
-      	      fi
-      	      rm -f -- "$tmp"
-            }
-
-            # Start tmux on terminal startup
-            if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-              exec tmux
-            fi
-
+      # Start tmux on terminal startup
+      if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+        exec tmux
+      fi
     '';
   };
 }

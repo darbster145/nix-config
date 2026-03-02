@@ -25,7 +25,6 @@
     utm
     python3
     inputs.self.packages.${pkgs.system}.freelens-bin
-    ghostty-bin
     zenmap
   ];
 
