@@ -7,7 +7,7 @@
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
-    ./ollama.nix
+    #./ollama.nix
     #./incus.nix
   ];
 
@@ -208,7 +208,6 @@
     yazi
     protonvpn-gui
     cargo
-    inputs.zen-browser.packages."${system}".default
     chromium
     gcc
     dnsutils
@@ -220,7 +219,7 @@
     zoxide
     discord
     pay-respects
-    lutris
+    #lutris
     adwaita-icon-theme
     mangohud
     goverlay
@@ -230,7 +229,6 @@
     trash-cli
     papirus-icon-theme
     openrgb-with-all-plugins
-    gearlever
     lact
     via
     mpv
