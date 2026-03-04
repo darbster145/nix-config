@@ -6,7 +6,6 @@
 , pkgs
 , ...
 }: {
-  # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
@@ -45,15 +44,7 @@
   };
 
   # TODO: Set your username
-  home = {
-    username = "bradlee";
-    homeDirectory = "/Users/bradlee";
-  };
-
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
   home.packages = with pkgs; [
-    cowsay
   ];
 
   # Enable home-manager and git

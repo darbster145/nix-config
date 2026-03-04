@@ -14,12 +14,13 @@
     ./features/development/kubernetes.nix
     ./features/development/version-control.nix
     ./features/desktop/apps.nix
-    #./features/sketchybar.nix
-    ./features/zen-browser.nix
-    ./features/opencode.nix
-    ./features/aerospace.nix
-    ./features/oh-my-posh.nix
-    ./features/ghostty.nix
+    ./features/desktop/zen-browser.nix
+    ./features/desktop/opencode.nix
+    ./features/desktop/aerospace.nix
+    ./features/desktop/oh-my-posh.nix
+    ./features/desktop/ghostty.nix
+    ./features/cli/zoxide.nix
+    ./features/yazi.nix
   ];
 
 
