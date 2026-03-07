@@ -22,6 +22,9 @@
     ];
   };
 
+  services.displayManager.gdm.enable = true;
+  services.displayManager.gdm.wayland = true;
+
   environment.systemPackages = with pkgs; [
     wlogout
     brightnessctl

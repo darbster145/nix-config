@@ -12,6 +12,7 @@
 
   boot.kernelParams = [ "appledrm.show_notch=1" ];
   boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
+  hardware.asahi.extractPeripheralFirmware = false;
 
   nix.settings = {
     extra-substituters = [
