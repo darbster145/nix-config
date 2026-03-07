@@ -54,13 +54,10 @@
   #   wayland.enable = true;
   # };
 
-  #services.displayManager.gdm.enable = true;
-
-
-  # services.logind.settings.Login = ''
-  #   # don’t shutdown when power button is short-pressed
-  #   HandlePowerKey=ignore
-  # '';
+  services.logind.settings.Login = {
+    # don’t shutdown when power button is short-pressed
+    HandlePowerKey = "ignore";
+  };
 
   # Auto optimize the nix store
   nix.optimise.automatic = true;
