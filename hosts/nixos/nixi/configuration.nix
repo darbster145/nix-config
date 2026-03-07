@@ -10,7 +10,8 @@
       #../brixos/gnome.nix
     ];
 
-  boot.kernelParams = [ "apple_dcp.show_notch=1" ];
+  boot.kernelParams = [ "appledrm.show_notch=1" ];
+  boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
 
   nix.settings = {
     extra-substituters = [
@@ -39,11 +40,21 @@
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      mesa
       libva
+      mesa
       libdrm
     ];
   };
+
+  # services.desktopManager.plasma6.enable = true;
+
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  # };
+
+  #services.displayManager.gdm.enable = true;
+
 
   # services.logind.settings.Login = ''
   #   # don’t shutdown when power button is short-pressed
@@ -72,9 +83,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  #  Enable Gnome
-  services.xserver.displayManager.gdm.enable = true;
 
   # Enable Bluetooth
   hardware.bluetooth = {
@@ -118,20 +126,14 @@
     legcord
     home-manager
     widevine-cdm
-    zoxide
-    git
-    yazi
-    ghostty
     appimage-run
     gcc
-    inputs.zen-browser.packages.${pkgs.system}.default
     asahi-bless
     asahi-nvram
     asahi-btsync
     asahi-wifisync
     #protonvpn-gui
     thunderbird
-    gearlever
     youtube-music
     remmina
     openconnect
@@ -140,7 +142,6 @@
     firefox-bin
     nix-prefetch
     adoptopenjdk-icedtea-web
-    inputs.self.packages.${pkgs.system}.freelens-bin
     blueman
     banana-cursor
   ];

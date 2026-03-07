@@ -3,7 +3,7 @@
 {
   programs.ghostty = {
     enable = true;
-    package = pkgs.ghostty-bin;
+    package = pkgs.ghostty;
     enableZshIntegration = true;
     installBatSyntax = true;
     installVimSyntax = true;

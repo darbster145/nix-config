@@ -10,7 +10,7 @@
 
     apple-silicon = {
       url = "github:darbster145/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     home-manager = {

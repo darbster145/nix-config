@@ -51,9 +51,9 @@
     walker
   ];
 
-  services.elephant = {
-    enable = true;
-  };
+  #services.elephant = {
+  #  enable = true;
+  #};
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;
