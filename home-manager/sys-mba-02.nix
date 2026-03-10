@@ -20,7 +20,7 @@
     ./features/desktop/oh-my-posh.nix
     ./features/desktop/ghostty.nix
     ./features/cli/zoxide.nix
-    ./features/yazi.nix
+    ./features/cli/yazi.nix
   ];
 
 
