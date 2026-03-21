@@ -14,10 +14,10 @@
     ./features/development/kubernetes.nix
     ./features/development/version-control.nix
     ./features/desktop/apps.nix
-    ./features/oh-my-posh.nix
-    ./features/opencode.nix
-    ./features/zen-browser.nix
-    ./features/ghostty.nix
+    ./features/desktop/oh-my-posh.nix
+    ./features/desktop/opencode.nix
+    ./features/desktop/zen-browser.nix
+    ./features/desktop/ghostty.nix
   ];
 
   nixpkgs = {

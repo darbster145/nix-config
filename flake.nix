@@ -147,16 +147,6 @@
       };
 
       darwinConfigurations = {
-        "SYS-MBA-02" = nix-darwin.lib.darwinSystem {
-          specialArgs = { inherit inputs; };
-          system = "aarch64-darwin";
-          modules = [
-            ./hosts/darwin/SYS-MBA-02/configuration.nix
-            nix-homebrew.darwinModules.nix-homebrew
-            #lix-module.nixosModules.default
-          ];
-        };
-
         crapple = nix-darwin.lib.darwinSystem {
           specialArgs = { inherit inputs; };
           system = "aarch64-darwin";
@@ -168,14 +158,6 @@
       };
 
       homeConfigurations = {
-        "brad@SYS-MBA-02" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs-unstable.legacyPackages.aarch64-darwin;
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            ./home-manager/sys-mba-02.nix
-          ];
-        };
-
         "brad@crapple" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs-unstable.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
