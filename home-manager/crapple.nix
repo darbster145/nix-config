@@ -5,29 +5,33 @@
 , config
 , pkgs
 , ...
-}: {
+}: 
+
+{
   imports = [
-    ./features/base/default.nix
-    ./features/cli/tmux.nix
-    ./features/cli/yazi.nix
-    ./features/cli/zoxide.nix
     ./features/development/kubernetes.nix
     ./features/development/version-control.nix
-    ./features/zen-browser.nix
+    ./features/desktop/apps.nix
+    ./features/desktop/ghostty.nix
+    ./features/desktop/opencode.nix
+    ./features/desktop/aerospace.nix
+    ./features/desktop/oh-my-posh.nix
+    ./features/desktop/zen-browser.nix
+    ./features/cli/git.nix
+    ./features/cli/zsh.nix
+    ./features/cli/tmux.nix
+    ./features/cli/yazi.nix
+    ./features/cli/common.nix
+    ./features/cli/zoxide.nix
+    ./features/cli/neovim.nix
   ];
 
   nixpkgs = {
-    # You can add overlays here
     overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
 
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
       # (final: prev: {
       #   hi = final.hello.overrideAttrs (oldAttrs: {
       #     patches = [ ./change-hello-to-hi.patch ];
@@ -42,16 +46,12 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "brad";
     homeDirectory = "/Users/brad";
   };
 
-  # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
   home.packages = with pkgs; [
-    cowsay
   ];
 
   # Enable home-manager and git

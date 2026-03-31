@@ -23,7 +23,6 @@
       on-focus-changed = "move-mouse window-lazy-center";
 
       workspace-to-monitor-force-assignment = {
-        "1" = 2;
         "10" = 2;
         "9" = 2;
       };
