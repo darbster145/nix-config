@@ -12,7 +12,7 @@
 
   boot.kernelParams = [ "appledrm.show_notch=1" ];
   boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
-  hardware.asahi.extractPeripheralFirmware = false;
+  hardware.asahi.extractPeripheralFirmware = true;
 
   nix.settings = {
     extra-substituters = [
@@ -35,6 +35,9 @@
   };
   boot.loader.efi.canTouchEfiVariables = false;
 
+  services.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.lightdm.enable = false;
+  
   # Enable zram swap
   zramSwap.enable = true;
 
@@ -46,13 +49,6 @@
       libdrm
     ];
   };
-
-  # services.desktopManager.plasma6.enable = true;
-
-  # services.displayManager.sddm = {
-  #   enable = true;
-  #   wayland.enable = true;
-  # };
 
   services.logind.settings.Login = {
     # don’t shutdown when power button is short-pressed

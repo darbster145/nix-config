@@ -10,12 +10,12 @@
         experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
       '';
     };
-    displayManager = {
-      gdm = {
-        enable = true;
-        wayland = true;
-      };
-    };
+    # displayManager = {
+    #   gdm = {
+    #     enable = true;
+    #     wayland = false;
+    #   };
+    # };
   };
 
   environment.gnome.excludePackages = (with pkgs; [
