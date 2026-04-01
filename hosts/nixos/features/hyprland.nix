@@ -3,7 +3,6 @@
 {
 
   imports = [
-    #inputs.walker.nixosModules.default
   ];
 
   programs.hyprland = {
@@ -54,9 +53,9 @@
     walker
   ];
 
-  #services.elephant = {
-  #  enable = true;
-  #};
+  services.elephant = {
+    enable = true;
+  };
 
   services.gvfs.enable = true;
   services.tumbler.enable = true;

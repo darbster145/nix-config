@@ -35,10 +35,6 @@
       url = "github:0xc000022070/zen-browser-flake";
     };
 
-    walker = {
-      url = "github:abenz1267/walker";
-    };
-
     # Optional: Homebrew taps for crapple
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
