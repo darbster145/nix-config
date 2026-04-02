@@ -13,6 +13,7 @@
 
   boot.initrd.kernelModules = [
     "amdgpu"
+    "ntsync"
   ];
   boot.kernelParams = [
     "acpi_enforce_resources=lax"
@@ -38,6 +39,8 @@
   };
 
   nix.optimise.automatic = true;
+
+  programs.nix-ld.enable = true;
 
   # Bootloader
   boot.loader = {

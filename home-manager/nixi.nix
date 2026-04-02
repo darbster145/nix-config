@@ -18,9 +18,7 @@
     ./features/desktop/opencode.nix
     ./features/desktop/zen-browser.nix
     ./features/desktop/ghostty.nix
-    ./features/hyprland/hyprlock.nix
-    ./features/hyprland/hypridle.nix
-    ./features/hyprland/hyprpaper.nix
+    ./features/hyprland/default.nix
   ];
 
   nixpkgs = {
