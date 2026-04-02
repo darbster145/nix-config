@@ -128,7 +128,8 @@
     asahi-wifisync
     #protonvpn-gui
     thunderbird
-    youtube-music
+    #pear-desktop
+    ytermusic
     remmina
     openconnect
     openconnect_openssl
@@ -138,6 +139,8 @@
     adoptopenjdk-icedtea-web
     blueman
     banana-cursor
+    #inputs.self.packages.${pkgs.system}.freelens-bin
+    freelens-bin
   ];
 
   # Enable Appimages

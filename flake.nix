@@ -18,10 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/main";
-    };
-
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -50,10 +46,6 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
   };
 
   outputs =
@@ -61,16 +53,13 @@
     , nixpkgs-unstable
     , nixpkgs
     , home-manager
-    , nixos-wsl
     , apple-silicon
     , nix-darwin
     , nix-homebrew
-    , ghostty
     , ...
     } @ inputs:
     let
       inherit (self) outputs;
-      # Supported systems for flake packages, shell, etc.
       systems = [
         "aarch64-linux"
         "i686-linux"
@@ -90,17 +79,9 @@
       # Custom packages
       # Accessible through 'nix build', 'nix shell', etc
       packages = forAllSystems (system: import ./pkgs nixpkgs-unstable.legacyPackages.${system});
-      # Formatter for your nix files, available through 'nix fmt'
-      # Other options beside 'alejandra' include 'nixpkgs-fmt'
       formatter = forAllSystems (system: nixpkgs-unstable.legacyPackages.${system}.alejandra);
-
-      # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays { inherit inputs; };
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
       nixosModules = import ./modules/nixos;
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
