@@ -7,7 +7,7 @@
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
-    #./ollama.nix
+    ./ollama.nix
     #./incus.nix
   ];
 
@@ -58,6 +58,11 @@
         };
       };
     };
+  };
+
+  services.displayManager.gdm = {
+    enable = true;
+    wayland = true;
   };
 
   nix.settings.trusted-users = [ "root" "brad" ]; # Replace with your username
