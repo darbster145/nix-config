@@ -41,6 +41,7 @@
 
   home.packages = with pkgs; [
     banana-cursor
+    bitwarden-cli
   ];
 
   # Enable home-manager and git

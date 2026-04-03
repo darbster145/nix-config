@@ -23,7 +23,6 @@
       };
 
       exec-once = [
-        "waybar"
         "nm-applet & blueman-applet"
         "hyprpaper"
         "hypridle"
