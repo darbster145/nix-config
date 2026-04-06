@@ -33,6 +33,8 @@
 
       workspaces = {
         visibilityMode = "MonitorSpecific";
+        max_workspaces = 10;
+        enable_workspace_filling = true;
       };
 
       media_player = {
