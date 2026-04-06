@@ -3,6 +3,8 @@
   services.hypridle = {
     enable = true;
     settings = {
+      ignore_dbus_inhibit = false;
+      ignore_systemd_inhibit = false;
 
       # Blank Screen
       listener = [
@@ -12,13 +14,13 @@
           on-resume = "hyprctl dispatch dpms on";
         }
 
-      # Lock Screen
+        # Lock Screen
         {
           timeout = 600;
           on-timeout = "hyprlock";
         }
 
-      # Keyboard Backlight
+        # Keyboard Backlight
         {
           timeout = 60;
           on-timeout = "brightnessctl -d kbd_backlight set 0";

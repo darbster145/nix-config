@@ -7,30 +7,44 @@
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
-    ./ollama.nix
-    #./incus.nix
+    #./ollama.nix
   ];
 
   boot.initrd.kernelModules = [
     "amdgpu"
-    "ntsync"
   ];
+
   boot.kernelParams = [
     "acpi_enforce_resources=lax"
-    "acpi_backlight=video"
-    "acpi_backlight=vendor"
+    #"acpi_backlight=video"
+    #"acpi_backlight=vendor"
     "acpi_backlight=native"
     # Needed for LACT AMDGPU Overclocking Support
     "amdgpu.ppfeaturemask=0xffffffff"
   ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
   boot.kernelModules = [
     "iscsi_tcp"
     "coretemp"
-    "amdgpu"
     "nct6775"
     "asus_ec_sensors"
+    "ntsync"
   ];
+
+  services.btrfs.autoScrub.enable = true;
+
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+    "vm.compaction_proactiveness" = 0;
+    "kernel.split_lock_mitigate" = 0;
+  };
+
+  boot.tmp = {
+    useTmpfs = true;
+    tmpfsSize = "8G";
+  };
 
   nix.gc = {
     automatic = true;
@@ -39,6 +53,13 @@
   };
 
   nix.optimise.automatic = true;
+
+  nix.settings = {
+    cores = 0;
+    max-jobs = 1;
+  };
+
+  services.irqbalance.enable = true;
 
   programs.nix-ld.enable = true;
 
@@ -71,9 +92,15 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  zramSwap.enable = true;
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
+  };
 
-  #powerManagement.enable = true;
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "performance";
+  };
 
   networking.hostName = "brixos";
   networking.interfaces.enp7s0.wakeOnLan = {
@@ -147,6 +174,8 @@
     pulse.enable = true;
   };
 
+  hardware.cpu.amd.updateMicrocode = true;
+
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -202,27 +231,20 @@
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #inputs.ghostty.packages.x86_64-linux.default
+    neovim
     ghostty
-    azuredatastudio
     inputs.self.packages.${pkgs.system}.freelens-bin
     rustup
     unrar
     sshfs
-    amarok
     nodejs
     git
-    yazi
     protonvpn-gui
     cargo
     chromium
     gcc
     dnsutils
-    linuxKernel.packages.linux_6_6.it87
     lm_sensors
-    dunst
-    openiscsi
     pkgs.gnome-tweaks
     zoxide
     discord
@@ -257,7 +279,6 @@
     hyprsunset
     wlogout
     waybar
-    dunst
     udiskie # Auto Mount USB
     wl-clipboard
     hyprpaper
