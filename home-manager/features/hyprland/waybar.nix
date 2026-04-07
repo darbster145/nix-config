@@ -81,11 +81,11 @@
           tooltip = false;
         };
         "cpu" = {
-          format = " {usage}%";
+          format = "  {usage}%";
           tooltip = false;
         };
         "memory" = {
-          format = " {}%";
+          format = "  {}%";
           tooltip = false;
         };
         "temperature" = {
@@ -96,7 +96,7 @@
         };
         "backlight" = {
           device = "apple-panel-bl";
-          format = "{icon} {percent}%";
+          format = "{icon}  {percent}%";
           format-icons = [ "" ];
           tooltip = false;
         };
@@ -106,7 +106,7 @@
             warning = 30;
             critical = 15;
           };
-          format = "{icon} {capacity}%";
+          format = "{icon}  {capacity}%";
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
           format-alt = "{icon} {time}";
@@ -120,7 +120,7 @@
           format-disconnected = "⚠ Disconnected";
           format-alt = "{ifname}: {ipaddr}/{cidr}";
           tooltip = false;
-          on-click = "nm-applet";
+          on-click = "nm-connection-editor";
         };
         "pulseaudio" = {
           format = "{icon} {volume}% {format_source}";

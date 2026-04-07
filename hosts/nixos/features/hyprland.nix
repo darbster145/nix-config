@@ -37,11 +37,8 @@
     hyprshot
     wl-clipboard
     clipse
-    rofi
-    wofi
     playerctl
     nautilus
-    swww
     hyprpaper
     dunst
     hyprcursor
@@ -50,6 +47,8 @@
     kdePackages.kwallet
     kdePackages.kwallet-pam
     walker
+    networkmanagerapplet
+    #libsForQt5
   ];
 
   services.elephant = {

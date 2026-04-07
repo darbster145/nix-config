@@ -23,7 +23,7 @@
       };
 
       exec-once = [
-        "nm-applet & blueman-applet"
+        "blueman-applet"
         "hyprpaper"
         "hypridle"
         "clipse -listen"
@@ -31,6 +31,7 @@
         "/usr/lib/pam_kwallet_init"
         "walker --gapplication-service"
         "elephant"
+        "nm-applet --indicator"
       ];
 
       env = [

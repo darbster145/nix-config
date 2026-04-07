@@ -3,10 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    # ./jellyfin.nix
-    # ./nextcloud.nix
-    # ./unifi.nix
-    # ./proxmox.nix
   ];
 
   # Kernel and modules
@@ -102,7 +98,6 @@
     isNormalUser = true;
     description = "darbster";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
-    packages = with pkgs; [ ];
   };
 
   # Allow unfree packages
@@ -123,11 +118,15 @@
   ];
 
   # Services
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+  };
 
   services.tailscale = {
     enable = true;
-    useRoutingFeatures = "server";
+    useRoutingFeatures = "client";
+    openFirewall = true;
   };
 
   services.fail2ban = {
@@ -144,9 +143,18 @@
   virtualisation.docker.enable = true;
 
   # Firewall (disabled, but open specific ports if re-enabled later)
-  networking.firewall.allowedTCPPorts = [ 19999 443 80 7777 ];
-  networking.firewall.allowedUDPPorts = [ 7777 ];
-  networking.firewall.enable = false;
+  networking.firewall = {
+    enable = false;
+    allowedTCPPorts = [
+      19999
+      443
+      80
+      7777 
+    ];
+    allowedUDPPorts = [
+      7777
+    ];
+  };
 
   # State version (don’t change)
   system.stateVersion = "24.05";
@@ -154,4 +162,3 @@
   # Enable flakes and the new CLI
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
-
