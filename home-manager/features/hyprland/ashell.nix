@@ -33,7 +33,7 @@
 
       workspaces = {
         visibilityMode = "MonitorSpecific";
-        max_workspaces = 10;
+        max_workspaces = 5;
         enable_workspace_filling = true;
       };
 
@@ -51,8 +51,9 @@
       };
 
       appearance = {
-        font_name = "FiraCode Mono";
-        style = "Islands";
+        font_name = "Noto Sans";
+        style = "Solid";
+        scale_factor = 1.5;
 
         # Tokyo Night Theme #
         primary_color = "#7aa2f7";
@@ -64,7 +65,8 @@
           weak = "#e0af68";
         };
         background_color = {
-          base = "#1a1b26";
+          #base = "#1a1b26";
+          base = "#000000";
           weak = "#24273a";
           strong = "#414868";
         };
