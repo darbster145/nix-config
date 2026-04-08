@@ -19,12 +19,12 @@
         ];
         center = [
           "Window Title"
+          "Clock"
         ];
         right = [
           "MediaPlayer"
           "SystemInfo"
           [
-            "Tempo"
             "Privacy"
             "Settings"
           ]
@@ -46,8 +46,8 @@
         interval = 5;
       };
 
-      tempo = {
-        clock_format = "%a %d %b %R";
+      clock = {
+        format = "%d %H:%M:%S";
       };
 
       appearance = {

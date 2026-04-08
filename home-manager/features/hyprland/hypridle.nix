@@ -5,6 +5,7 @@
     settings = {
       ignore_dbus_inhibit = false;
       ignore_systemd_inhibit = false;
+      ignore_wayland_inhibit = false;
 
       # Blank Screen
       listener = [

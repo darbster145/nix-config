@@ -35,8 +35,8 @@
       isNormalUser = true;
       extraGroups = [ "networkmanager" "wheel" "docker" ];
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINDd1x5laUcERxGmCI8twj7PU5hOnqLKb8m4dJuTUVFV nixi-onix"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIvybHh2fP6dGIPwvstU5UZWaEtXH5aOA5aeri7Ow7Do brixos-onix"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODkieArn/Lc12NcHZhnRdXcMPcGsLOAEwVjdBA2Krn0 brad@nixi"
       ];
     };
   };

@@ -15,7 +15,7 @@
 
       bindl = [
         ",switch:on:Apple SMC power/lid events,exec,hyprctl keyword monitor \"eDP-1, disable\""
-        ",switch:off:Apple SMC power/lid events,exec,hyprctl keyword monitor \"eDP-1, 3024x1964@60, 0x0, 1.68\""
+        ",switch:off:Apple SMC power/lid events,exec,hyprctl keyword monitor \"eDP-1, 3024x1964@120, 0x0, 1.68\""
       ];
 
       xwayland = {
@@ -24,8 +24,6 @@
 
       exec-once = [
         "blueman-applet"
-        "hyprpaper"
-        "hypridle"
         "clipse -listen"
         "hyprctl setcursor Banana 24"
         "/usr/lib/pam_kwallet_init"
