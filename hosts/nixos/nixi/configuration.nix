@@ -8,6 +8,7 @@
       ../features/hyprland.nix
       ../features/fonts.nix
       #../brixos/gnome.nix
+      ./virtualization.nix
     ];
 
   boot.kernelParams = [ "appledrm.show_notch=1" ];
@@ -23,9 +24,9 @@
     ];
   };
 
-  services.udev.extraRules = ''
-    SUBSYSTEM=="power_supply", KERNEL=="macsmc-battery", ATTR{charge_control_end_threshold}="80"
-  '';
+  #services.udev.extraRules = ''
+  #  SUBSYSTEM=="power_supply", KERNEL=="macsmc-battery", ATTR{charge_control_end_threshold}="80"
+  #'';
 
   # Use the grub EFI boot loader.
   boot.loader.grub = {
@@ -34,7 +35,7 @@
     device = "nodev";
   };
   boot.loader.efi.canTouchEfiVariables = false;
-
+  
   services.desktopManager.plasma6.enable = true;
   services.xserver.displayManager.lightdm.enable = false;
   
@@ -102,7 +103,7 @@
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
-    extraGroups = [ "wheel" "video" "render" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "render" "libvirtd" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
   };
 

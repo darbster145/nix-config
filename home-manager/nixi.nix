@@ -42,6 +42,7 @@
   home.packages = with pkgs; [
     banana-cursor
     bitwarden-cli
+    jellyfin-media-player
   ];
 
   # Enable home-manager and git
