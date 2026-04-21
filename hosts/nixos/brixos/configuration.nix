@@ -7,7 +7,7 @@
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
-    #./ollama.nix
+    ./ollama.nix
   ];
 
   boot.initrd.kernelModules = [
@@ -251,6 +251,7 @@
     pay-respects
     #lutris
     adwaita-icon-theme
+    bluetui
     mangohud
     goverlay
     protonup-ng
