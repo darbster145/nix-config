@@ -255,7 +255,6 @@
     mangohud
     goverlay
     protonup-ng
-    bottles
     heroic
     trash-cli
     papirus-icon-theme

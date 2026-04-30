@@ -4,23 +4,23 @@
   services.ollama = {
     enable = true;
     package = pkgs.ollama-rocm;
-    loadModels = [
-      "deepseek-r1:14b"
-      "deepseek-r1:32b"
-      "deepseek-coder-v2:16b"
-      "deepseek-ocr:3b"
-      "gtp-oss:20b"
-      "mistral:7b"
-      "qwen3.6:35b"
-      "gpt-oss:20b"
-      "gemma4:31b"
-    ];
+    #loadModels = [
+    #  "deepseek-r1:14b"
+    #  "deepseek-r1:32b"
+    #  "deepseek-coder-v2:16b"
+    #  "deepseek-ocr:3b"
+    #  "gtp-oss:20b"
+    #  "mistral:7b"
+    #  "qwen3.6:35b"
+    #  "gpt-oss:20b"
+    #  "gemma4:31b"
+    #];
     rocmOverrideGfx = "11.0.0";
     environmentVariables = {
       HCC_AMDGPU_TARGET = "gfx1100";
     };
     openFirewall = true;
-    syncModels = true;
+    #syncModels = true;
   };
 
   services.open-webui = {
