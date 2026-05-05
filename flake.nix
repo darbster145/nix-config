@@ -133,11 +133,11 @@
           ];
         };
 
-        Brad-MBP = nix-darwin.lib.darwinSystem {
+        brads-Apple-MacBook-Pro = nix-darwin.lib.darwinSystem {
           specialArgs = { inherit inputs; };
           system = "aarch64-darwin";
           modules = [
-            ./hosts/darwin/Brad-MBP/configuration.nix
+            ./hosts/darwin/brads-Apple-MacBook-Pro/configuration.nix
             nix-homebrew.darwinModules.nix-homebrew
           ];
         };
@@ -169,11 +169,11 @@
           ];
         };
 
-        "bradlee@crapple" = home-manager.lib.homeManagerConfiguration {
+        "brad@brads-Apple-MacBook-Pro" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs-unstable.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
-            ./home-manager/Brad-MBP.nix
+            ./home-manager/brads-Apple-MacBook-Pro.nix
           ];
         };
 

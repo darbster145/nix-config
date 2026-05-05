@@ -3,6 +3,7 @@
 {
   homebrew = {
     enable = true;
+    autoMigration = true;
     onActivation = {
       cleanup = "zap";
       autoUpdate = true;

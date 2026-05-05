@@ -3,6 +3,7 @@
 {
   nix-homebrew = {
     enable = true;
+    #autoMigrate = true;
     enableRosetta = true;
     user = "brad";
     mutableTaps = false;

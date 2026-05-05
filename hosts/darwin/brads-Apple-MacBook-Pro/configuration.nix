@@ -4,20 +4,12 @@
 
   imports = [
     ../features/nix-homebrew.nix
-    #./homebrew.nix
+    ./homebrew.nix
   ];
 
   system.primaryUser = "brad";
 
   environment.systemPackages = with pkgs; [
-    neovim
-    utm
-    zoxide
-    raycast
-    ranger
-    aldente
-    aerospace
-    # kanata # Broken on Darwin
   ];
 
   nix.optimise.automatic = true;
@@ -29,10 +21,10 @@
   };
 
   # Set friendly computername
-  networking.computerName = "Brad-MBP";
+  networking.computerName = "brads-Apple-MacBook-Pro";
 
   # Set hostname
-  networking.hostName = "Brad-MBP";
+  networking.hostName = "brads-Apple-MacBook-Pro";
 
   # Auto upgrade nix package and the daemon service.
   nix.package = pkgs.nix;
@@ -51,12 +43,21 @@
   system.configurationRevision = null;
 
   # State version and host platform
-  system.stateVersion = 4;
+  system.stateVersion = 6;
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   # Touch ID for sudo
   security.pam.services.sudo_local.touchIdAuth = true;
   security.pam.services.sudo_local.reattach = true;
+
+  programs._1password = {
+    enable = true;
+  };
+
+  programs._1password-gui = {
+    enable = true;
+    package = pkgs._1password-gui;
+  };
 
   # Disable startup chime
   system.startup.chime = false;
@@ -90,8 +91,6 @@
       ShowStatusBar = true;
       _FXShowPosixPathInTitle = true;
     };
-
-    loginwindow.LoginwindowText = "sugundezz";
 
     screencapture.location = "~/Pictures/screenshots";
 
