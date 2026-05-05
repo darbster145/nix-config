@@ -12,7 +12,11 @@
     ];
 
   boot.kernelParams = [ "appledrm.show_notch=1" ];
-  boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
+
+  # boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
+
+  boot.kernel.sysctl."vm.mmap_rnd_bits" = 31;
+
   hardware.asahi.extractPeripheralFirmware = true;
 
   nix.settings = {
@@ -34,11 +38,16 @@
     useOSProber = false;
     device = "nodev";
   };
+
   boot.loader.efi.canTouchEfiVariables = false;
   
+  services.displayManager.sddm.enable = true;
+
   services.desktopManager.plasma6.enable = true;
+
   services.xserver.displayManager.lightdm.enable = false;
   
+  services.teamviewer.enable = true;
   # Enable zram swap
   zramSwap.enable = true;
 
@@ -87,10 +96,8 @@
 
   services.blueman.enable = true;
 
-  # Enable CUPS to print documents.
   #services.printing.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
   # Enable tailscale
@@ -99,11 +106,10 @@
     useRoutingFeatures = "client";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
-    extraGroups = [ "wheel" "video" "render" "libvirtd" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "video" "render" "libvirtd" ];
     shell = pkgs.zsh;
   };
 
@@ -140,8 +146,8 @@
     adoptopenjdk-icedtea-web
     blueman
     banana-cursor
-    #inputs.self.packages.${pkgs.system}.freelens-bin
-    freelens-bin
+    inputs.self.packages.${pkgs.system}.freelens-bin
+    inputs.claude-desktop.packages.${pkgs.system}.default
   ];
 
   # Enable Appimages
@@ -151,7 +157,10 @@
   };
 
   # SSH 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+  };
 
   networking.firewall = {
     enable = true;

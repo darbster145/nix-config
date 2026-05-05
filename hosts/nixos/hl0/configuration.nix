@@ -115,6 +115,7 @@
     iptables
     iproute2
     intel-gpu-tools
+    infisical
   ];
 
   # Services

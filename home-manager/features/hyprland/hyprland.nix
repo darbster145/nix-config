@@ -6,7 +6,7 @@
 
     settings = {
       monitor = [
-        "eDP-1,3024x1964@60,0x0,1.68,bitdepth,10"
+        "eDP-1,3024x1964@120,0x0,1.5,bitdepth,10"
         # "HDMI-A-1,3840x2160@60,-3840x-496,1.00,bitdepth,10"
         "DP-1,3840x2160@120,-3840x-496,1.00,bitdepth,10"
       ];
@@ -15,7 +15,7 @@
 
       bindl = [
         ",switch:on:Apple SMC power/lid events,exec,hyprctl keyword monitor \"eDP-1, disable\""
-        ",switch:off:Apple SMC power/lid events,exec,hyprctl keyword monitor \"eDP-1, 3024x1964@120, 0x0, 1.68\""
+        ",switch:off:Apple SMC power/lid events,exec,hyprctl keyword monitor \"eDP-1, 3024x1964@120, 0x0, 1.50\""
       ];
 
       xwayland = {
@@ -85,7 +85,7 @@
       };
 
       animations = {
-        enabled = true;
+        enabled = false;
 
         bezier = [
           "myBezier, 0.05, 0.9, 0.1, 1.05"

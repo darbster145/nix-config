@@ -31,6 +31,11 @@
       url = "github:0xc000022070/zen-browser-flake";
     };
 
+    claude-desktop = {
+      url = "github:aaddrick/claude-desktop-debian";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # Optional: Homebrew taps for crapple
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -54,6 +59,7 @@
     , nixpkgs
     , home-manager
     , apple-silicon
+    , claude-desktop
     , nix-darwin
     , nix-homebrew
     , ...
