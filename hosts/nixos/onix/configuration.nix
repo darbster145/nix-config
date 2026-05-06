@@ -44,8 +44,8 @@
       isSystemUser = true;
       group = "nix-builder";
       shell = pkgs.bash;
-      openssh.authorizedKeys = [
-        ""
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/oZK9cgUflE8IKmrbrSkhRSQSHK8ub8SzDlcztoxsx root@nixi"
       ];
     };
     groups.nix-builder = { };
