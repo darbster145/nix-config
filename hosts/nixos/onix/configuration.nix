@@ -39,6 +39,16 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODkieArn/Lc12NcHZhnRdXcMPcGsLOAEwVjdBA2Krn0 brad@nixi"
       ];
     };
+
+    users.nix-builder = {
+      isSystemUser = true;
+      group = "nix-builder";
+      shell = pkgs.bash;
+      openssh.authorizedKeys = [
+        ""
+      ];
+    };
+    groups.nix-builder = { };
   };
 
   nix.settings.trusted-users = [ "darbster" ];
