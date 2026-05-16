@@ -47,9 +47,6 @@
     dunst
     hyprcursor
     nwg-look
-    libsForQt5.kwallet
-    kdePackages.kwallet
-    kdePackages.kwallet-pam
     walker
     networkmanagerapplet
     #libsForQt5
