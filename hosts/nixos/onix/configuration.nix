@@ -91,6 +91,9 @@
       PermitRootLogin = "no";
       PasswordAuthentication = false;
     };
+    listenAddresses = [
+      { addr = "100.110.103.112"; port = 22; }
+    ];
   };
 
   services.fail2ban = {
