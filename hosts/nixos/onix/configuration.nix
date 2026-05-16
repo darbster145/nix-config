@@ -36,7 +36,7 @@
       extraGroups = [ "networkmanager" "wheel" "docker" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIvybHh2fP6dGIPwvstU5UZWaEtXH5aOA5aeri7Ow7Do brixos-onix"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODkieArn/Lc12NcHZhnRdXcMPcGsLOAEwVjdBA2Krn0 brad@nixi"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHLOLHSg/E2juzxv80UX5KUwsw04dgVUS+Iw0gqvdQ3C brad@nixi"
       ];
     };
 
