@@ -13,7 +13,7 @@
 
   boot.kernelParams = [ "appledrm.show_notch=1" ];
 
-  # boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
+  boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
 
   boot.kernel.sysctl."vm.mmap_rnd_bits" = 31;
 
