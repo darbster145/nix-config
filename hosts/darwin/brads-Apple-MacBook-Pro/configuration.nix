@@ -92,7 +92,10 @@
       _FXShowPosixPathInTitle = true;
     };
 
-    screencapture.location = "~/Pictures/screenshots";
+    screencapture = {
+      target = "file";
+      location = "~/Pictures/screenshots";
+    };
 
     screensaver.askForPasswordDelay = 10;
 

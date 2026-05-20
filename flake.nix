@@ -25,7 +25,13 @@
 
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
+      #inputs.brew-src.follows = "homebrew-brew";
     };
+
+    #homebrew-brew = {
+    #  url = "github:Homebrew/brew/5.0.16";
+    #  flake = false;
+    #};
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";

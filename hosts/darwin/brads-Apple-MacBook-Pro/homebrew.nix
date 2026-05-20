@@ -21,8 +21,11 @@
     casks = [
       "mac-mouse-fix"
       "windows-app"
-      "linear-linear"
+      "linear"
       "claude-code@latest"
+      "tailscale-app"
+      "lunar"
+      "imazing-profile-editor"
     ];
 
     masApps = {
