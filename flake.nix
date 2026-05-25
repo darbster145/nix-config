@@ -33,6 +33,11 @@
     #  flake = false;
     #};
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
     };
@@ -65,6 +70,7 @@
     , nixpkgs
     , home-manager
     , apple-silicon
+    , disko
     , claude-desktop
     , nix-darwin
     , nix-homebrew
@@ -131,6 +137,7 @@
           system = "aarch64-linux";
           modules = [
             ./hosts/nixos/onix/configuration.nix
+            disko.nixosModules.disko
           ];
         };
       };

@@ -3,8 +3,10 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
+      ./disk-config.nix
     ];
+
+  boot.kernelParams = [ "console=ttyS0,115200" ];
 
   boot = {
     loader = {
@@ -24,15 +26,18 @@
   nixpkgs.config.allowUnfree = true;
 
   networking.hostName = "onix";
-  networking.networkmanager.enable = true;
+
+  networking.useDHCP = true;
 
   time.timeZone = "America/Denver";
   i18n.defaultLocale = "en_US.UTF-8";
 
   users = {
-    mutableUsers = false;
+    mutableUsers = true;
+
     users.darbster = {
       isNormalUser = true;
+      initialPassword = "Temp1234!";
       extraGroups = [ "networkmanager" "wheel" "docker" ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIvybHh2fP6dGIPwvstU5UZWaEtXH5aOA5aeri7Ow7Do brixos-onix"
@@ -40,35 +45,13 @@
       ];
     };
 
-    users.nix-builder = {
-      isSystemUser = true;
-      group = "nix-builder";
-      shell = pkgs.bash;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK/oZK9cgUflE8IKmrbrSkhRSQSHK8ub8SzDlcztoxsx root@nixi"
-      ];
-    };
-    groups.nix-builder = { };
   };
 
   nix.settings.trusted-users = [ "darbster" ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # Enable passwordless sudo.
-  security.sudo.extraRules = [
-    {
-      users = [ "darbster" ];
-      commands = [
-        {
-          command = "ALL";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
-
-  environment.systemPackages = with pkgs; [
+    environment.systemPackages = with pkgs; [
     curl
     git
     vim
@@ -91,19 +74,16 @@
       PermitRootLogin = "no";
       PasswordAuthentication = false;
     };
-    listenAddresses = [
-      { addr = "100.110.103.112"; port = 22; }
-    ];
   };
 
-  services.fail2ban = {
-    enable = true;
-    ignoreIP = [
-      "127.0.0.1/8"
-      "::1"
-      "100.64.0.0/10"
-    ];
-  };
+  #services.fail2ban = {
+  #  enable = true;
+  #  ignoreIP = [
+  #    "127.0.0.1/8"
+  #    "::1"
+  #    "100.64.0.0/10"
+  #  ];
+  #};
 
   # Disable autologin.
   services.getty.autologinUser = null;
