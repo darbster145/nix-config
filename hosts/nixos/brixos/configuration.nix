@@ -3,11 +3,12 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./gnome.nix
+    #./gnome.nix
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
     ./ollama.nix
+    ./plasma.nix
   ];
 
   boot.initrd.kernelModules = [
@@ -79,11 +80,6 @@
         };
       };
     };
-  };
-
-  services.displayManager.gdm = {
-    enable = true;
-    wayland = true;
   };
 
   nix.settings.trusted-users = [ "root" "brad" ]; # Replace with your username
@@ -163,6 +159,12 @@
     capSysAdmin = true;
     openFirewall = true;
   };
+  hardware.uinput.enable = true;
+
+
+  services.udev.extraRules = ''
+    KERNEL=="uinput", MODE="0660", GROUP="input", SYMLINK+="uinput"
+  '';
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -205,7 +207,7 @@
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
-    extraGroups = [ "networkmanager" "wheel" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "uinput" "input" ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
@@ -234,6 +236,7 @@
     neovim
     ghostty
     inputs.self.packages.${pkgs.system}.freelens-bin
+    #inputs.claude-desktop.packages.${pkgs.system}.default
     rustup
     unrar
     sshfs

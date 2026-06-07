@@ -21,6 +21,16 @@
     ./features/hyprland/default.nix
   ];
 
+
+
+  dconf = {
+    enable = true;
+    settings."org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+
   nixpkgs = {
     overlays = [
       outputs.overlays.additions

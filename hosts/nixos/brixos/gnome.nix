@@ -4,18 +4,17 @@
   services = {
     desktopManager.gnome = {
       enable = true;
-      extraGSettingsOverridePackages = [ pkgs.mutter ];
-      extraGSettingsOverrides = ''
-        [org.gnome.mutter]
-        experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
-      '';
+      # extraGSettingsOverridePackages = [ pkgs.mutter ];
+      # extraGSettingsOverrides = ''
+      #   [org.gnome.mutter]
+      #   experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
+      # '';
     };
-    # displayManager = {
-    #   gdm = {
-    #     enable = true;
-    #     wayland = false;
-    #   };
-    # };
+    displayManager = {
+      gdm = {
+        enable = true;
+      };
+    };
   };
 
   environment.gnome.excludePackages = (with pkgs; [

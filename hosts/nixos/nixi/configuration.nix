@@ -40,13 +40,13 @@
   };
 
   boot.loader.efi.canTouchEfiVariables = false;
-  
+
   services.displayManager.sddm.enable = true;
 
   services.desktopManager.plasma6.enable = true;
 
   services.xserver.displayManager.lightdm.enable = false;
-  
+
   services.teamviewer.enable = true;
   # Enable zram swap
   zramSwap.enable = true;

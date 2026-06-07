@@ -25,9 +25,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-   # services.displayManager.gdm.enable = true;
-   # services.displayManager.gdm.wayland = true;
-
   environment.systemPackages = with pkgs; [
     wlogout
     brightnessctl
@@ -47,6 +44,11 @@
     dunst
     hyprcursor
     nwg-look
+<<<<<<< Updated upstream
+=======
+    kdePackages.kwallet
+    kdePackages.kwallet-pam
+>>>>>>> Stashed changes
     walker
     networkmanagerapplet
     #libsForQt5
