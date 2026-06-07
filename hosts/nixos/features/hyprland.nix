@@ -44,11 +44,6 @@
     dunst
     hyprcursor
     nwg-look
-<<<<<<< Updated upstream
-=======
-    kdePackages.kwallet
-    kdePackages.kwallet-pam
->>>>>>> Stashed changes
     walker
     networkmanagerapplet
     #libsForQt5
