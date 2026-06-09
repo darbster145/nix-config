@@ -50,15 +50,6 @@
   security.pam.services.sudo_local.touchIdAuth = true;
   security.pam.services.sudo_local.reattach = true;
 
-  programs._1password = {
-    enable = true;
-  };
-
-  programs._1password-gui = {
-    enable = true;
-    package = pkgs._1password-gui;
-  };
-
   # Disable startup chime
   system.startup.chime = false;
 

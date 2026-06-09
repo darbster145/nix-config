@@ -26,10 +26,15 @@
       "tailscale-app"
       "lunar"
       "imazing-profile-editor"
+      "1password@nightly"
+      "1password-cli@beta"
+      "bartender"
+      "istat-menus"
     ];
 
     masApps = {
       # "vscode" = 6444809156;
+      "apple-configurator" = 1037126344;
     };
   };
 }
