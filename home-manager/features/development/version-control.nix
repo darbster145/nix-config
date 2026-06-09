@@ -2,7 +2,10 @@
 
 {
   home.packages = with pkgs; [
-    lazygit       # Terminal UI for git
-    stow          # Symlink manager for dotfiles
+    lazygit
+    lazydocker
+    gh
+    gh-dash
+    lazyssh
   ];
 }

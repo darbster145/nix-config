@@ -40,15 +40,15 @@
 
   home.packages = with pkgs; [
     notion-app
-    istat-menus
-    bartender
+    #istat-menus
+    #bartender
     freelens-bin
-    utm
     zoxide
     raycast
     aldente
     firefox
     google-chrome
+    zed-editor
   ];
 
   programs.gh = {
