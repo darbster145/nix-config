@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     #./gnome.nix
+    ./gaming.nix
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
@@ -152,20 +153,6 @@
     useRoutingFeatures = "client";
   };
 
-  # Enable Sunshine
-  services.sunshine = {
-    enable = true;
-    autoStart = true;
-    capSysAdmin = true;
-    openFirewall = true;
-  };
-  hardware.uinput.enable = true;
-
-
-  services.udev.extraRules = ''
-    KERNEL=="uinput", MODE="0660", GROUP="input", SYMLINK+="uinput"
-  '';
-
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -219,17 +206,6 @@
 
   services.teamviewer.enable = true;
 
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-  };
-
-  programs.gamemode.enable = true;
-
-  environment.sessionVariables = {
-    STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/brad/.steam/root/compatibilitytools.d";
-  };
-
   programs.zsh.enable = true;
 
   environment.systemPackages = with pkgs; [
@@ -255,10 +231,6 @@
     #lutris
     adwaita-icon-theme
     bluetui
-    mangohud
-    goverlay
-    protonup-ng
-    heroic
     trash-cli
     papirus-icon-theme
     openrgb-with-all-plugins
@@ -319,11 +291,7 @@
     allowSFTP = true;
   };
 
-  # Open ports in the firewall.
-  #networking.firewall.allowedTCPPorts = [ 11987 47989 ];
-  #networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # DO NOT CHANGE
   system.stateVersion = "24.11";
