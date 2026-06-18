@@ -9,30 +9,12 @@
 
 {
   imports = [
+    ./global/default.nix
     ./features/development/kubernetes.nix
     ./features/development/version-control.nix
     ./features/desktop/default.nix
     ./features/cli/default.nix
   ];
-
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-
-    config = {
-      allowUnfree = true;
-      allowUnsupported = true;
-    };
-  };
-
   home = {
     username = "brad";
     homeDirectory = "/Users/brad";
@@ -60,12 +42,4 @@
     enable = true;
   };
 
-  # Enable home-manager and git
-  programs.home-manager.enable = true;
-
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
 }
