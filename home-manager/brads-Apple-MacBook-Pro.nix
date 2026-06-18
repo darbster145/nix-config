@@ -49,6 +49,7 @@
     firefox
     google-chrome
     zed-editor
+    opencode-claude-auth
   ];
 
   programs.gh = {
