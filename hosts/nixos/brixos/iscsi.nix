@@ -17,7 +17,7 @@
 
   fileSystems."/home/brad/Games" = {
     device = "/dev/disk/by-uuid/B660927760923E55";
-    fsType = "ntfs-3g";
-    options = [ "_netdev" "nofail" "rw" "uid=1000" ];
+    fsType = "ntfs3";
+    options = [ "_netdev" "nofail" "windows_names" "uid=1000" ];
   };
 }

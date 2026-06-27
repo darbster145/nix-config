@@ -1,11 +1,12 @@
-# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 { inputs
 , outputs
 , lib
 , config
 , pkgs
 , ...
-}: {
+}: 
+
+{
   imports = [
     ./global/default.nix
     ./features/base/default.nix
@@ -30,6 +31,10 @@
     banana-cursor
     bitwarden-cli
     jellyfin-media-player
+    proton-vpn
+    proton-vpn-cli
+    opencode-claude-auth
+    claude-code
   ];
 
   home.pointerCursor = {
