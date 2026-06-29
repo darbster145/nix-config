@@ -47,6 +47,11 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    codex-desktop-linux = {
+      url = "github:ilysenko/codex-desktop-linux";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     # Optional: Homebrew taps for crapple
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -72,6 +77,7 @@
     , apple-silicon
     , disko
     , claude-desktop
+    , codex-desktop-linux
     , nix-darwin
     , nix-homebrew
     , ...
@@ -199,6 +205,5 @@
       };
     };
 }
-
 
 

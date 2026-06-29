@@ -124,8 +124,6 @@
   # System Packages
   environment.systemPackages = with pkgs; [
     trashy
-    legcord
-    home-manager
     widevine-cdm
     appimage-run
     gcc
