@@ -5,7 +5,7 @@
     };
 
     nixpkgs = {
-      url = "nixpkgs/nixos-25.11";
+      url = "nixpkgs/nixos-26.05";
     };
 
     apple-silicon = {
@@ -49,6 +49,11 @@
 
     codex-desktop-linux = {
       url = "github:ilysenko/codex-desktop-linux";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    polaris-streamer = {
+      url = "github:darbster145/polaris-streamer-flake";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -112,7 +117,9 @@
         brixos = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
+            inputs.polaris-streamer.nixosModules.default
             ./hosts/nixos/brixos/configuration.nix
+            ./hosts/nixos/brixos/polaris-stream.nix
           ];
         };
 
@@ -205,5 +212,3 @@
       };
     };
 }
-
-

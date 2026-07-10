@@ -10,6 +10,7 @@
     ../features/hyprland.nix
     ./ollama.nix
     ./plasma.nix
+    ./gamesfast.nix
   ];
 
   boot.initrd.kernelModules = [
@@ -23,9 +24,11 @@
     "acpi_backlight=native"
     # Needed for LACT AMDGPU Overclocking Support
     "amdgpu.ppfeaturemask=0xffffffff"
+    "amdgpu.dcfeaturemask=0x402"
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_testing;
 
   boot.kernelModules = [
     "iscsi_tcp"
@@ -87,7 +90,7 @@
 
   nix.settings.sandbox = true;
 
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs3" ];
 
   zramSwap = {
     enable = true;
@@ -218,7 +221,7 @@
     sshfs
     nodejs
     git
-    protonvpn-gui
+    proton-vpn
     cargo
     chromium
     gcc
@@ -269,7 +272,7 @@
   services.tumbler.enable = true;
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       tumbler
       thunar-volman
       thunar-archive-plugin

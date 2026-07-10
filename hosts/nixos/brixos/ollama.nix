@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   services.ollama = {
@@ -23,17 +23,17 @@
     #syncModels = true;
   };
 
-  services.open-webui = {
-    enable = true;
-    host = "0.0.0.0";
-    openFirewall = true;
-  };
+  #services.open-webui = {
+  #  enable = true;
+  #  host = "0.0.0.0";
+  #  openFirewall = true;
+  #};
 
-  services.litellm = {
-    enable = true;
-    openFirewall = true;
-    port = 4000;
-    host = "0.0.0.0";
-    environmentFile = "/var/lib/secrets/liteLLMSecrets";
-  };
+  # services.litellm = {
+  #   enable = true;
+  #   openFirewall = true;
+  #   port = 4000;
+  #   host = "0.0.0.0";
+  #   environmentFile = "/var/lib/secrets/liteLLMSecrets";
+  # };
 }

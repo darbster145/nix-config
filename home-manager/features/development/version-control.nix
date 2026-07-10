@@ -7,5 +7,7 @@
     gh
     gh-dash
     lazyssh
+    codex
+    opencode-desktop
   ];
 }

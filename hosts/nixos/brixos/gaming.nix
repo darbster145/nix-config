@@ -27,7 +27,7 @@
 
   environment.systemPackages = with pkgs; [
     goverlay
-    heroic
+    #heroic
     mangohud
     protonup-ng
   ];
