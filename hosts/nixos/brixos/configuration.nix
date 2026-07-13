@@ -122,6 +122,9 @@
       mesa.opencl
     ];
   };
+  hardware.amdgpu = {
+    opencl.enable = true;
+  };
 
   time.timeZone = "America/Denver";
 
