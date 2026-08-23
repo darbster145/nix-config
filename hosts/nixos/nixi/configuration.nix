@@ -12,13 +12,16 @@
     ];
 
   boot.kernelParams = [ "appledrm.show_notch=1" ];
+  
+  programs.droidcam.enable = true;
 
-  # boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
+  #boot.kernelPackages = lib.mkForce pkgs.linux-asahi-fairydust;
 
   boot.kernel.sysctl."vm.mmap_rnd_bits" = 31;
 
   hardware.asahi = {
     enable = true;
+    #kernelVariant = "wip-j314-dp";
     extractPeripheralFirmware = true;
   };
 
@@ -127,6 +130,7 @@
   # System Packages
   environment.systemPackages = with pkgs; [
     trashy
+    android-tools
     widevine-cdm
     appimage-run
     gcc
@@ -148,6 +152,7 @@
     banana-cursor
     inputs.self.packages.${pkgs.system}.freelens-bin
     inputs.claude-desktop.packages.${pkgs.system}.default
+    webcamoid
   ];
 
   # Enable Appimages
