@@ -22,6 +22,26 @@
           supports_wide_color = true,
       })
 
+      -- M1 Macbook Pro Screen
+      hl.monitor({
+          output   = "eDP-1",
+          mode     = "3024x1964@120",
+          position = "auto",
+          scale    = 1.68,
+          vrr      = 2,
+          supports_hdr   = true,
+          bitdepth = 10,
+          supports_wide_color = true,
+      })
+
+      hl.config({
+        debug = {
+            disable_scale_checks = true,
+        },
+      })
+
+
+
 
       ---------------------
       ---- MY PROGRAMS ----
