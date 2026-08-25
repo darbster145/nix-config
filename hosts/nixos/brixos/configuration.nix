@@ -10,7 +10,7 @@
     ../features/hyprland.nix
     ./ollama.nix
     ./plasma.nix
-    ./gamesfast.nix
+    #./gamesfast.nix
   ];
 
   boot.initrd.kernelModules = [
@@ -234,7 +234,7 @@
     zoxide
     discord
     pay-respects
-    #lutris
+    lutris
     adwaita-icon-theme
     bluetui
     trash-cli
@@ -250,6 +250,7 @@
     amdgpu_top
     nethogs
     wirelesstools
+    jellyfin-media-player
     iotop
     gtop
     # Hyprland DE Packages

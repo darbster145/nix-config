@@ -15,6 +15,7 @@
       "qwen3.6:27b"
       "gpt-oss:20b"
       "gemma4:31b"
+      "qwen3.8:27b"
     ];
     rocmOverrideGfx = "11.0.0";
     environmentVariables = {
