@@ -6,6 +6,7 @@
       keepAlive = true;
     };
     settings = {
+      config-version = 2;
       after-login-command = [ ];
       after-startup-command = [ ];
       start-at-login = true;

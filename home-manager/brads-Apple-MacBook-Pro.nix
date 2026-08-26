@@ -11,6 +11,7 @@
   imports = [
     ./global/default.nix
     ./features/development/kubernetes.nix
+    ./features/development/zed-editor.nix
     ./features/development/version-control.nix
     ./features/desktop/default.nix
     ./features/cli/default.nix
@@ -30,8 +31,15 @@
     aldente
     firefox
     google-chrome
-    zed-editor
+    #zed-editor
     opencode-claude-auth
+    opencode-desktop
+    #terraform
+    tfenv
+    powershell
+    (google-cloud-sdk.withExtraComponents [
+      google-cloud-sdk.components.gke-gcloud-auth-plugin
+    ])
   ];
 
   programs.gh = {

@@ -8,6 +8,7 @@
     helmfile
     talosctl
     fluxcd
+    argocd
   ];
 
   programs.zsh = {

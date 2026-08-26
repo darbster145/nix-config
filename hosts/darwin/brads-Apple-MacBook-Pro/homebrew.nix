@@ -33,11 +33,14 @@
       "1password-cli@beta"
       "bartender"
       "istat-menus"
+      "keyboardcleantool"
+      "camo-studio"
+      "via"
     ];
 
     masApps = {
       # "vscode" = 6444809156;
-      "apple-configurator" = 1037126344;
+      # "apple-configurator" = 1037126344;
     };
   };
 }

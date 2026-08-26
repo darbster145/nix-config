@@ -10,4 +10,10 @@
     codex
     opencode-desktop
   ];
+
+  programs.zsh = {
+    shellAliases = {
+      lg = "lazygit";
+    };
+  };
 }

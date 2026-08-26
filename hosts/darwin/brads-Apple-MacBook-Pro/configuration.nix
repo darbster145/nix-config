@@ -9,7 +9,13 @@
 
   system.primaryUser = "brad";
 
+  documentation.enable = false;
+
+  # Work around nix-darwin's uninstaller build pulling in broken manual docs.
+  system.tools.darwin-uninstaller.enable = false;
+
   environment.systemPackages = with pkgs; [
+    nerd-fonts.symbols-only
   ];
 
   nix.optimise.automatic = true;

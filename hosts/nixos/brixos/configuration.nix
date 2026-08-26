@@ -10,7 +10,10 @@
     ../features/hyprland.nix
     ./ollama.nix
     ./plasma.nix
+<<<<<<< Updated upstream
     #./gamesfast.nix
+=======
+>>>>>>> Stashed changes
   ];
 
   boot.initrd.kernelModules = [
