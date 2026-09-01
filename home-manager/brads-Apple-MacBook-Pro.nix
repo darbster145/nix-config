@@ -27,7 +27,6 @@
     #bartender
     freelens-bin
     zoxide
-    raycast
     aldente
     firefox
     google-chrome
@@ -40,6 +39,7 @@
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.gke-gcloud-auth-plugin
     ])
+    graphite-cli
   ];
 
   programs.gh = {

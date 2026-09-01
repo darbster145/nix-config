@@ -25,7 +25,6 @@
 
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
-      inputs.brew-src.follows = "homebrew-brew";
     };
 
     disko = {

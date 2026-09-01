@@ -36,6 +36,8 @@
       "keyboardcleantool"
       "camo-studio"
       "via"
+      "raycast"
+      "lm-studio"
     ];
 
     masApps = {
