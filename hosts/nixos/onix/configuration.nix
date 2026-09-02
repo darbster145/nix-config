@@ -3,10 +3,9 @@
 {
   imports =
     [
+      ./hardware-configuration.nix
       ./disk-config.nix
     ];
-
-  boot.kernelParams = [ "console=ttyS0,115200" ];
 
   boot = {
     loader = {
@@ -21,50 +20,48 @@
 
   systemd.targets.multi-user.enable = true;
 
-  services.qemuGuest.enable = true;
-
-  nixpkgs.config.allowUnfree = true;
+  services.tailscale = {
+    enable = true;
+  };
 
   networking.hostName = "onix";
-
-  networking.useDHCP = true;
+  networking.networkmanager.enable = true;
 
   time.timeZone = "America/Denver";
   i18n.defaultLocale = "en_US.UTF-8";
 
   users = {
-    mutableUsers = true;
-
+    mutableUsers = false;
     users.darbster = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      extraGroups = [ "networkmanager" "wheel" ];
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIvybHh2fP6dGIPwvstU5UZWaEtXH5aOA5aeri7Ow7Do brixos-onix"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHLOLHSg/E2juzxv80UX5KUwsw04dgVUS+Iw0gqvdQ3C brad@nixi"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGij6qjLvy5IgwWhruAm6pNRQzgWJEuIhzt9soGQlLiQ brad@brads-Apple-MacBook-Pro"
       ];
     };
-
   };
 
-  nix.settings.trusted-users = [ "darbster" ];
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-    environment.systemPackages = with pkgs; [
-    curl
-    git
-    vim
-    wget
-    neovim
-    fastfetch
-    btop
-    apparmor-utils
+  # Enable passwordless sudo.
+  security.sudo.extraRules = [
+    {
+      users = [ "darbster" ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
   ];
 
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "server";
-  };
+  environment.systemPackages = with pkgs; [
+    curl
+    git
+    neovim
+    wget
+    fastfetch
+    btop
+  ];
 
   # Enable the OpenSSH daemon.
   services.openssh = {
@@ -75,23 +72,12 @@
     };
   };
 
-  #services.fail2ban = {
-  #  enable = true;
-  #  ignoreIP = [
-  #    "127.0.0.1/8"
-  #    "::1"
-  #    "100.64.0.0/10"
-  #  ];
-  #};
-
   # Disable autologin.
   services.getty.autologinUser = null;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    # SSH 
-    22
-  ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
 
   # Disable documentation for minimal install.
   documentation.enable = false;
