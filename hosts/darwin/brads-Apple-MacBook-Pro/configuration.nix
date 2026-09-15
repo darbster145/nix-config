@@ -5,6 +5,7 @@
   imports = [
     ../features/nix-homebrew.nix
     ./homebrew.nix
+    ../../nixos/features/fonts.nix
   ];
 
   system.primaryUser = "brad";
@@ -16,6 +17,13 @@
 
   environment.systemPackages = with pkgs; [
     nerd-fonts.symbols-only
+inputs.self.packages.${pkgs.system}.freelens-bin
+  ];
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-mono
+    nerd-fonts.symbols-only
+    noto-fonts
   ];
 
   nix.optimise.automatic = true;

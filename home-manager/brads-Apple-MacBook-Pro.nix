@@ -22,10 +22,9 @@
   };
 
   home.packages = with pkgs; [
-    notion-app
     #istat-menus
     #bartender
-    freelens-bin
+    #freelens-bin
     zoxide
     aldente
     firefox
@@ -40,7 +39,13 @@
       google-cloud-sdk.components.gke-gcloud-auth-plugin
     ])
     graphite-cli
+    nodejs-slim_26
+    nerd-fonts.fira-mono
+    nerd-fonts.symbols-only
+    noto-fonts
   ];
+
+  fonts.fontconfig.enable = true;
 
   programs.gh = {
     enable = true;
