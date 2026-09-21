@@ -18,13 +18,7 @@
     ./features/desktop/aerospace.nix
     ./features/desktop/oh-my-posh.nix
     ./features/desktop/zen-browser.nix
-    ./features/cli/git.nix
-    ./features/cli/zsh.nix
-    ./features/cli/tmux.nix
-    ./features/cli/yazi.nix
-    ./features/cli/common.nix
-    ./features/cli/zoxide.nix
-    ./features/cli/neovim.nix
+    ./features/cli/default.nix
   ];
   home = {
     username = "brad";

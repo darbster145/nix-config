@@ -66,6 +66,12 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
+    
+    radar = {
+      url = "github:skyhook-io/homebrew-tap";
+      flake = false;
+    };
+    
   };
 
   outputs =

@@ -26,7 +26,7 @@
       workspace-to-monitor-force-assignment = {
         "10" = 2;
         "9" = 2;
-        "3" = 2;
+      #  "3" = 2;
       };
 
       gaps = {

@@ -224,7 +224,6 @@
     nodejs
     git
     proton-vpn
-    cargo
     chromium
     gcc
     dnsutils
@@ -253,35 +252,16 @@
     iotop
     gtop
     # Hyprland DE Packages
-    xdg-desktop-portal-hyprland
     #kdePackages.xwaylandvideobridge # Needed to screenshare xwayland programs
     hyprpolkitagent
-    hyprcursor
     hyprsunset
-    wlogout
-    waybar
     udiskie # Auto Mount USB
-    wl-clipboard
-    hyprpaper
     waypaper # GUI fontend for hyprpaper, swww, etc
     nwg-dock
-    playerctl
     zathura
     banana-cursor
     #davinci-resolve
   ];
-
-  services.gvfs.enable = true;
-  services.tumbler.enable = true;
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs; [
-      tumbler
-      thunar-volman
-      thunar-archive-plugin
-      thunar-media-tags-plugin
-    ];
-  };
 
   # Enable Appimages
   programs.appimage = {

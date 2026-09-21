@@ -162,11 +162,13 @@
       	-- Use `opts = {}` to force a plugin to be loaded.
       	--
       
-        "windwp/nvim-ts-autotag",
-        opts = {
-          enable_close = true,
-          enable_rename = true,
-          enable_close_on_slash = true,
+        {
+          "windwp/nvim-ts-autotag",
+          opts = {
+            enable_close = true,
+            enable_rename = true,
+            enable_close_on_slash = true,
+          },
         },
       
       	-- Here is a more advanced example where we pass configuration
@@ -783,16 +785,11 @@
       	},
       	{ -- Highlight, edit, and navigate code
       		"nvim-treesitter/nvim-treesitter",
-          dependencies = {
-            { "windwp/nvim-ts-autotag" },
-          },
-      		build = ":TSUpdate",
-      		opts = {
-            highlight = { enable = true },
+			build = ":TSUpdate",
+			opts = {
             autopairs = { enable = true },
             autotag = { enable = true },
-            indent = { enable = true },
-      			ensure_installed = {
+				ensure_installed = {
       				"bash",
       				"c",
       				"diff",

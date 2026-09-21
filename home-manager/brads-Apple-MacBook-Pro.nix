@@ -23,21 +23,18 @@
 
   home.packages = with pkgs; [
     #istat-menus
-    #bartender
     #freelens-bin
-    zoxide
     aldente
     firefox
     google-chrome
     #zed-editor
     opencode-claude-auth
-    opencode-desktop
     #terraform
     tfenv
     powershell
-    (google-cloud-sdk.withExtraComponents [
-      google-cloud-sdk.components.gke-gcloud-auth-plugin
-    ])
+    #(google-cloud-sdk.withExtraComponents [
+    #  google-cloud-sdk.components.gke-gcloud-auth-plugin
+    #])
     graphite-cli
     nodejs-slim_26
     nerd-fonts.fira-mono

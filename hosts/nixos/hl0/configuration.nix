@@ -7,10 +7,7 @@
 
   # Kernel and modules
   boot.kernelParams = [ "i915.enable_guc=3" ];
-  boot.initrd.kernelModules = [ ];
-  boot.initrd.availableKernelModules = [ "virtio_pci" "virtio_blk" "virtio_scsi" "virtio_net" ];
-
-  boot.kernelModules = [ ];
+  boot.initrd.availableKernelModules = [ "virtio_blk" "virtio_net" ];
 
   hardware.graphics = {
     enable = true;

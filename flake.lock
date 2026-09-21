@@ -384,6 +384,22 @@
         "type": "github"
       }
     },
+    "radar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1789655387,
+        "narHash": "sha256-wIGJ7WqGYeV7CmYryGuciQLJYO3v7eqQuUSEwKZuZSA=",
+        "owner": "skyhook-io",
+        "repo": "homebrew-tap",
+        "rev": "5e77df054aa8b4b2f8e58482cb3adc22f4ed0c61",
+        "type": "github"
+      },
+      "original": {
+        "owner": "skyhook-io",
+        "repo": "homebrew-tap",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "apple-silicon": "apple-silicon",
@@ -399,6 +415,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "polaris-streamer": "polaris-streamer",
+        "radar": "radar",
         "zen-browser": "zen-browser"
       }
     },

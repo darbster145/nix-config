@@ -2,9 +2,6 @@
 
 {
 
-  imports = [
-  ];
-
   programs.hyprland = {
     enable = true;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
@@ -23,6 +20,9 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    HYPRSHOT_DIR = "/home/brad/Pictures";
+    GDK_DISABLE = "gles-api";
+    GSK_RENDERER = "gl";
   };
 
   environment.systemPackages = with pkgs; [
@@ -30,11 +30,9 @@
     brightnessctl
     hypridle
     waybar
-    brightnessctl
     pavucontrol
     wireguard-tools
     cargo
-    wlogout
     hyprshot
     wl-clipboard
     clipse
@@ -69,9 +67,4 @@
     ];
   };
 
-  environment.sessionVariables = {
-    "HYPRSHOT_DIR" = "/home/brad/Pictures";
-    "GDK_DISABLE" = "gles-api";
-    "GSK_RENDERER" = "gl";
-  };
 }

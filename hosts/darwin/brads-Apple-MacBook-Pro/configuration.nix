@@ -16,13 +16,25 @@
   system.tools.darwin-uninstaller.enable = false;
 
   environment.systemPackages = with pkgs; [
-    nerd-fonts.symbols-only
-inputs.self.packages.${pkgs.system}.freelens-bin
+    inputs.self.packages.${pkgs.system}.freelens-bin
+    (google-cloud-sdk.withExtraComponents [
+      google-cloud-sdk.components.gke-gcloud-auth-plugin
+    ])
+  ];
+
+  launchd.user.envVariables.PATH = [
+    "/run/current-system/sw/bin"
+    "/etc/profiles/per-user/brad/bin"
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
+    "/usr/local/bin"
+    "/usr/bin"
+    "/bin"
+    "/usr/sbin"
+    "/sbin"
   ];
 
   fonts.packages = with pkgs; [
-    nerd-fonts.fira-mono
-    nerd-fonts.symbols-only
     noto-fonts
   ];
 

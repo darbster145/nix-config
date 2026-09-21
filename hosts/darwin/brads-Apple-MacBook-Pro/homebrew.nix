@@ -19,6 +19,7 @@
     ];
 
     casks = [
+      "skyhook-io/tap/radar-desktop"
       "mac-mouse-fix"
       "windows-app"
       "linear"
@@ -38,6 +39,7 @@
       "via"
       "raycast"
       "lm-studio"
+      "betterdisplay"
     ];
 
     masApps = {
