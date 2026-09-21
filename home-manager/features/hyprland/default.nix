@@ -7,7 +7,6 @@
     ./hyprpaper.nix
     ./hyprland.nix
     ./waybar/default.nix
-    #./ashell.nix
     ./wlogout.nix
   ];
 }

@@ -37,6 +37,7 @@
     opencode-claude-auth
     claude-code
     codex
+    vlc
   ];
 
   home.pointerCursor = {

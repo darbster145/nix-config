@@ -64,11 +64,9 @@
       --
       hl.on("hyprland.start", function () 
            hl.exec_cmd("blueman-applet")
-           hl.exec_cmd("clipse --listen")
-           hl.exec_cmd("hyprctl setcursor Banana 24")
-           hl.exec_cmd("walker --gapplication-service")
-           hl.exec_cmd("elephant")
-           hl.exec_cmd("nm-applet --indicator")
+            hl.exec_cmd("clipse --listen")
+            hl.exec_cmd("walker --gapplication-service")
+            hl.exec_cmd("nm-applet --indicator")
       end)
 
 
@@ -111,7 +109,7 @@
       hl.config({
           general = {
               gaps_in  = 5,
-              gaps_out = 20,
+              gaps_out = 10,
 
               border_size = 2,
 
@@ -130,7 +128,7 @@
           },
 
           decoration = {
-              rounding       = 10,
+              rounding       = 0,
               rounding_power = 2,
 
               -- Change transparency of focused and unfocused windows
@@ -169,20 +167,20 @@
 
       hl.animation({ leaf = "global",        enabled = true,  speed = 10,   bezier = "default" })
       hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
-      hl.animation({ leaf = "windows",       enabled = true,  speed = 4.79, spring = "easy" })
-      hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 4.1,  spring = "easy",         style = "popin 87%" })
-      hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 1.49, bezier = "linear",       style = "popin 87%" })
+      hl.animation({ leaf = "windows",       enabled = true,  speed = 7,    bezier = "easeOutQuint", style = "slide" })
+      hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 5.5,  spring = "easy",         style = "popin 87%" })
+      hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 5.5,  bezier = "linear",       style = "popin 87%" })
       hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1.73, bezier = "almostLinear" })
       hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1.46, bezier = "almostLinear" })
       hl.animation({ leaf = "fade",          enabled = true,  speed = 3.03, bezier = "quick" })
-      hl.animation({ leaf = "layers",        enabled = true,  speed = 3.81, bezier = "easeOutQuint" })
-      hl.animation({ leaf = "layersIn",      enabled = true,  speed = 4,    bezier = "easeOutQuint", style = "fade" })
-      hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
+      hl.animation({ leaf = "layers",        enabled = true,  speed = 6,    bezier = "easeOutQuint", style = "slide" })
+      hl.animation({ leaf = "layersIn",      enabled = true,  speed = 6,    bezier = "easeOutQuint", style = "slide" })
+      hl.animation({ leaf = "layersOut",     enabled = true,  speed = 6,    bezier = "linear",       style = "slide" })
       hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1.79, bezier = "almostLinear" })
       hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1.39, bezier = "almostLinear" })
-      hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
-      hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
-      hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
+      hl.animation({ leaf = "workspaces",    enabled = true,  speed = 5.5,  bezier = "easeOutQuint", style = "slide" })
+      hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 5.5,  bezier = "easeOutQuint", style = "slide" })
+      hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 5.5,  bezier = "easeOutQuint", style = "slide" })
       hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
 
       -- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
@@ -250,7 +248,7 @@
 
               follow_mouse = 1,
 
-              sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
+              sensitivity = 0.5, -- -1.0 - 1.0, 0 means no modification.
 
               touchpad = {
                   natural_scroll = true,
@@ -266,14 +264,6 @@
           action = "workspace"
       })
 
-      -- Example per-device config
-      -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/ for more
-      hl.device({
-          name        = "epic-mouse-v1",
-          sensitivity = -0.5,
-      })
-
-
       ---------------------
       ---- KEYBINDINGS ----
       ---------------------
@@ -283,21 +273,26 @@
       -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
       local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
       -- closeWindowBind:set_enabled(false)
-      hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+      hl.bind(mainMod .. " + M", hl.dsp.exit())
       hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
       hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
       hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
       hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
-      hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
       hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
 
       hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
-      -- Move focus with mainMod + arrow keys
-      hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
-      hl.bind(mainMod .. " + right", hl.dsp.focus({ direction = "right" }))
-      hl.bind(mainMod .. " + up",    hl.dsp.focus({ direction = "up" }))
-      hl.bind(mainMod .. " + down",  hl.dsp.focus({ direction = "down" }))
+      -- Move focus with mainMod + H/L/K/J
+      hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
+      hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+      hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
+      hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+
+      -- Move windows with mainMod + SHIFT + H/L/K/J
+      hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "left" }))
+      hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
+      hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
+      hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 
       -- Switch workspaces with mainMod + [0-9]
       -- Move active window to a workspace with mainMod + SHIFT + [0-9]
@@ -384,74 +379,5 @@
           float = true,
       })
     '';
-
-    #settings = {
-    #  monitor = [
-    #    "eDP-1,3024x1964@120,0x0,1.5,bitdepth,10"
-    #    # "HDMI-A-1,3840x2160@60,-3840x-496,1.00,bitdepth,10"
-    #    "DP-1,3840x2160@120,-3840x-496,1.00,bitdepth,10"
-    #  ];
-
-    #  "debug:disable_scale_checks" = 1;
-
-    #  bindl = [
-    #    ",switch:on:Apple SMC power/lid events,exec,hyprctl keyword monitor \"eDP-1, disable\""
-    #    ",switch:off:Apple SMC power/lid events,exec,hyprctl keyword monitor \"eDP-1, 3024x1964@120, 0x0, 1.50\""
-    #  ];
-
-    #  xwayland = {
-    #    force_zero_scaling = true;
-    #  };
-
-    #  exec-once = [
-    #    "blueman-applet"
-    #    "clipse -listen"
-    #    "hyprctl setcursor Banana 24"
-    #    "/usr/lib/pam_kwallet_init"
-    #    "walker --gapplication-service"
-    #    "elephant"
-    #    "nm-applet --indicator"
-    #  ];
-    #  };
-
-    #  bind = [
-    #    "$mainMod, T, exec, ghostty"
-    #    "$mainMod, Q, killactive,"
-    #    "$mainMod, M, exit,"
-    #    "$mainMod, E, exec, nautilus"
-    #    "$mainMod, F, togglefloating,"
-    #    "$mainMod, R, exec, walker"
-    #    "$mainMod, P, pseudo,"
-    #    "$mainMod, J, togglesplit,"
-    #    "$mainMod, B, exec, zen-beta"
-    #    "$mainMod CONTROL, L, exec, hyprlock"
-
-    #    "$mainMod, h, movefocus, l"
-    #    "$mainMod, l, movefocus, r"
-    #    "$mainMod, k, movefocus, u"
-    #    "$mainMod, j, movefocus, d"
-
-    #    "$mainMod SHIFT, h, movewindow, l"
-    #    "$mainMod SHIFT, l, movewindow, r"
-    #    "$mainMod SHIFT, k, movewindow, u"
-    #    "$mainMod SHIFT, j, movewindow, d"
-
-    #    "SUPER, V, exec, ghostty --class=com.example.clipse -e clipse"
-
-    #    "$mainMod SHIFT, S, exec, hyprshot -m region | wl-copy"
-    #  ];
-
-    #  binde = [
-    #    "$mainMod, XF86MonBrightnessUp, exec, brightnessctl -d kbd_backlight set 5%+"
-    #    "$mainMod, XF86MonBrightnessDown, exec, brightnessctl -d kbd_backlight set 5%-"
-    #    ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0"
-    #    ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-    #  ];
-
-    #  bindm = [
-    #    "$mainMod, mouse:272, movewindow"
-    #    "$mainMod, mouse:273, resizewindow"
-    #  ];
-    #};
   };
 }

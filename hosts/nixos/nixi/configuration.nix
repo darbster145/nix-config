@@ -9,6 +9,7 @@
       ../features/fonts.nix
       #../brixos/gnome.nix
       ./virtualization.nix
+      ../features/remote-builders.nix
     ];
 
   boot.kernelParams = [ "appledrm.show_notch=1" ];
@@ -21,7 +22,7 @@
 
   hardware.asahi = {
     enable = true;
-    #kernelVariant = "wip-j314-dp";
+    kernelVariant = "fairydust";
     extractPeripheralFirmware = true;
   };
 
@@ -126,6 +127,8 @@
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.config.allowUnsupportedSystem = true;
+
+  programs.kdeconnect.enable = true;
 
   # System Packages
   environment.systemPackages = with pkgs; [
