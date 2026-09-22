@@ -1,6 +1,20 @@
-{ lib, ... }:
+{ lib, hyprlandLaptopMonitor, ... }:
 
 {
+  _module.args.hyprlandLaptopMonitor = lib.mkDefault ''
+    -- M1 Macbook Pro Screen
+    hl.monitor({
+        output = "eDP-1",
+        mode = "3024x1964@120",
+        position = "auto",
+        scale = 1.68,
+        vrr = 2,
+        supports_hdr = true,
+        bitdepth = 10,
+        supports_wide_color = true,
+    })
+  '';
+
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
@@ -22,17 +36,7 @@
           supports_wide_color = true,
       })
 
-      -- M1 Macbook Pro Screen
-      hl.monitor({
-          output   = "eDP-1",
-          mode     = "3024x1964@120",
-          position = "auto",
-          scale    = 1.68,
-          vrr      = 2,
-          supports_hdr   = true,
-          bitdepth = 10,
-          supports_wide_color = true,
-      })
+      ${hyprlandLaptopMonitor}
 
       hl.config({
         debug = {

@@ -8,6 +8,10 @@
       url = "nixpkgs/nixos-26.05";
     };
 
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
+
     apple-silicon = {
       url = "github:darbster145/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -79,6 +83,7 @@
     , nixpkgs-unstable
     , nixpkgs
     , home-manager
+    , nixos-hardware
     , apple-silicon
     , disko
     , claude-desktop
@@ -114,6 +119,17 @@
       homeManagerModules = import ./modules/home-manager;
 
       nixosConfigurations = {
+        framenix = nixpkgs-unstable.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/nixos/framenix/configuration.nix
+            nixos-hardware.nixosModules.framework-intel-core-ultra-series3
+          ];
+        };
+
         brixos = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
@@ -177,6 +193,14 @@
       };
 
       homeConfigurations = {
+        "brad@framenix" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs-unstable.legacyPackages.x86_64-linux;
+          extraSpecialArgs = { inherit inputs outputs; };
+          modules = [
+            ./home-manager/framenix.nix
+          ];
+        };
+
         "brad@crapple" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs-unstable.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs outputs; };
