@@ -1,19 +1,6 @@
 { lib, hyprlandLaptopMonitor, ... }:
 
 {
-  _module.args.hyprlandLaptopMonitor = lib.mkDefault ''
-    -- M1 Macbook Pro Screen
-    hl.monitor({
-        output = "eDP-1",
-        mode = "3024x1964@120",
-        position = "auto",
-        scale = 1.68,
-        vrr = 2,
-        supports_hdr = true,
-        bitdepth = 10,
-        supports_wide_color = true,
-    })
-  '';
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -24,6 +11,19 @@
       ------------------
 
       -- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+
+      -- framework 13 pro
+      hl.monitor({
+          output = "eDP-1",
+          mode = "2880x1920@120",
+          position = "auto",
+          scale = 1.50,
+          vrr = 2,
+          supports_hdr = true,
+          bitdepth = 10,
+          supports_wide_color = true,
+      })
+
       -- Asus PG42UQ
       hl.monitor({
           output   = "DP-3",
@@ -36,7 +36,6 @@
           supports_wide_color = true,
       })
 
-      ${hyprlandLaptopMonitor}
 
       hl.config({
         debug = {

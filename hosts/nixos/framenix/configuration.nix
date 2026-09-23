@@ -27,7 +27,12 @@
   services.teamviewer.enable = true;
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [ libva mesa libdrm ];
+    extraPackages = with pkgs; [ 
+      intel-media-driver     # VA-API (iHD) userspace
+      vpl-gpu-rt             # oneVPL (QSV) runtime
+      intel-compute-runtime
+    ];
+
   };
   services.logind.settings.Login.HandlePowerKey = "ignore";
 
