@@ -11,6 +11,7 @@
     ../features/hyprland.nix
     ./ollama.nix
     ./plasma.nix
+    ./remote-builder-server.nix
   ];
 
   boot.initrd.kernelModules = [
@@ -58,11 +59,6 @@
   };
 
   nix.optimise.automatic = true;
-
-  nix.settings = {
-    cores = 0;
-    max-jobs = 1;
-  };
 
   services.irqbalance.enable = true;
 

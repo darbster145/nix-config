@@ -20,6 +20,7 @@
     ./features/desktop/zen-browser.nix
     ./features/desktop/ghostty.nix
     ./features/hyprland/default.nix
+    ./features/desktop/codex-desktop.nix
   ];
 
 
