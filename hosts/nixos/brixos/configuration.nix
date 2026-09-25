@@ -5,6 +5,7 @@
     ./hardware-configuration.nix
     #./gnome.nix
     ./gaming.nix
+    ../features/lact.nix
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
@@ -185,16 +186,6 @@
     discoverPortal = "10.0.0.3";
   };
 
-  # LACT systemd service
-  systemd.services.lact = {
-    description = "AMDGPU Control Daemon";
-    after = [ "multi-user.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.lact}/bin/lact daemon";
-    };
-    enable = true;
-  };
 
   users.users.brad = {
     isNormalUser = true;
@@ -238,7 +229,6 @@
     trash-cli
     papirus-icon-theme
     openrgb-with-all-plugins
-    lact
     via
     mpv
     adoptopenjdk-icedtea-web

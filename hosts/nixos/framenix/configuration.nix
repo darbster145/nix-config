@@ -3,10 +3,12 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../features/gaming.nix
     ../features/kanata.nix
     ../features/hyprland.nix
     ../features/fonts.nix
     ../features/remote-builders.nix
+    ../features/lact.nix
   ];
 
   # Keep nixi's key mappings, using the Framework internal keyboard.
@@ -24,9 +26,17 @@
 
   services.fwupd.enable = true;
 
+  # Fingerprint Scanner
+  services.fprintd.enable = true;
+  security.polkit.enable = true;
+  environment.pathsToLink = [
+    "/share/polkit-1"
+  ];
+
   services.teamviewer.enable = true;
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
     extraPackages = with pkgs; [ 
       intel-media-driver     # VA-API (iHD) userspace
       vpl-gpu-rt             # oneVPL (QSV) runtime
@@ -118,6 +128,7 @@
     widevine-cdm
     appimage-run
     gcc
+    bitwarden-desktop
     ytermusic
     remmina
     openconnect
