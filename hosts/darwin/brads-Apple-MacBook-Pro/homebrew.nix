@@ -40,6 +40,7 @@
       "raycast"
       "lm-studio"
       "betterdisplay"
+      "cursor"
     ];
 
     masApps = {
