@@ -22,7 +22,7 @@
     description = "Remote Nix Builder User";
     # The Nix daemon handles the build pool, but this user triggers it
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL75BD/YNJhcRkSe3n4X/kCYGXnZ3xiahbRVXkcyFSRO root@nixi"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBwWa9aDIYgQmDqMV0sX9HmorHoeZ6IdwZHBaAd9yj1W root@framenix"
     ];
   };
 

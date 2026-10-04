@@ -130,6 +130,7 @@
     gcc
     bitwarden-desktop
     ytermusic
+    sone
     remmina
     openconnect
     openconnect_openssl
@@ -142,6 +143,7 @@
     inputs.self.packages.${pkgs.system}.freelens-bin
     inputs.claude-desktop.packages.${pkgs.system}.default
     webcamoid
+    easyeffects
   ];
 
   # The swapfile is encrypted by the underlying LUKS container.

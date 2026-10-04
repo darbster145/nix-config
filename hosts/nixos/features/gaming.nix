@@ -19,7 +19,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    goverlay
+    #goverlay
     #heroic
     mangohud
     protonup-ng

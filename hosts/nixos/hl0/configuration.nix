@@ -5,23 +5,6 @@
     ./hardware-configuration.nix
   ];
 
-  # Kernel and modules
-  boot.kernelParams = [ "i915.enable_guc=3" ];
-  boot.initrd.availableKernelModules = [ "virtio_blk" "virtio_net" ];
-
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vpl-gpu-rt
-      intel-compute-runtime
-    ];
-  };
-
-  environment.sessionVariables = {
-    LIBVA_DRIVER_NAME = "iHD";
-  };
-
   hardware.enableRedistributableFirmware = true;
 
   services.qemuGuest.enable = true;
@@ -29,26 +12,31 @@
   # Mounts for your NFS shares
   fileSystems."/mnt/immich/library" = {
     device = "10.0.0.3:/mnt/notonedrive/docker-volumes/immich/library";
-    fsType = "nfs";
+    fsType = "nfs4";
+    options = [ "_netdev" "nofail" "x-systemd.automount" ];
   };
   fileSystems."/mnt/immich/postgres" = {
     device = "10.0.0.3:/mnt/gofast/docker-volumes/immich/postgres";
-    fsType = "nfs";
+    fsType = "nfs4";
+    options = [ "_netdev" "nofail" "x-systemd.automount" ];
   };
 
   fileSystems."/mnt/gofast/docker-volumes" = {
     device = "10.0.0.3:/mnt/gofast/docker-volumes";
-    fsType = "nfs";
+    fsType = "nfs4";
+    options = [ "_netdev" "nofail" "x-systemd.automount" ];
   };
 
   fileSystems."/mnt/notonedrive/docker-volumes" = {
     device = "10.0.0.3:/mnt/notonedrive/docker-volumes";
-    fsType = "nfs";
+    fsType = "nfs4";
+    options = [ "_netdev" "nofail" "x-systemd.automount" ];
   };
 
   fileSystems."/mnt/notonedrive/media" = {
     device = "10.0.0.3:/mnt/notonedrive/media";
-    fsType = "nfs";
+    fsType = "nfs4";
+    options = [ "_netdev" "nofail" "x-systemd.automount" ];
   };
 
   zramSwap.enable = true;
@@ -108,10 +96,8 @@
     htop
     btop
     git
-    clinfo
     iptables
     iproute2
-    intel-gpu-tools
     infisical
   ];
 
@@ -127,10 +113,6 @@
     openFirewall = true;
   };
 
-  services.fail2ban = {
-    enable = true;
-  };
-
   # Auto updates
   system.autoUpgrade = {
     enable = true;
@@ -140,14 +122,14 @@
   # Enable Docker
   virtualisation.docker.enable = true;
 
-  # Firewall (disabled, but open specific ports if re-enabled later)
+  # Firewall (disabled)
   networking.firewall = {
     enable = false;
     allowedTCPPorts = [
       19999
       443
       80
-      7777 
+      7777
     ];
     allowedUDPPorts = [
       7777
