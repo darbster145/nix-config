@@ -7,7 +7,7 @@
 
     # Security
     #bitwarden-desktop # Password manager
-  ] ++ lib.optionals pkgs.stdenv.isLinux [
+  ] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     # Linux-only packages
     #libreoffice        # Office suite
     signal-desktop # Private messaging

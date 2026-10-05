@@ -165,9 +165,11 @@
         {
           "windwp/nvim-ts-autotag",
           opts = {
-            enable_close = true,
-            enable_rename = true,
-            enable_close_on_slash = true,
+            opts = {
+              enable_close = true,
+              enable_rename = true,
+              enable_close_on_slash = true,
+            },
           },
         },
       
@@ -349,9 +351,9 @@
       		},
       	},
       	{ "Bilal2453/luvit-meta", lazy = true },
-      	{
-      		-- Main LSP Configuration
-      		"neovim/nvim-lspconfig",
+			{
+				-- Main LSP Configuration
+				"neovim/nvim-lspconfig",
       		dependencies = {
       			-- Automatically install LSPs and related tools to stdpath for Neovim
       			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
@@ -552,20 +554,17 @@
       			})
       			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
       
-      			require("mason-lspconfig").setup({
-      				handlers = {
-      					function(server_name)
-      						local server = servers[server_name] or {}
-      						-- This handles overriding only values explicitly passed
-      						-- by the server configuration above. Useful when disabling
-      						-- certain features of an LSP (for example, turning off formatting for tsserver)
-      						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-      						require("lspconfig")[server_name].setup(server)
-      					end,
-      				},
-      			})
-      		end,
-      	},
+				-- Configure servers through Neovim's native LSP API. The old
+				-- require("lspconfig").setup() framework is deprecated.
+				for server_name, server in pairs(servers) do
+					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					vim.lsp.config(server_name, server)
+				end
+				require("mason-lspconfig").setup({
+					automatic_enable = vim.tbl_keys(servers),
+				})
+			end,
+		},
       
       	{ -- Autoformat
       		"stevearc/conform.nvim",
@@ -783,50 +782,35 @@
       			--  Check out: https://github.com/echasnovski/mini.nvim
       		end,
       	},
-      	{ -- Highlight, edit, and navigate code
-      		"nvim-treesitter/nvim-treesitter",
+		{ -- Highlight, edit, and navigate code
+			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",
-			opts = {
-            autopairs = { enable = true },
-            autotag = { enable = true },
-				ensure_installed = {
-      				"bash",
-      				"c",
-      				"diff",
-      				"html",
-      				"lua",
-      				"luadoc",
-      				"markdown",
-      				"markdown_inline",
-      				"query",
-      				"vim",
-      				"vimdoc",
-      			},
-      			-- Autoinstall languages that are not installed
-      			auto_install = true,
-      			highlight = {
-      				enable = true,
-      				-- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-      				--  If you are experiencing weird indenting issues, add the language to
-      				--  the list of additional_vim_regex_highlighting and disabled languages for indent.
-      				additional_vim_regex_highlighting = { "ruby" },
-      			},
-      			indent = { enable = true, disable = { "ruby" } },
-      		},
-      		config = function(_, opts)
-      			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-      
-      			---@diagnostic disable-next-line: missing-fields
-      			require("nvim-treesitter.configs").setup(opts)
-      
-      			-- There are additional nvim-treesitter modules that you can use to interact
-      			-- with nvim-treesitter. You should go explore a few and see what interests you:
-      			--
-      			--    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-      			--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-      			--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-      		end,
-      	},
+			config = function()
+				local languages = {
+					"bash",
+					"c",
+					"diff",
+					"html",
+					"lua",
+					"luadoc",
+					"markdown",
+					"markdown_inline",
+					"query",
+					"vim",
+					"vimdoc",
+				}
+				require("nvim-treesitter").setup({
+					install_dir = vim.fn.stdpath("data") .. "/site",
+				})
+				require("nvim-treesitter").install(languages)
+				vim.api.nvim_create_autocmd("FileType", {
+					pattern = languages,
+					callback = function()
+						vim.treesitter.start()
+					end,
+				})
+			end,
+		},
       
       	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
       	-- init.lua. If you want these files, they are in the repository, so you can just download them and

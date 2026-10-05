@@ -15,6 +15,8 @@
     "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
   ];
 
+nix.settings.warn-dirty = false;
+
   virtualisation.libvirtd = {
     enable = true;
     qemu.swtpm.enable = true;
