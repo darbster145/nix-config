@@ -5,6 +5,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "lua";
+    systemd.enable = false;
     extraConfig = ''
       ------------------
       ---- MONITORS ----
@@ -65,9 +66,10 @@
       -- Autostart necessary processes (like notifications daemons, status bars, etc.)
       -- Or execute your favorite apps at launch like this:
       --
-      hl.on("hyprland.start", function () 
+       hl.on("hyprland.start", function ()
+           hl.exec_cmd("uwsm finalize")
            hl.exec_cmd("blueman-applet")
-            hl.exec_cmd("clipse --listen")
+             hl.exec_cmd("clipse --listen")
             hl.exec_cmd("walker --gapplication-service")
             hl.exec_cmd("nm-applet --indicator")
       end)

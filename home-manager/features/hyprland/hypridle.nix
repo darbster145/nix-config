@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
 
   services.hypridle = {
@@ -24,8 +25,8 @@
         # Keyboard Backlight
         {
           timeout = 60;
-          on-timeout = "brightnessctl -d kbd_backlight set 0";
-          on-resume = "brightnessctl -rd kbd_backlight 25";
+          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -d kbd_backlight set 0";
+          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -rd kbd_backlight 25";
         }
       ];
 

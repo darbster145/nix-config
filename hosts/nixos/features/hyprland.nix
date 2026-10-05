@@ -51,6 +51,10 @@
     enable = true;
   };
 
+  systemd.user.services.elephant.serviceConfig.Environment = [
+    "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin:/run/wrappers/bin:/home/brad/.nix-profile/bin:/home/brad/.local/state/nix/profile/bin:/etc/profiles/per-user/brad/bin:/nix/profile/bin:/run/current-system/sw/bin"
+  ];
+
   programs.hyprlock = {
     enable = true;
   };

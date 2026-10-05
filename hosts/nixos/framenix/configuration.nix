@@ -8,7 +8,6 @@
     ../features/hyprland.nix
     ../features/fonts.nix
     ../features/remote-builders.nix
-    ../features/lact.nix
   ];
 
   # Keep nixi's key mappings, using the Framework internal keyboard.
@@ -22,12 +21,12 @@
   };
   programs.virt-manager.enable = true;
   programs.droidcam.enable = true;
-  boot.kernel.sysctl."vm.mmap_rnd_bits" = 31;
 
   services.fwupd.enable = true;
 
   # Fingerprint Scanner
   services.fprintd.enable = true;
+  security.pam.services.login.fprintAuth = false;
   security.polkit.enable = true;
   environment.pathsToLink = [
     "/share/polkit-1"
@@ -78,8 +77,13 @@
     binfmt = true;
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot = {
+      enable = true;
+      consoleMode = "auto";
+    };
+    efi.canTouchEfiVariables = true;
+  };
   boot.kernelPackages = pkgs.linuxPackages_testing;
 
   networking.hostName = "framenix";
