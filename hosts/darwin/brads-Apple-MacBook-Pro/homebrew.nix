@@ -41,6 +41,7 @@
       "lm-studio"
       "betterdisplay"
       "cursor"
+      "grok-bot"
     ];
 
     masApps = {

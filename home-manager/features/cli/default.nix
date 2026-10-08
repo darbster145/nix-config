@@ -4,6 +4,7 @@
 
    ./git.nix
     ./zsh.nix
+    ./starship.nix
     ./tmux.nix
     ./yazi.nix
     ./common.nix

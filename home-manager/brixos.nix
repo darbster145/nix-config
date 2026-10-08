@@ -15,7 +15,7 @@
     ./features/development/kubernetes.nix
     ./features/development/version-control.nix
     ./features/desktop/apps.nix
-    ./features/desktop/oh-my-posh.nix
+    ./features/cli/starship.nix
     ./features/desktop/opencode.nix
     ./features/desktop/zen-browser.nix
     ./features/desktop/ghostty.nix
