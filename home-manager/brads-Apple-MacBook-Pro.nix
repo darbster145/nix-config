@@ -25,7 +25,8 @@
     #istat-menus
     #freelens-bin
     aldente
-    firefox
+    # Keep Mozilla's signed macOS app and native launcher intact for TCC profile access.
+    firefox-bin-unwrapped
     google-chrome
     #zed-editor
     opencode-claude-auth

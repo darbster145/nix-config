@@ -3,4 +3,5 @@
 pkgs: {
   #zen-browser = pkgs.callPackage ./zen-browser-unwrapped/package.nix { };
   freelens-bin = pkgs.callPackage ./freelens-bin/package.nix { };
+  radar-bin = pkgs.callPackage ./radar-bin/package.nix { };
 }

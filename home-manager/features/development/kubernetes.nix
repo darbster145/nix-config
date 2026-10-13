@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     kubectl
+    radar-bin
     k9s
     kubernetes-helm
     helmfile
