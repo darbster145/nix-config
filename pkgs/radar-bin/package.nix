@@ -35,6 +35,8 @@ stdenvNoCC.mkDerivation {
   dontBuild = true;
   dontStrip = true;
 
+  passthru.updateScript = ./update.sh;
+
   installPhase = ''
     runHook preInstall
     install -Dm755 kubectl-radar "$out/bin/kubectl-radar"
