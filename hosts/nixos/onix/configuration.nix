@@ -5,6 +5,7 @@
     [
       ./hardware-configuration.nix
       ./disk-config.nix
+      ../features/common.nix
     ];
 
   boot = {
@@ -27,9 +28,6 @@
 
   networking.hostName = "onix";
   networking.networkmanager.enable = true;
-
-  time.timeZone = "America/Denver";
-  i18n.defaultLocale = "en_US.UTF-8";
 
   users = {
     mutableUsers = false;
@@ -82,8 +80,6 @@
 
   # Disable documentation for minimal install.
   documentation.enable = false;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "24.11"; # Did you read the comment?
 }

@@ -9,7 +9,6 @@
       "deepseek-r1:32b"
       "deepseek-coder-v2:16b"
       "deepseek-ocr:3b"
-      "gtp-oss:20b"
       "mistral:7b"
       "qwen3.6:35b"
       "qwen3.6:27b"

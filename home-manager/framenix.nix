@@ -42,7 +42,6 @@
     proton-vpn-cli
     opencode-claude-auth
     claude-code
-    codex
     vlc
   ];
 

@@ -3,6 +3,7 @@
 {
 
   imports = [
+    ../../common
     ../features/nix-homebrew.nix
     ./homebrew.nix
     ../../nixos/features/fonts.nix
@@ -16,7 +17,7 @@
   system.tools.darwin-uninstaller.enable = false;
 
   environment.systemPackages = with pkgs; [
-    inputs.self.packages.${pkgs.system}.freelens-bin
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.freelens-bin
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.gke-gcloud-auth-plugin
     ])
@@ -38,13 +39,8 @@
     noto-fonts
   ];
 
-  nix.optimise.automatic = true;
-
-  nix.gc = {
-    automatic = true;
-    interval = { Weekday = 0; Hour = 0; Minute = 0; };
-    options = "--delete-older-than 15d";
-  };
+  # GC policy comes from hosts/common; darwin schedules via launchd interval.
+  nix.gc.interval = { Weekday = 0; Hour = 0; Minute = 0; };
 
   # Set friendly computername
   networking.computerName = "brads-Apple-MacBook-Pro";
@@ -55,12 +51,7 @@
   # Auto upgrade nix package and the daemon service.
   nix.package = pkgs.nix;
 
-  # Allow unfree and broken packages
-  nixpkgs.config.allowUnfree = true;
   #nixpkgs.config.allowBroken = true;
-
-  # Enable experimental features for flakes
-  nix.settings.experimental-features = "nix-command flakes";
 
   # zsh shell settings
   programs.zsh.enable = true;

@@ -25,7 +25,6 @@
       "linear"
       "claude-code@latest"
       "claude"
-      "codex"
       "codex-app"
       "tailscale-app"
       "lunar"
@@ -42,6 +41,7 @@
       "betterdisplay"
       "cursor"
       "grok-bot"
+      "zed"
     ];
 
     masApps = {

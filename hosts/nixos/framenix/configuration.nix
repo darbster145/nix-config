@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../features/common.nix
     ../features/gaming.nix
     ../features/kanata.nix
     ../features/hyprland.nix
@@ -47,13 +48,6 @@ nix.settings.warn-dirty = false;
   };
   services.logind.settings.Login.HandlePowerKey = "ignore";
 
-  nix.optimise.automatic = true;
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 15d";
-  };
-
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -72,7 +66,6 @@ nix.settings.warn-dirty = false;
 
   programs.zsh.enable = true;
   security.sudo.wheelNeedsPassword = false;
-  nixpkgs.config.allowUnfree = true;
   programs.kdeconnect.enable = true;
   programs.appimage = {
     enable = true;
@@ -91,10 +84,6 @@ nix.settings.warn-dirty = false;
   networking.hostName = "framenix";
   networking.networkmanager.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  time.timeZone = "America/Denver";
-  i18n.defaultLocale = "en_US.UTF-8";
   console.keyMap = "us";
 
   services.xserver.enable = true;
@@ -146,8 +135,8 @@ nix.settings.warn-dirty = false;
     adoptopenjdk-icedtea-web
     blueman
     banana-cursor
-    inputs.self.packages.${pkgs.system}.freelens-bin
-    inputs.claude-desktop.packages.${pkgs.system}.default
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.freelens-bin
+    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
     webcamoid
     easyeffects
   ];

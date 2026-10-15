@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../features/common.nix
   ];
 
   hardware.enableRedistributableFirmware = true;
@@ -41,13 +42,11 @@
 
   zramSwap.enable = true;
 
+  # Server keeps generations longer but collects more often than the default.
   nix.gc = {
-    automatic = true;
     dates = "daily";
     options = "--delete-older-than 30d";
   };
-
-  nix.optimise.automatic = true;
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
@@ -56,21 +55,6 @@
   # Hostname and networking
   networking.hostName = "hl0";
   networking.networkmanager.enable = true;
-
-  # Time and locale
-  time.timeZone = "America/Denver";
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
 
   # Keyboard layout
   services.xserver.xkb = {
@@ -84,9 +68,6 @@
     description = "darbster";
     extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # System packages
   environment.systemPackages = with pkgs; [
@@ -138,7 +119,4 @@
 
   # State version (don’t change)
   system.stateVersion = "24.05";
-
-  # Enable flakes and the new CLI
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }

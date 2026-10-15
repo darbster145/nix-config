@@ -1,26 +1,5 @@
 {
   "nodes": {
-    "apple-silicon": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1789922544,
-        "narHash": "sha256-ZNiopGC87yE4NwwkQnEEVmUXplKBlgue/HTOn61Z/RE=",
-        "owner": "darbster145",
-        "repo": "nixos-apple-silicon",
-        "rev": "5c8682b34f5e37acf8224c5cbf67830ae7b74d95",
-        "type": "github"
-      },
-      "original": {
-        "owner": "darbster145",
-        "repo": "nixos-apple-silicon",
-        "type": "github"
-      }
-    },
     "brew-src": {
       "flake": false,
       "locked": {
@@ -100,21 +79,6 @@
         "type": "github"
       }
     },
-    "flake-compat": {
-      "locked": {
-        "lastModified": 1761640442,
-        "narHash": "sha256-AtrEP6Jmdvrqiv4x2xa5mrtaIp3OEe8uBYCDZDS+hu8=",
-        "owner": "nix-community",
-        "repo": "flake-compat",
-        "rev": "4a56054d8ffc173222d09dad23adf4ba946c8884",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
@@ -158,11 +122,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792000010,
-        "narHash": "sha256-4jtkwQlReQdXsKJJfB9yT7nIf0TlwgZOk2XtxjUgDS8=",
+        "lastModified": 1792082440,
+        "narHash": "sha256-TppYgfBkqAs4IaO3AV+t4zlH9FZIL/AdJFI+PagXwVw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5a9d300bd619c03857521b50c8877a19dbad7078",
+        "rev": "6d9c00bad9a3c763f842c2b08193e5844bdcedfa",
         "type": "github"
       },
       "original": {
@@ -212,11 +176,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1792074608,
-        "narHash": "sha256-UPvEjZooVki4DxzLTb1IAXUmOaMovDMlqIKcNZKWxH0=",
+        "lastModified": 1792081012,
+        "narHash": "sha256-RZwTOhEFoAZp+HqEUrpn0132Rk0vfX+S0Vu6HT1V9io=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "fe9cad0085e9cabb40fb0e793992eaa5abaa86f3",
+        "rev": "2f08b51b129dbe5ed9f409d3ab688733b9885ca5",
         "type": "github"
       },
       "original": {
@@ -228,11 +192,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1792074269,
-        "narHash": "sha256-QsvY8RHyrKYGneJmMahdgu+ch01dehEZo3cs6rdgst4=",
+        "lastModified": 1792081918,
+        "narHash": "sha256-rmCoVlVmGIelkw5f8AfuiQS0W0KI+hQCIlKmVwtiikY=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "85aaab6f7cb7b1e127a9a049344a8dea108180fa",
+        "rev": "6a04845e166120096c60fdefb01b33cc170886ab",
         "type": "github"
       },
       "original": {
@@ -410,7 +374,6 @@
     },
     "root": {
       "inputs": {
-        "apple-silicon": "apple-silicon",
         "claude-desktop": "claude-desktop",
         "codex-desktop-linux": "codex-desktop-linux",
         "disko": "disko",

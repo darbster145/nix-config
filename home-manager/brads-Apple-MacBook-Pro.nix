@@ -11,7 +11,7 @@
   imports = [
     ./global/default.nix
     ./features/development/kubernetes.nix
-    ./features/development/zed-editor.nix
+    #./features/development/zed-editor.nix
     ./features/development/version-control.nix
     ./features/desktop/default.nix
     ./features/cli/default.nix
@@ -44,13 +44,4 @@
   ];
 
   fonts.fontconfig.enable = true;
-
-  programs.gh = {
-    enable = true;
-  };
-
-  programs.gh-dash = {
-    enable = true;
-  };
-
 }

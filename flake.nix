@@ -12,11 +12,6 @@
       url = "github:NixOS/nixos-hardware/master";
     };
 
-    apple-silicon = {
-      url = "github:darbster145/nixos-apple-silicon";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -84,7 +79,6 @@
     , nixpkgs
     , home-manager
     , nixos-hardware
-    , apple-silicon
     , disko
     , claude-desktop
     , codex-desktop-linux
@@ -96,10 +90,8 @@
       inherit (self) outputs;
       systems = [
         "aarch64-linux"
-        "i686-linux"
         "x86_64-linux"
         "aarch64-darwin"
-        "x86_64-darwin"
       ];
       # This is a function that generates an attribute by calling a function
       # passed to it, with each system as an argument
@@ -112,7 +104,12 @@
     {
       # Custom packages
       # Accessible through 'nix build', 'nix shell', etc
-      packages = forAllSystems (system: import ./pkgs nixpkgs-unstable.legacyPackages.${system});
+      # Only expose packages whose meta.platforms include this system.
+      packages = forAllSystems (system:
+        let pkgs = nixpkgs-unstable.legacyPackages.${system};
+        in nixpkgs-unstable.lib.filterAttrs
+          (_: pkg: nixpkgs-unstable.lib.meta.availableOn pkgs.stdenv.hostPlatform pkg)
+          (import ./pkgs pkgs));
       formatter = forAllSystems (system: nixpkgs-unstable.legacyPackages.${system}.alejandra);
       overlays = import ./overlays { inherit inputs; };
       nixosModules = import ./modules/nixos;
@@ -139,16 +136,6 @@
           ];
         };
 
-        nixi = nixpkgs-unstable.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-          };
-          modules = [
-            ./hosts/nixos/nixi/configuration.nix
-            apple-silicon.nixosModules.apple-silicon-support
-          ];
-        };
-
         hl0 = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs;
@@ -172,15 +159,6 @@
       };
 
       darwinConfigurations = {
-        crapple = nix-darwin.lib.darwinSystem {
-          specialArgs = { inherit inputs; };
-          system = "aarch64-darwin";
-          modules = [
-            ./hosts/darwin/crapple/configuration.nix
-            nix-homebrew.darwinModules.nix-homebrew
-          ];
-        };
-
         brads-Apple-MacBook-Pro = nix-darwin.lib.darwinSystem {
           specialArgs = { inherit inputs; };
           system = "aarch64-darwin";
@@ -198,22 +176,6 @@
           extraSpecialArgs = { inherit inputs outputs; };
           modules = [
             ./home-manager/framenix.nix
-          ];
-        };
-
-        "brad@crapple" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs-unstable.legacyPackages.aarch64-darwin;
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            ./home-manager/crapple.nix
-          ];
-        };
-
-        "brad@nixi" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs-unstable.legacyPackages.aarch64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            ./home-manager/nixi.nix
           ];
         };
 

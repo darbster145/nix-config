@@ -4,12 +4,13 @@
   home.packages = with pkgs; [
     lazygit
     lazydocker
-    gh
-    gh-dash
     lazyssh
     codex
     opencode-desktop
   ];
+
+  programs.gh.enable = true;
+  programs.gh-dash.enable = true;
 
   programs.zsh = {
     shellAliases = {

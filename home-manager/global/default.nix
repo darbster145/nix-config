@@ -10,7 +10,6 @@
 
     config = {
       allowUnfree = true;
-      allowUnsupported = true;
     };
   };
 

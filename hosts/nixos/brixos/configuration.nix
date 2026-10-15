@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ../features/common.nix
     #./gnome.nix
     ./gaming.nix
     ../features/lact.nix
@@ -51,14 +52,6 @@
     useTmpfs = true;
     tmpfsSize = "8G";
   };
-
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 15d";
-  };
-
-  nix.optimise.automatic = true;
 
   services.irqbalance.enable = true;
 
@@ -122,23 +115,6 @@
     opencl.enable = true;
   };
 
-  time.timeZone = "America/Denver";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
   # Configure keymap in X11
   services.xserver = {
     enable = true;
@@ -191,11 +167,6 @@
     ignoreShellProgramCheck = true;
   };
 
-  # Allow unfree packages
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-
   services.teamviewer.enable = true;
 
   programs.zsh.enable = true;
@@ -203,8 +174,8 @@
   environment.systemPackages = with pkgs; [
     neovim
     ghostty
-    inputs.self.packages.${pkgs.system}.freelens-bin
-    #inputs.claude-desktop.packages.${pkgs.system}.default
+    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.freelens-bin
+    #inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
     rustup
     unrar
     sshfs
@@ -216,7 +187,6 @@
     dnsutils
     lm_sensors
     pkgs.gnome-tweaks
-    zoxide
     discord
     pay-respects
     lutris
@@ -282,16 +252,8 @@
     };
   };
 
-  services.xrdp = {
-    enable = true;
-    defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
-    openFirewall = true;
-  };
-
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
