@@ -56,9 +56,6 @@
   # zsh shell settings
   programs.zsh.enable = true;
 
-  # Git commit hash for darwin-version
-  system.configurationRevision = null;
-
   # State version and host platform
   system.stateVersion = 6;
   nixpkgs.hostPlatform = "aarch64-darwin";

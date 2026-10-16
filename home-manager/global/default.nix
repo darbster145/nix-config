@@ -17,5 +17,11 @@
 
   systemd.user.startServices = "sd-switch";
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 15d";
+  };
+
   home.stateVersion = "26.05";
 }
