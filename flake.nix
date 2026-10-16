@@ -160,7 +160,7 @@
 
       darwinConfigurations = {
         brads-Apple-MacBook-Pro = nix-darwin.lib.darwinSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs outputs; };
           system = "aarch64-darwin";
           modules = [
             ./hosts/darwin/brads-Apple-MacBook-Pro/configuration.nix

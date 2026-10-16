@@ -24,6 +24,7 @@
   home.packages = with pkgs; [
     #istat-menus
     #freelens-bin
+    tidal
     aldente
     # Keep Mozilla's signed macOS app and native launcher intact for TCC profile access.
     firefox-bin-unwrapped
