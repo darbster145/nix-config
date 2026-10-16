@@ -1,10 +1,10 @@
-{ pname
-, version
-, src
-, meta
-, appimageTools
-, makeWrapper
-,
+{
+  pname,
+  version,
+  src,
+  meta,
+  appimageTools,
+  makeWrapper,
 }:
 let
   appimageContents = appimageTools.extract { inherit pname version src; };

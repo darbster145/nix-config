@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -75,7 +80,10 @@
     };
   };
 
-  nix.settings.trusted-users = [ "root" "brad" ]; # Replace with your username
+  nix.settings.trusted-users = [
+    "root"
+    "brad"
+  ]; # Replace with your username
 
   nix.settings.sandbox = true;
 
@@ -158,11 +166,16 @@
     discoverPortal = "10.0.0.3";
   };
 
-
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
-    extraGroups = [ "networkmanager" "wheel" "video" "uinput" "input" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "uinput"
+      "input"
+    ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };

@@ -2,7 +2,7 @@
 
   imports = [
 
-   ./git.nix
+    ./git.nix
     ./zsh.nix
     ./starship.nix
     ./tmux.nix

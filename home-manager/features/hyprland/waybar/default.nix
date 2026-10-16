@@ -1,5 +1,5 @@
 {
-  
+
   imports = [
     ./settings.nix
     ./styles.nix
@@ -9,7 +9,7 @@
     enable = true;
     systemd = {
       enable = true;
-       targets = [ "graphical-session.target" ];
+      targets = [ "graphical-session.target" ];
     };
   };
 

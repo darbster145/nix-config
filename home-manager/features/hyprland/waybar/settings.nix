@@ -4,8 +4,21 @@
       mainBar = {
         layer = "top";
         height = 38;
-        modules-left = [ "custom/apple" "hyprland/workspaces" "custom/media" ];
-        modules-right = [ "network" "cpu" "memory" "temperature" "pulseaudio" "backlight" "clock" "battery" ];
+        modules-left = [
+          "custom/apple"
+          "hyprland/workspaces"
+          "custom/media"
+        ];
+        modules-right = [
+          "network"
+          "cpu"
+          "memory"
+          "temperature"
+          "pulseaudio"
+          "backlight"
+          "clock"
+          "battery"
+        ];
         "hyprland/workspaces" = {
           sort-by-number = true;
           format = "{icon}";
@@ -23,16 +36,16 @@
             "10" = " ";
           };
           persistent_workspaces = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
-            "6" = [];
-            "7" = [];
-            "8" = [];
-            "9" = [];
-            "10" = [];
+            "1" = [ ];
+            "2" = [ ];
+            "3" = [ ];
+            "4" = [ ];
+            "5" = [ ];
+            "6" = [ ];
+            "7" = [ ];
+            "8" = [ ];
+            "9" = [ ];
+            "10" = [ ];
           };
         };
         "mpd" = {
@@ -86,7 +99,13 @@
         "temperature" = {
           critical-threshold = 80;
           format = "{icon} {temperatureC}°C";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
           tooltip = false;
         };
         "backlight" = {
@@ -105,7 +124,13 @@
           format-charging = " {capacity}%";
           format-plugged = " {capacity}%";
           format-alt = "{icon} {time}";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
           tooltip = false;
         };
         "network" = {
@@ -131,7 +156,11 @@
             phone = "";
             portable = "";
             car = "";
-            default = [ "" "" "" ];
+            default = [
+              ""
+              ""
+              ""
+            ];
           };
           on-click = "pavucontrol";
         };

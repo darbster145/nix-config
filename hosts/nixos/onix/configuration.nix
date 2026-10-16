@@ -1,12 +1,16 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./disk-config.nix
-      ../features/common.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./disk-config.nix
+    ../features/common.nix
+  ];
 
   boot = {
     loader = {
@@ -18,7 +22,6 @@
     };
     initrd.systemd.enable = true;
   };
-
 
   systemd.targets.multi-user.enable = true;
 
@@ -33,7 +36,10 @@
     mutableUsers = false;
     users.darbster = {
       isNormalUser = true;
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGij6qjLvy5IgwWhruAm6pNRQzgWJEuIhzt9soGQlLiQ brad@brads-Apple-MacBook-Pro"
       ];

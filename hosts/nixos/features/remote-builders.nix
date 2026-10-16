@@ -10,20 +10,25 @@
     {
       hostName = "brixos"; # Change to your server's IP/hostname
       sshUser = "nixremote";
-      
+
       # Path to the private SSH key on the CLIENT machine
-      sshKey = "/root/.ssh/id_build_machine"; 
-      
+      sshKey = "/root/.ssh/id_build_machine";
+
       # The system architecture of the build server
-      systems = [ "x86_64-linux" "aarch64-linux" ];
-      
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+
       # Supported architectures (e.g., if it emulates aarch64)
-      supportedFeatures = [ "big-parallel" "kvm" "nixos-test" ];
-      
+      supportedFeatures = [
+        "big-parallel"
+        "kvm"
+        "nixos-test"
+      ];
+
       # Maximum concurrent jobs the client should send to this server
       maxJobs = 16;
     }
   ];
 }
-
-

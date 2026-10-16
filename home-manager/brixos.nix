@@ -1,11 +1,13 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{ inputs
-, outputs
-, lib
-, config
-, pkgs
-, ...
-}: {
+{
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./global/default.nix
     ./features/base/default.nix
@@ -22,8 +24,6 @@
     ./features/hyprland/default.nix
     ./features/desktop/codex-desktop.nix
   ];
-
-
 
   dconf = {
     enable = true;

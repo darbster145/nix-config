@@ -1,5 +1,5 @@
 {
-  
+
   imports = [
     ./ghostty.nix
     ./opencode.nix

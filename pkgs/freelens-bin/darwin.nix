@@ -1,10 +1,10 @@
-{ stdenvNoCC
-, pname
-, version
-, src
-, meta
-, undmg
-,
+{
+  stdenvNoCC,
+  pname,
+  version,
+  src,
+  meta,
+  undmg,
 }:
 
 stdenvNoCC.mkDerivation {
@@ -30,4 +30,3 @@ stdenvNoCC.mkDerivation {
 
   dontFixup = true;
 }
-

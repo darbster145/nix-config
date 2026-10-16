@@ -1,4 +1,9 @@
-{ lib, pkgs, inputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -16,7 +21,7 @@
     "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
   ];
 
-nix.settings.warn-dirty = false;
+  nix.settings.warn-dirty = false;
 
   virtualisation.libvirtd = {
     enable = true;
@@ -39,9 +44,9 @@ nix.settings.warn-dirty = false;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [ 
-      intel-media-driver     # VA-API (iHD) userspace
-      vpl-gpu-rt             # oneVPL (QSV) runtime
+    extraPackages = with pkgs; [
+      intel-media-driver # VA-API (iHD) userspace
+      vpl-gpu-rt # oneVPL (QSV) runtime
       intel-compute-runtime
     ];
 
@@ -102,7 +107,13 @@ nix.settings.warn-dirty = false;
   users.users.brad = {
     isNormalUser = true;
     description = "Brad";
-    extraGroups = [ "wheel" "networkmanager" "video" "render" "libvirtd" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "video"
+      "render"
+      "libvirtd"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -142,10 +153,12 @@ nix.settings.warn-dirty = false;
   ];
 
   # The swapfile is encrypted by the underlying LUKS container.
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 16 * 1024; # MiB
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024; # MiB
+    }
+  ];
 
   zramSwap.enable = false;
   boot.zswap = {

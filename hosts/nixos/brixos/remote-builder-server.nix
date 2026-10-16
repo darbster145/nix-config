@@ -13,7 +13,10 @@
     cores = 0;
 
     # Allows remote builder user to interact with the Nix daemon
-    trusted-users = [ "root" "nixremote" ];
+    trusted-users = [
+      "root"
+      "nixremote"
+    ];
   };
 
   # Create the user that clients will SSH into

@@ -6,7 +6,8 @@
   appimageTools,
   makeWrapper,
   undmg,
-}: let
+}:
+let
   pname = "freelens-bin";
   version = "1.10.3";
 
@@ -40,17 +41,15 @@
     '';
     homepage = "https://github.com/freelensapp/freelens/";
     license = lib.licenses.mit;
-    sourceProvenance = with lib.sourceTypes; [binaryNativeCode];
-    maintainers = with lib.maintainers; [skwig];
+    sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
+    maintainers = with lib.maintainers; [ skwig ];
     platforms = builtins.attrNames sources;
     mainProgram = "freelens";
   };
 
   package =
-    if stdenv.hostPlatform.isDarwin
-    then
-      import ./darwin.nix
-      {
+    if stdenv.hostPlatform.isDarwin then
+      import ./darwin.nix {
         inherit
           stdenvNoCC
           pname
@@ -72,10 +71,8 @@
           ;
       };
 in
-  package.overrideAttrs (old: {
-    passthru =
-      (old.passthru or {})
-      // {
-        updateScript = ./update.sh;
-      };
-  })
+package.overrideAttrs (old: {
+  passthru = (old.passthru or { }) // {
+    updateScript = ./update.sh;
+  };
+})

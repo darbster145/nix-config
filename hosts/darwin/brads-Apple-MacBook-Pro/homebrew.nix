@@ -1,4 +1,4 @@
-{ config, ...}:
+{ config, ... }:
 
 {
   homebrew = {
@@ -11,7 +11,7 @@
 
     #caskArgs.no_quarantine = true;
 
-    # Declared by nix-homebrew 
+    # Declared by nix-homebrew
     taps = builtins.attrNames config.nix-homebrew.taps;
 
     brews = [

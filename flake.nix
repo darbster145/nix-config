@@ -65,27 +65,28 @@
       url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-    
+
     radar = {
       url = "github:skyhook-io/homebrew-tap";
       flake = false;
     };
-    
+
   };
 
   outputs =
-    { self
-    , nixpkgs-unstable
-    , nixpkgs
-    , home-manager
-    , nixos-hardware
-    , disko
-    , claude-desktop
-    , codex-desktop-linux
-    , nix-darwin
-    , nix-homebrew
-    , ...
-    } @ inputs:
+    {
+      self,
+      nixpkgs-unstable,
+      nixpkgs,
+      home-manager,
+      nixos-hardware,
+      disko,
+      claude-desktop,
+      codex-desktop-linux,
+      nix-darwin,
+      nix-homebrew,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       systems = [
@@ -105,12 +106,16 @@
       # Custom packages
       # Accessible through 'nix build', 'nix shell', etc
       # Only expose packages whose meta.platforms include this system.
-      packages = forAllSystems (system:
-        let pkgs = nixpkgs-unstable.legacyPackages.${system};
-        in nixpkgs-unstable.lib.filterAttrs
-          (_: pkg: nixpkgs-unstable.lib.meta.availableOn pkgs.stdenv.hostPlatform pkg)
-          (import ./pkgs pkgs));
-      formatter = forAllSystems (system: nixpkgs-unstable.legacyPackages.${system}.alejandra);
+      packages = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs-unstable.legacyPackages.${system};
+        in
+        nixpkgs-unstable.lib.filterAttrs (
+          _: pkg: nixpkgs-unstable.lib.meta.availableOn pkgs.stdenv.hostPlatform pkg
+        ) (import ./pkgs pkgs)
+      );
+      formatter = forAllSystems (system: nixpkgs-unstable.legacyPackages.${system}.nixfmt-tree);
       overlays = import ./overlays { inherit inputs; };
       nixosModules = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;

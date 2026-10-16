@@ -1,245 +1,245 @@
 {
   programs.waybar = {
-   style = ''
-  @keyframes blink-warning {
-      70% {
-          color: @light;
+    style = ''
+      @keyframes blink-warning {
+          70% {
+              color: @light;
+          }
+          to {
+              color: @light;
+              background-color: @warning;
+          }
       }
-      to {
-          color: @light;
-          background-color: @warning;
+
+      @keyframes blink-critical {
+          70% {
+              color: @light;
+          }
+          to {
+              color: @light;
+              background-color: @critical;
+          }
       }
-  }
 
-  @keyframes blink-critical {
-      70% {
-          color: @light;
+      @define-color bg #353C4A;
+      @define-color light #cdd6f4;
+      @define-color dark #2e3440;
+      @define-color warning #ebcb8b;
+      @define-color critical #f38ba8;
+      @define-color mode #1e1e2e;
+      @define-color workspaces #1e1e2e;
+      @define-color workspacesfocused #1e1e2e;
+      @define-color tray @workspacesfocused;
+      @define-color sound #1e1e2e;
+      @define-color network #1e1e2e;
+      @define-color memory #1e1e2e;
+      @define-color cpu #1e1e2e;
+      @define-color temp #1e1e2e;
+      @define-color layout #1e1e2e;
+      @define-color battery #1e1e2e;
+      @define-color date #1e1e2e;
+      @define-color time #3A4253;
+      @define-color backlight #1e1e2e;
+      @define-color apple #1e1e2e;
+
+      * {
+          border: none;
+          border-radius: 0;
+          min-height: 0;
+          margin: 0;
+          padding: 0;
       }
-      to {
+
+      #waybar {
+          background: rgba(0,0,0,1);
           color: @light;
-          background-color: @critical;
+          font-family: "Noto Sans", "Font Awesome 6 Free";
+          font-size: 12px;
+          font-weight: bold;
       }
-  }
 
-  @define-color bg #353C4A;
-  @define-color light #cdd6f4;
-  @define-color dark #2e3440;
-  @define-color warning #ebcb8b;
-  @define-color critical #f38ba8;
-  @define-color mode #1e1e2e;
-  @define-color workspaces #1e1e2e;
-  @define-color workspacesfocused #1e1e2e;
-  @define-color tray @workspacesfocused;
-  @define-color sound #1e1e2e;
-  @define-color network #1e1e2e;
-  @define-color memory #1e1e2e;
-  @define-color cpu #1e1e2e;
-  @define-color temp #1e1e2e;
-  @define-color layout #1e1e2e;
-  @define-color battery #1e1e2e;
-  @define-color date #1e1e2e;
-  @define-color time #3A4253;
-  @define-color backlight #1e1e2e;
-  @define-color apple #1e1e2e;
+      #battery,
+      #cpu,
+      #custom-layout,
+      #memory,
+      #mode,
+      #network,
+      #pulseaudio,
+      #temperature,
+      #custom-alsa,
+      #tray,
+      #backlight {
+          padding-left: 10px;
+          padding-right: 10px;
+          margin-left: 5px;
+          margin-top: 4px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin-bottom: 3px;
+      }
 
-  * {
-      border: none;
-      border-radius: 0;
-      min-height: 0;
-      margin: 0;
-      padding: 0;
-  }
+      #clock {
+          padding-left: 10px;
+          padding-right: 10px;
+          margin-right: 5px;
+          margin-top: 4px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin-bottom: 3px;
+      }
 
-  #waybar {
-      background: rgba(0,0,0,1);
-      color: @light;
-      font-family: "Noto Sans", "Font Awesome 6 Free";
-      font-size: 12px;
-      font-weight: bold;
-  }
+      #custom-apple {
+          padding-left: 8px;
+          padding-right: 8px;
+          margin-right: 5px;
+          margin-top: 4px;
+          padding-top: 2px;
+          padding-bottom: 2px;
+          margin-bottom: 3px;
+      }
 
-  #battery,
-  #cpu,
-  #custom-layout,
-  #memory,
-  #mode,
-  #network,
-  #pulseaudio,
-  #temperature,
-  #custom-alsa,
-  #tray,
-  #backlight {
-      padding-left: 10px;
-      padding-right: 10px;
-      margin-left: 5px;
-      margin-top: 4px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      margin-bottom: 3px;
-  }
+      #mode,
+      #memory,
+      #temperature,
+      #battery {
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+      }
 
-  #clock {
-      padding-left: 10px;
-      padding-right: 10px;
-      margin-right: 5px;
-      margin-top: 4px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      margin-bottom: 3px;
-  }
+      #memory.critical,
+      #cpu.critical,
+      #temperature.critical,
+      #battery.critical {
+          color: @critical;
+      }
 
-  #custom-apple {
-      padding-left: 8px;
-      padding-right: 8px;
-      margin-right: 5px;
-      margin-top: 4px;
-      padding-top: 2px;
-      padding-bottom: 2px;
-      margin-bottom: 3px;
-  }
+      #mode,
+      #memory.critical,
+      #temperature.critical,
+      #battery.critical.discharging {
+          animation-name: blink-critical;
+          animation-duration: 2s;
+      }
 
-  #mode,
-  #memory,
-  #temperature,
-  #battery {
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-  }
+      #network.disconnected,
+      #memory.warning,
+      #cpu.warning,
+      #temperature.warning,
+      #battery.warning {
+          color: @warning;
+      }
 
-  #memory.critical,
-  #cpu.critical,
-  #temperature.critical,
-  #battery.critical {
-      color: @critical;
-  }
+      #battery.warning.discharging {
+          animation-name: blink-warning;
+          animation-duration: 3s;
+      }
 
-  #mode,
-  #memory.critical,
-  #temperature.critical,
-  #battery.critical.discharging {
-      animation-name: blink-critical;
-      animation-duration: 2s;
-  }
+      #mode {
+          color: @light;
+          background: @mode;
+      }
 
-  #network.disconnected,
-  #memory.warning,
-  #cpu.warning,
-  #temperature.warning,
-  #battery.warning {
-      color: @warning;
-  }
+      #workspaces button {
+          font-weight: bold;
+          padding-left: 5px;
+          padding-right: 5px;
+          color: @light;
+          background: @workspaces;
+          border-radius: 8px;
+          margin-top: 4px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin-bottom: 3px;
+          margin-right: 1px;
+      }
 
-  #battery.warning.discharging {
-      animation-name: blink-warning;
-      animation-duration: 3s;
-  }
+      #workspaces button.active {
+          color: #f9e2af;
+      }
 
-  #mode {
-      color: @light;
-      background: @mode;
-  }
+      #workspaces button.urgent {
+          color: #f38ba8;
+      }
 
-  #workspaces button {
-      font-weight: bold;
-      padding-left: 5px;
-      padding-right: 5px;
-      color: @light;
-      background: @workspaces;
-      border-radius: 8px;
-      margin-top: 4px;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      margin-bottom: 3px;
-      margin-right: 1px;
-  }
+      #window {
+          margin-right: 40px;
+          margin-left: 40px;
+      }
 
-  #workspaces button.active {
-      color: #f9e2af;
-  }
+      #custom-alsa {
+          background: @sound;
+          border-radius: 8px;
+      }
 
-  #workspaces button.urgent {
-      color: #f38ba8;
-  }
+      #network {
+          background: @network;
+          border-radius: 8px;
+      }
 
-  #window {
-      margin-right: 40px;
-      margin-left: 40px;
-  }
+      #memory {
+          background: @memory;
+          border-radius: 8px;
+      }
 
-  #custom-alsa {
-      background: @sound;
-      border-radius: 8px;
-  }
+      #cpu {
+          background: @cpu;
+          border-radius: 8px;
+      }
 
-  #network {
-      background: @network;
-      border-radius: 8px;
-  }
+      #temperature {
+          background: @temp;
+          border-radius: 8px;
+      }
 
-  #memory {
-      background: @memory;
-      border-radius: 8px;
-  }
+      #custom-layout {
+          background: @layout;
+          border-radius: 8px;
+      }
 
-  #cpu {
-      background: @cpu;
-      border-radius: 8px;
-  }
+      #battery {
+          background: @battery;
+          border-radius: 8px;
+          border-top-right-radius: 16px;
+          margin-right: 5px;
+      }
 
-  #temperature {
-      background: @temp;
-      border-radius: 8px;
-  }
+      #backlight {
+          background: @backlight;
+          border-radius: 8px;
+      }
 
-  #custom-layout {
-      background: @layout;
-      border-radius: 8px;
-  }
+      #clock {
+          background: @date;
+          border-radius: 8px;
+      }
 
-  #battery {
-      background: @battery;
-      border-radius: 8px;
-      border-top-right-radius: 16px;
-      margin-right: 5px;
-  }
+      #pulseaudio {
+          background: @sound;
+          border-radius: 8px;
+      }
 
-  #backlight {
-      background: @backlight;
-      border-radius: 8px;
-  }
+      #tray {
+          background: @tray;
+          border-radius: 8px;
+      }
 
-  #clock {
-      background: @date;
-      border-radius: 8px;
-  }
+      #custom-apple {
+          font-size: 17px;
+          background: @apple;
+          border-radius: 8px;
+          border-top-left-radius: 16px;
+          margin-left: 5px;
+          padding-left: 14px;
+          padding-right: 14px;
+      }
 
-  #pulseaudio {
-      background: @sound;
-      border-radius: 8px;
-  }
-
-  #tray {
-      background: @tray;
-      border-radius: 8px;
-  }
-
-  #custom-apple {
-      font-size: 17px;
-      background: @apple;
-      border-radius: 8px;
-      border-top-left-radius: 16px;
-      margin-left: 5px;
-      padding-left: 14px;
-      padding-right: 14px;
-  }
-
-  #custom-notch {
-      margin-left: 100px;
-      margin-right: 100px;
-      padding-left: 14px;
-      padding-right: 14px;
-  }
-'';
+      #custom-notch {
+          margin-left: 100px;
+          margin-right: 100px;
+          padding-left: 14px;
+          padding-right: 14px;
+      }
+    '';
   };
 }

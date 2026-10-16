@@ -40,7 +40,11 @@
   ];
 
   # GC policy comes from hosts/common; darwin schedules via launchd interval.
-  nix.gc.interval = { Weekday = 0; Hour = 0; Minute = 0; };
+  nix.gc.interval = {
+    Weekday = 0;
+    Hour = 0;
+    Minute = 0;
+  };
 
   # Set friendly computername
   networking.computerName = "brads-Apple-MacBook-Pro";

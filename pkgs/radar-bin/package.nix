@@ -1,4 +1,8 @@
-{ lib, stdenvNoCC, fetchurl }:
+{
+  lib,
+  stdenvNoCC,
+  fetchurl,
+}:
 let
   version = "1.16.0";
   sources = {
@@ -19,7 +23,9 @@ let
       hash = "sha256-peJsfBuSkb+u3JBKdsPYw19QD77tXgVmnvBJd3E8B+w=";
     };
   };
-  source = sources.${stdenvNoCC.hostPlatform.system} or (throw "Unsupported Radar platform: ${stdenvNoCC.hostPlatform.system}");
+  source =
+    sources.${stdenvNoCC.hostPlatform.system}
+      or (throw "Unsupported Radar platform: ${stdenvNoCC.hostPlatform.system}");
 in
 stdenvNoCC.mkDerivation {
   pname = "radar-bin";

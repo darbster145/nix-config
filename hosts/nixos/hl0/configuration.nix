@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -14,30 +19,50 @@
   fileSystems."/mnt/immich/library" = {
     device = "10.0.0.3:/mnt/notonedrive/docker-volumes/immich/library";
     fsType = "nfs4";
-    options = [ "_netdev" "nofail" "x-systemd.automount" ];
+    options = [
+      "_netdev"
+      "nofail"
+      "x-systemd.automount"
+    ];
   };
   fileSystems."/mnt/immich/postgres" = {
     device = "10.0.0.3:/mnt/gofast/docker-volumes/immich/postgres";
     fsType = "nfs4";
-    options = [ "_netdev" "nofail" "x-systemd.automount" ];
+    options = [
+      "_netdev"
+      "nofail"
+      "x-systemd.automount"
+    ];
   };
 
   fileSystems."/mnt/gofast/docker-volumes" = {
     device = "10.0.0.3:/mnt/gofast/docker-volumes";
     fsType = "nfs4";
-    options = [ "_netdev" "nofail" "x-systemd.automount" ];
+    options = [
+      "_netdev"
+      "nofail"
+      "x-systemd.automount"
+    ];
   };
 
   fileSystems."/mnt/notonedrive/docker-volumes" = {
     device = "10.0.0.3:/mnt/notonedrive/docker-volumes";
     fsType = "nfs4";
-    options = [ "_netdev" "nofail" "x-systemd.automount" ];
+    options = [
+      "_netdev"
+      "nofail"
+      "x-systemd.automount"
+    ];
   };
 
   fileSystems."/mnt/notonedrive/media" = {
     device = "10.0.0.3:/mnt/notonedrive/media";
     fsType = "nfs4";
-    options = [ "_netdev" "nofail" "x-systemd.automount" ];
+    options = [
+      "_netdev"
+      "nofail"
+      "x-systemd.automount"
+    ];
   };
 
   zramSwap.enable = true;
@@ -66,7 +91,12 @@
   users.users.darbster = {
     isNormalUser = true;
     description = "darbster";
-    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+      "libvirtd"
+    ];
   };
 
   # System packages

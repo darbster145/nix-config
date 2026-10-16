@@ -3,7 +3,10 @@
 {
   systemd.services.iscsi-login-games = {
     description = "Login to iSCSI target iqn.2005-10.org.freenas.ctl:games";
-    after = [ "network.target" "iscsid.service" ];
+    after = [
+      "network.target"
+      "iscsid.service"
+    ];
     wants = [ "iscsid.service" ];
     serviceConfig = {
       ExecStartPre = "${pkgs.openiscsi}/bin/iscsiadm -m discovery -t sendtargets -p 10.0.0.3";

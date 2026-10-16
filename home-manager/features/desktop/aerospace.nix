@@ -26,7 +26,7 @@
       workspace-to-monitor-force-assignment = {
         "10" = 2;
         "9" = 2;
-      #  "3" = 2;
+        #  "3" = 2;
       };
 
       gaps = {
@@ -84,15 +84,39 @@
       };
 
       mode.service.binding = {
-        esc = [ "reload-config" "mode main" ];
-        r = [ "flatten-workspace-tree" "mode main" ];
-        f = [ "layout floating tiling" "mode main" ];
-        backspace = [ "close-all-windows-but-current" "mode main" ];
+        esc = [
+          "reload-config"
+          "mode main"
+        ];
+        r = [
+          "flatten-workspace-tree"
+          "mode main"
+        ];
+        f = [
+          "layout floating tiling"
+          "mode main"
+        ];
+        backspace = [
+          "close-all-windows-but-current"
+          "mode main"
+        ];
 
-        cmd-shift-h = [ "join-with left" "mode main" ];
-        cmd-shift-j = [ "join-with down" "mode main" ];
-        cmd-shift-k = [ "join-with up" "mode main" ];
-        cmd-shift-l = [ "join-with right" "mode main" ];
+        cmd-shift-h = [
+          "join-with left"
+          "mode main"
+        ];
+        cmd-shift-j = [
+          "join-with down"
+          "mode main"
+        ];
+        cmd-shift-k = [
+          "join-with up"
+          "mode main"
+        ];
+        cmd-shift-l = [
+          "join-with right"
+          "mode main"
+        ];
       };
     };
   };
