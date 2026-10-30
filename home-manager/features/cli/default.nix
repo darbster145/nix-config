@@ -9,6 +9,7 @@
     ./yazi.nix
     ./common.nix
     ./zoxide.nix
+    ./direnv.nix
     ./neovim.nix
   ];
 

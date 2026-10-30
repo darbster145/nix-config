@@ -33,7 +33,7 @@
       "1password-cli@beta"
       "bartender"
       "istat-menus"
-      "keyboardcleantool"
+      #"keyboardcleantool"
       "camo-studio"
       "via"
       "raycast"
