@@ -1,6 +1,10 @@
 { outputs, ... }:
 
 {
+  imports = [
+    ./sops.nix
+  ];
+
   nixpkgs = {
     overlays = [
       outputs.overlays.stable-packages

@@ -1,0 +1,11 @@
+keys:
+  - &mac age1c6x229l6j9whuf7tpqa4qdlzm9tw7qrfc9x8jd3n9qql5wrpe9dqwnlsfx
+  - &brixos age1u47vj7f3k39f2jrcnzhj906myatlr0vtdch09dzlv4676ra6t38s8e8vn0
+  - &framenix age1zcawy39lujnrnkgme6xxs3qhvtfzcm88hp93yhvts6z3tklr0p9qrh0yde
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *mac
+          - *brixos
+          - *framenix
