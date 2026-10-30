@@ -32,6 +32,7 @@
     google-chrome
     #zed-editor
     opencode-claude-auth
+    slack-cli
     #terraform
     tfenv
     powershell
@@ -44,6 +45,12 @@
     nerd-fonts.symbols-only
     noto-fonts
   ];
+
+  programs.opencode.settings.mcp.servers.radar = {
+    type = "remote";
+    url = "http://127.0.0.1:52551/mcp";
+    oauth = false;
+  };
 
   fonts.fontconfig.enable = true;
 }
