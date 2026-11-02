@@ -256,12 +256,12 @@
   services.avahi = {
     enable = true;
     nssmdns4 = true;
-    publish = {
-      enable = true;
-      userServices = true;
-      workstation = true;
-      addresses = true;
-      hinfo = true;
+    settings.publish = {
+      disable-publishing = false;
+      disable-user-service-publishing = false;
+      publish-workstation = true;
+      publish-addresses = true;
+      publish-hinfo = true;
     };
   };
 
