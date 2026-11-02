@@ -50,8 +50,8 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    polaris-streamer = {
-      url = "github:darbster145/polaris-streamer-flake";
+    polaris = {
+      url = "github:papi-ux/polaris";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -140,7 +140,7 @@
         brixos = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            inputs.polaris-streamer.nixosModules.default
+            inputs.polaris.nixosModules.polaris
             ./hosts/nixos/brixos/configuration.nix
             ./hosts/nixos/brixos/polaris-stream.nix
           ];

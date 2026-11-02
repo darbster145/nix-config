@@ -336,23 +336,23 @@
         "type": "github"
       }
     },
-    "polaris-streamer": {
+    "polaris": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1790439854,
-        "narHash": "sha256-H9V9NThk23J55j/kubETXBSUSLUpuPKJQN+yp0fre1g=",
-        "owner": "darbster145",
-        "repo": "polaris-streamer-flake",
-        "rev": "fec637033c86129beb92ded2f73fda5e08d23417",
+        "lastModified": 1793402299,
+        "narHash": "sha256-uW9AJXMvQ2ZzJCgN0PZt+dFm+OoEr31B7hVGunPKtY8=",
+        "owner": "papi-ux",
+        "repo": "polaris",
+        "rev": "de8d152de13a7351f8e903a3a3d7dd11ac374b9e",
         "type": "github"
       },
       "original": {
-        "owner": "darbster145",
-        "repo": "polaris-streamer-flake",
+        "owner": "papi-ux",
+        "repo": "polaris",
         "type": "github"
       }
     },
@@ -386,7 +386,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "polaris-streamer": "polaris-streamer",
+        "polaris": "polaris",
         "radar": "radar",
         "sops-nix": "sops-nix",
         "zen-browser": "zen-browser"

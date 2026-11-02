@@ -23,7 +23,14 @@
     ./features/desktop/ghostty.nix
     ./features/hyprland/default.nix
     ./features/desktop/codex-desktop.nix
+    inputs.polaris.homeModules.polaris
   ];
+
+  services.polaris = {
+    enable = true;
+    streamMode = "gamescope_stream";
+  }
+  // import ../hosts/nixos/brixos/polaris-packages.nix { inherit inputs pkgs; };
 
   dconf = {
     enable = true;
