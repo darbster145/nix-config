@@ -202,7 +202,7 @@
     pkgs.gnome-tweaks
     discord
     pay-respects
-    lutris
+    # lutris
     adwaita-icon-theme
     bluetui
     trash-cli
