@@ -44,6 +44,7 @@
     nerd-fonts.fira-mono
     nerd-fonts.symbols-only
     noto-fonts
+    nixos-rebuild
   ];
 
   programs.opencode.settings.mcp.servers.radar = {
