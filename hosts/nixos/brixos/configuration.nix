@@ -9,14 +9,14 @@
   imports = [
     ./hardware-configuration.nix
     ../features/common.nix
-    #./gnome.nix
+    ./gnome.nix
     ./gaming.nix
     ../features/lact.nix
     ./iscsi.nix
     ../features/fonts.nix
     ../features/hyprland.nix
     ./ollama.nix
-    ./plasma.nix
+    #./plasma.nix
     ./remote-builder-server.nix
   ];
 

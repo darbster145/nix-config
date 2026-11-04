@@ -8,6 +8,23 @@
   ...
 }:
 {
+  nixpkgs.overlays = [
+    (final: prev: {
+      writeShellApplication = args:
+        prev.writeShellApplication (
+          if args.name == "polaris-gamescope-session" then
+            args
+            // {
+              # Polaris currently triggers these ShellCheck false positives
+              # for a lock flag intentionally exported from subshells.
+              excludeShellChecks = (args.excludeShellChecks or [ ]) ++ [ "SC2030" "SC2031" ];
+            }
+          else
+            args
+        );
+    })
+  ];
+
   imports = [
     ./global/default.nix
     ./features/base/default.nix

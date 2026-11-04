@@ -22,6 +22,12 @@ in
       (old: {
         # Upstream only adds vulkan-headers with CUDA, but cmake always needs them.
         buildInputs = old.buildInputs ++ [ pkgs.vulkan-headers ];
+        # The Home Manager module builds a wrapped launcher with its runtime
+        # dependencies. Keep that one, rather than the unwrapped copy shipped
+        # in the Polaris package (which collides in home.packages).
+        postInstall = (old.postInstall or "") + ''
+          rm -f $out/bin/polaris-gamescope-session
+        '';
       });
   packageGamescope = polaris.gamescope-polaris;
   packagePortal = polaris.xdg-desktop-portal-gamescope;
