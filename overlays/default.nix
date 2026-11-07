@@ -10,6 +10,18 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+
+    # nixpkgs node_modules hash for opencode 2.2.5 is stale on darwin; remove once fixed upstream.
+    # opencode-desktop inherits node_modules from opencode, so this fixes both.
+    opencode =
+      if prev.stdenv.hostPlatform.isDarwin && prev.opencode.version == "2.2.5" then
+        prev.opencode.overrideAttrs (old: {
+          node_modules = old.node_modules.overrideAttrs {
+            outputHash = "sha256-dIveiaiPFGSItwLyeMuPDxTE9gpvvnlTCB/+nG24qCc=";
+          };
+        })
+      else
+        prev.opencode;
   };
 
   stable-packages = final: _prev: {
