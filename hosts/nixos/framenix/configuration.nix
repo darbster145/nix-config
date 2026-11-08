@@ -140,7 +140,7 @@
     remmina
     openconnect
     openconnect_openssl
-    ungoogled-chromium
+    #ungoogled-chromium
     firefox-bin
     nix-prefetch
     adoptopenjdk-icedtea-web

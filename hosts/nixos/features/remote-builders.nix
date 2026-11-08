@@ -1,4 +1,14 @@
 {
+  # The Nix daemon connects as root, so trust the builder system-wide.
+  programs.ssh.knownHosts.brixos = {
+    hostNames = [
+      "brixos"
+      "brixos.polecat-alpha.ts.net"
+      "100.78.71.10"
+    ];
+    publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGGHkCM4SpgdAi2p2930S+zOPA5lbY4z+v0mUbkglZgE";
+  };
+
   # 1. Enable distributed builds on the client
   nix.distributedBuilds = true;
 
