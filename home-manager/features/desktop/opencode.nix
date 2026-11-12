@@ -25,6 +25,16 @@
             Authorization = "Bearer {file:${config.sops.secrets.github_pat.path}}";
           };
         };
+
+        datadog = {
+          type = "remote";
+          url = "https://mcp.us5.datadoghq.com/v1/mcp";
+        };
+
+        rippling = {
+          type = "remote";
+          url = "https://mcp.rippling.com/mcp";
+        };
       };
     };
   };

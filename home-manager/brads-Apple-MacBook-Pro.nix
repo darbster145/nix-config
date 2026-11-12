@@ -14,6 +14,7 @@
     ./features/development/kubernetes.nix
     #./features/development/zed-editor.nix
     ./features/development/version-control.nix
+    ./features/development/colima.nix
     ./features/desktop/default.nix
     ./features/cli/default.nix
   ];
@@ -40,6 +41,7 @@
     #  google-cloud-sdk.components.gke-gcloud-auth-plugin
     #])
     graphite-cli
+    gam
     nodejs-slim_26
     nerd-fonts.fira-mono
     nerd-fonts.symbols-only
