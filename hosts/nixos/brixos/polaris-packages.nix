@@ -16,7 +16,7 @@ in
         url = "https://github.com/papi-ux/polaris";
         rev = inputs.polaris.rev;
         fetchSubmodules = true;
-        hash = "sha256-qGIN43Ubwpj60+b8IgcAnMaDa2ul6z+fC2scRfTZMtI=";
+        hash = "sha256-bvgyryD8kES1LA8JfF6kIn6sc0ouIWLExBGd2gOphNY=";
       };
     }).overrideAttrs
       (old: {

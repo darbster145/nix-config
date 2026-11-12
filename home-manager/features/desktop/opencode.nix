@@ -3,6 +3,8 @@
 {
   sops.secrets.github_pat = { };
 
+  home.packages = [ pkgs.opencode-claude-auth ];
+
   programs.opencode = {
     enable = true;
 
@@ -12,11 +14,6 @@
       plugins = [ "opencode-claude-auth@latest" ];
 
       mcp.servers = {
-        linear = {
-          type = "remote";
-          url = "https://mcp.linear.app/mcp";
-        };
-
         github = {
           type = "remote";
           url = "https://api.githubcopilot.com/mcp/";
@@ -26,14 +23,10 @@
           };
         };
 
-        datadog = {
+        radar = {
           type = "remote";
-          url = "https://mcp.us5.datadoghq.com/v1/mcp";
-        };
-
-        rippling = {
-          type = "remote";
-          url = "https://mcp.rippling.com/mcp";
+          url = "http://127.0.0.1:52551/mcp";
+          oauth = false;
         };
       };
     };

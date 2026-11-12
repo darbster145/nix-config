@@ -51,6 +51,9 @@
     enable = true;
   };
 
+  # Only run walker's backend in Hyprland, not in KDE sessions.
+  systemd.user.services.elephant.unitConfig.ConditionEnvironment = "XDG_CURRENT_DESKTOP=Hyprland";
+
   systemd.user.services.elephant.serviceConfig.Environment = [
     "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin:/run/wrappers/bin:/home/brad/.nix-profile/bin:/home/brad/.local/state/nix/profile/bin:/etc/profiles/per-user/brad/bin:/nix/profile/bin:/run/current-system/sw/bin"
   ];

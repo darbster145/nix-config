@@ -14,5 +14,9 @@
       # Linux-only packages
       #libreoffice        # Office suite
       signal-desktop # Private messaging
+      proton-vpn
+      jellyfin-media-player
+      mpv
+      adoptopenjdk-icedtea-web
     ];
 }

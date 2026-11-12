@@ -1,9 +1,25 @@
-{ outputs, ... }:
+{
+  config,
+  lib,
+  outputs,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
     ./sops.nix
   ];
+
+  home = {
+    username = lib.mkDefault "brad";
+    homeDirectory = lib.mkDefault (
+      if pkgs.stdenv.hostPlatform.isDarwin then
+        "/Users/${config.home.username}"
+      else
+        "/home/${config.home.username}"
+    );
+  };
 
   nixpkgs = {
     overlays = [

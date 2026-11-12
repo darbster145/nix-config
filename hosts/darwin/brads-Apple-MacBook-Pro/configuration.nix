@@ -17,7 +17,6 @@
   system.tools.darwin-uninstaller.enable = false;
 
   environment.systemPackages = with pkgs; [
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.freelens-bin
     (google-cloud-sdk.withExtraComponents [
       google-cloud-sdk.components.gke-gcloud-auth-plugin
     ])

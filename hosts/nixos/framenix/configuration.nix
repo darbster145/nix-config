@@ -12,6 +12,7 @@
     ../features/gaming.nix
     ../features/kanata.nix
     ../features/hyprland.nix
+    ../features/plasma.nix
     ../features/fonts.nix
     ../features/remote-builders.nix
   ];
@@ -93,8 +94,6 @@
 
   services.xserver.enable = true;
   services.xserver.xkb.layout = "us";
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -124,32 +123,11 @@
     vimAlias = true;
   };
 
+  # User applications live in home-manager/framenix.nix.
   environment.systemPackages = with pkgs; [
     git
-    curl
-    btop
-    fastfetch
-    trashy
-    android-tools
-    widevine-cdm
-    appimage-run
     gcc
-    bitwarden-desktop
-    ytermusic
-    sone
-    remmina
-    openconnect
-    openconnect_openssl
-    #ungoogled-chromium
-    firefox-bin
-    nix-prefetch
-    adoptopenjdk-icedtea-web
-    blueman
-    banana-cursor
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.freelens-bin
-    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
-    webcamoid
-    easyeffects
+    dnsutils
   ];
 
   # The swapfile is encrypted by the underlying LUKS container.

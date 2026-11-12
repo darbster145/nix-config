@@ -1,31 +1,37 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    # File operations & search
-    ripgrep # Better grep
-    fd # Better find
-    bat # Better cat with syntax highlighting
-    unzip # Archive utility
+  home.packages =
+    with pkgs;
+    [
+      # File operations & search
+      ripgrep # Better grep
+      fd # Better find
+      bat # Better cat with syntax highlighting
+      unzip # Archive utility
 
-    # System monitoring
-    htop # Interactive process viewer
-    btop # Better top with graphs
-    fastfetch # Fast system info display
+      # System monitoring
+      htop # Interactive process viewer
+      btop # Better top with graphs
+      fastfetch # Fast system info display
 
-    # Navigation & utilities
-    fzf # Fuzzy finder
-    tldr # Simplified man pages
+      # Navigation & utilities
+      fzf # Fuzzy finder
+      tldr # Simplified man pages
 
-    # Network utilities
-    wget # Download files
-    curl # Transfer data with URLs
+      # Network utilities
+      wget # Download files
+      curl # Transfer data with URLs
 
-    # Nix utilities
-    nix-tree # Explore nix store dependencies
+      # Nix utilities
+      nix-tree # Explore nix store dependencies
 
-    # Utilities
-    bc # Command-line calculator
-    jq # JSON processor
-  ];
+      # Utilities
+      bc # Command-line calculator
+      jq # JSON processor
+    ]
+    # macOS ships its own `trash` command.
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+      trash-cli # Provides `trash` for the `tm` alias
+    ];
 }

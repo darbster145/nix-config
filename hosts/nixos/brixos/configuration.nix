@@ -16,7 +16,7 @@
     ../features/fonts.nix
     ../features/hyprland.nix
     ./ollama.nix
-    #./plasma.nix
+    #../features/plasma.nix
     ./remote-builder-server.nix
   ];
 
@@ -184,52 +184,23 @@
 
   programs.zsh.enable = true;
 
+  # User applications live in home-manager/brixos.nix.
   environment.systemPackages = with pkgs; [
     neovim
-    ghostty
-    inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.freelens-bin
-    #inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
-    rustup
+    git
+    gcc
     unrar
     sshfs
-    nodejs
-    git
-    proton-vpn
-    chromium
-    gcc
     dnsutils
     lm_sensors
-    pkgs.gnome-tweaks
-    discord
-    pay-respects
-    # lutris
-    adwaita-icon-theme
-    bluetui
-    trash-cli
-    papirus-icon-theme
-    openrgb-with-all-plugins
-    via
-    mpv
-    adoptopenjdk-icedtea-web
-    zed-editor
-    home-manager
     pciutils
     amdgpu_top
     nethogs
     wirelesstools
-    jellyfin-media-player
     iotop
     gtop
-    # Hyprland DE Packages
-    #kdePackages.xwaylandvideobridge # Needed to screenshare xwayland programs
-    hyprpolkitagent
-    hyprsunset
-    udiskie # Auto Mount USB
-    waypaper # GUI fontend for hyprpaper, swww, etc
-    nwg-dock
-    zathura
-    banana-cursor
-    #davinci-resolve
+    openrgb-with-all-plugins
+    via
   ];
 
   # Enable Appimages

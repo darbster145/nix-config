@@ -1,20 +1,18 @@
-{ lib, pkgs, ... }:
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
     ./global/default.nix
-    ./features/base/default.nix
-    ./features/cli/tmux.nix
-    ./features/cli/yazi.nix
-    ./features/cli/zoxide.nix
+    ./features/cli/default.nix
+    ./features/desktop/default.nix
+    ./features/desktop/codex-desktop.nix
     ./features/development/kubernetes.nix
     ./features/development/version-control.nix
-    ./features/desktop/apps.nix
-    ./features/desktop/codex-desktop.nix
-    ./features/cli/starship.nix
-    ./features/desktop/opencode.nix
-    ./features/desktop/zen-browser.nix
-    ./features/desktop/ghostty.nix
     ./features/hyprland/default.nix
   ];
 
@@ -29,27 +27,22 @@
   '';
   programs.waybar.settings.mainBar.backlight.device = lib.mkForce "intel_backlight";
 
-  home = {
-    username = "brad";
-    homeDirectory = "/home/brad";
-  };
-
   home.packages = with pkgs; [
-    banana-cursor
     bitwarden-cli
-    jellyfin-media-player
-    proton-vpn
+    bitwarden-desktop
     proton-vpn-cli
-    opencode-claude-auth
     claude-code
+    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.default
     vlc
+    ytermusic
+    sone
+    remmina
+    #ungoogled-chromium
+    firefox-bin
+    webcamoid
+    easyeffects
+    android-tools
+    widevine-cdm
+    nix-prefetch
   ];
-
-  home.pointerCursor = {
-    enable = true;
-    package = pkgs.banana-cursor;
-    name = "banana-cursor";
-    hyprcursor.enable = true;
-    hyprcursor.size = 24;
-  };
 }

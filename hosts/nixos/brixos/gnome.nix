@@ -40,7 +40,10 @@
     ]
   );
 
-  environment.systemPackages = with pkgs.gnomeExtensions; [
+  environment.systemPackages = [
+    pkgs.gnome-tweaks
+  ]
+  ++ (with pkgs.gnomeExtensions; [
     # Gnome Extensions
     blur-my-shell
     dash-to-dock
@@ -53,5 +56,5 @@
     forge
     astra-monitor
     unblank
-  ];
+  ]);
 }
