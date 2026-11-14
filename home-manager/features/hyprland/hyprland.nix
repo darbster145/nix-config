@@ -11,10 +11,11 @@ let
 in
 {
 
-  # Lets Dolphin find Plasma's app menu ("Open with"). Set here because UWSM
-  # overrides XDG_MENU_PREFIX before Hyprland's own env runs.
+  # Make KDE apps behave as in Plasma: its app menu ("Open with") and its
+  # colours/style. Set here because UWSM sets XDG_MENU_PREFIX before Hyprland's env runs.
   xdg.configFile."uwsm/env-hyprland".text = ''
     export XDG_MENU_PREFIX=plasma-
+    export QT_QPA_PLATFORMTHEME=kde
   '';
 
   # Shared by every Hyprland host. Host-specific Lua (laptop panel, touchpad,
@@ -225,6 +226,10 @@ in
       -- Session
       hl.bind(mainMod .. " + Escape",         hl.dsp.exec_cmd("loginctl lock-session"))
       hl.bind(mainMod .. " + SHIFT + Escape", hl.dsp.exec_cmd("power-menu"))
+
+      -- Notification history: bring back dismissed ones / clear all
+      hl.bind(mainMod .. " + N",         hl.dsp.exec_cmd("dunstctl history-pop"))
+      hl.bind(mainMod .. " + SHIFT + N", hl.dsp.exec_cmd("dunstctl close-all"))
 
       -- Clipboard history (recorded by walker's elephant backend)
       hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("walker -m clipboard"))
