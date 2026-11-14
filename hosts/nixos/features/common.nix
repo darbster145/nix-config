@@ -10,6 +10,9 @@
 
   nix.gc.dates = lib.mkDefault "weekly";
 
+  # Keep /boot from filling up with old kernels.
+  boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
+
   time.timeZone = lib.mkDefault "America/Denver";
   i18n.defaultLocale = lib.mkDefault "en_US.UTF-8";
 }
