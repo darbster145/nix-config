@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -67,7 +66,12 @@
         swayosd = config.services.swayosd.enable;
       };
 
-  home.packages = with pkgs; [
-    hyprsunset
-  ];
+  # blueman's tray applet only in Hyprland; Plasma has its own Bluetooth icon.
+  xdg.configFile."autostart/blueman.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=Blueman Applet
+    Exec=blueman-applet
+    OnlyShowIn=Hyprland;
+  '';
 }

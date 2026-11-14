@@ -31,7 +31,6 @@
     wl-clipboard
     playerctl
     hyprcursor
-    nwg-look
     walker
     networkmanagerapplet
   ];

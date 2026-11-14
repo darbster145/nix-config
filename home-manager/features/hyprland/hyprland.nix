@@ -157,6 +157,7 @@ in
       hl.animation({ leaf = "workspaces",    enabled = true,  speed = 4.4,  bezier = "easeOutQuint", style = "slide" })
       hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 4.4,  bezier = "easeOutQuint", style = "slide" })
       hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 4.4,  bezier = "easeOutQuint", style = "slide" })
+      hl.animation({ leaf = "specialWorkspace", enabled = true, speed = 4.4, bezier = "easeOutQuint", style = "slidevert" })
       hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 5.6,  bezier = "quick" })
 
       hl.config({
@@ -218,6 +219,7 @@ in
       hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
       hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
       hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
+      hl.bind(mainMod .. " + SHIFT + T", hl.dsp.workspace.toggle_special("dropdown"))
       hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 
       -- Session
@@ -330,6 +332,20 @@ in
           match  = { class = "blueman-manager" },
           float  = true,
           center = true,
+      })
+
+      -- Drop-down terminal (SUPER+SHIFT+T): starts on first toggle, then shows/hides.
+      hl.workspace_rule({
+          workspace        = "special:dropdown",
+          on_created_empty = terminal .. " --class=dropdown.ghostty",
+      })
+
+      hl.window_rule({
+          name  = "dropdown-terminal",
+          match = { class = "dropdown.ghostty" },
+          float = true,
+          size  = { "monitor_w * 0.6", "monitor_h * 0.5" },
+          move  = { "monitor_w * 0.2", "50" },
       })
 
       -- Steam's small windows float instead of tiling.
