@@ -4,7 +4,7 @@
   home.pointerCursor = {
     enable = true;
     package = pkgs.banana-cursor;
-    name = "banana-cursor";
+    name = "Banana";
     hyprcursor.enable = true;
     hyprcursor.size = 24;
   };

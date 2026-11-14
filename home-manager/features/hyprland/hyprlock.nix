@@ -8,16 +8,6 @@
         hide_cursor = false;
       };
 
-      # Uncomment for fingerprint auth
-      # auth = {
-      #   fingerprint = {
-      #     enabled = true;
-      #     ready_message = "Scan fingerprint to unlock";
-      #     present_message = "Scanning...";
-      #     retry_delay = 250;
-      #   };
-      # };
-
       animations = {
         enabled = true;
         bezier = [ "linear, 1, 1, 0, 0" ];
@@ -88,17 +78,6 @@
           position = "-30, -150";
           halign = "right";
           valign = "top";
-        }
-
-        {
-          monitor = "";
-          text = "$LAYOUT[en,ru]";
-          font_size = 24;
-          onclick = "hyprctl switchxkblayout all next";
-
-          position = "250, -20";
-          halign = "center";
-          valign = "center";
         }
       ];
     };

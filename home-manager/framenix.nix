@@ -16,16 +16,53 @@
     ./features/hyprland/default.nix
   ];
 
-  # Use the panel's advertised mode instead of the MacBook display timings.
-  _module.args.hyprlandLaptopMonitor = ''
+  wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
+    -- Framework 13 panel
     hl.monitor({
-        output = "eDP-1",
-        mode = "preferred",
+        output   = "eDP-1",
+        mode     = "2880x1920@120",
         position = "auto",
-        scale = 1.5,
+        scale    = 1.5,
+        vrr      = 2,
+        supports_hdr        = true,
+        bitdepth            = 10,
+        supports_wide_color = true,
     })
   '';
-  programs.waybar.settings.mainBar.backlight.device = lib.mkForce "intel_backlight";
+
+  programs.waybar.settings.mainBar = {
+    modules-right = lib.mkAfter [
+      "backlight"
+      "battery"
+    ];
+    backlight.device = "intel_backlight";
+  };
+
+  services.hypridle.settings.listener = [
+    # Keyboard backlight
+    {
+      timeout = 60;
+      on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -sd '*::kbd_backlight' set 0";
+      on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -rd '*::kbd_backlight'";
+    }
+
+    # Suspend after 12 minutes, but only on battery
+    {
+      timeout = 720;
+      on-timeout = toString (
+        pkgs.writeShellScript "suspend-on-battery" ''
+          [ "$(cat /sys/class/power_supply/ACAD/online)" = 0 ] && systemctl suspend
+        ''
+      );
+    }
+  ];
+
+  programs.hyprlock.settings.auth.fingerprint = {
+    enabled = true;
+    ready_message = "Scan fingerprint to unlock";
+    present_message = "Scanning...";
+    retry_delay = 250;
+  };
 
   home.packages = with pkgs; [
     bitwarden-cli

@@ -5,19 +5,19 @@
         layer = "top";
         height = 38;
         modules-left = [
-          "custom/apple"
+          "custom/power"
           "hyprland/workspaces"
-          "custom/media"
+          "mpris"
         ];
+        # Hosts with a battery append "backlight" and "battery" via lib.mkAfter.
         modules-right = [
+          "tray"
           "network"
           "cpu"
           "memory"
           "temperature"
           "pulseaudio"
-          "backlight"
           "clock"
-          "battery"
         ];
         "hyprland/workspaces" = {
           sort-by-number = true;
@@ -35,7 +35,7 @@
             "9" = " ";
             "10" = " ";
           };
-          persistent_workspaces = {
+          persistent-workspaces = {
             "1" = [ ];
             "2" = [ ];
             "3" = [ ];
@@ -46,39 +46,6 @@
             "8" = [ ];
             "9" = [ ];
             "10" = [ ];
-          };
-        };
-        "mpd" = {
-          format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ ";
-          format-disconnected = "Disconnected ";
-          format-stopped = "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ";
-          unknown-tag = "N/A";
-          interval = 2;
-          consume-icons = {
-            on = " ";
-          };
-          random-icons = {
-            off = ''<span color="#f53c3c"></span> '';
-            on = " ";
-          };
-          repeat-icons = {
-            on = " ";
-          };
-          single-icons = {
-            on = "1 ";
-          };
-          state-icons = {
-            paused = "";
-            playing = "";
-          };
-          tooltip-format = "MPD (connected)";
-          tooltip-format-disconnected = "MPD (disconnected)";
-        };
-        "idle_inhibitor" = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
           };
         };
         "tray" = {
@@ -109,7 +76,6 @@
           tooltip = false;
         };
         "backlight" = {
-          device = "apple-panel-bl";
           format = "{icon}  {percent}%";
           format-icons = [ "" ];
           tooltip = false;
@@ -164,19 +130,21 @@
           };
           on-click = "pavucontrol";
         };
-        "custom/media" = {
-          format = "{icon} {}";
-          return-type = "json";
-          max-length = 40;
-          format-icons = {
-            spotify = "";
-            default = "🎜";
+        "mpris" = {
+          format = "{status_icon} {dynamic}";
+          dynamic-len = 40;
+          dynamic-order = [
+            "title"
+            "artist"
+          ];
+          status-icons = {
+            playing = "▶";
+            paused = "⏸";
+            stopped = "⏹";
           };
-          escape = true;
-          exec = "$HOME/.config/waybar/mediaplayer.py 2> /dev/null";
         };
-        "custom/apple" = {
-          format = " ";
+        "custom/power" = {
+          format = "";
           on-click = "wlogout";
           tooltip = false;
         };

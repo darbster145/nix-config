@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
 
@@ -14,7 +14,6 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
     ];
   };
 
@@ -25,26 +24,20 @@
     GSK_RENDERER = "gl";
   };
 
+  # Bar, idle, wallpaper, notifications, clipboard, etc. are installed and
+  # run by home-manager (home-manager/features/hyprland).
   environment.systemPackages = with pkgs; [
-    wlogout
     brightnessctl
-    hypridle
-    waybar
     pavucontrol
     wireguard-tools
     cargo
     hyprshot
     wl-clipboard
-    clipse
     playerctl
-    nautilus
-    hyprpaper
-    dunst
     hyprcursor
     nwg-look
     walker
     networkmanagerapplet
-    #libsForQt5
   ];
 
   services.elephant = {
@@ -58,20 +51,11 @@
     "PATH=${pkgs.bash}/bin:${pkgs.coreutils}/bin:/run/wrappers/bin:/home/brad/.nix-profile/bin:/home/brad/.local/state/nix/profile/bin:/etc/profiles/per-user/brad/bin:/nix/profile/bin:/run/current-system/sw/bin"
   ];
 
+  # Needed system-wide for hyprlock's PAM service.
   programs.hyprlock = {
     enable = true;
   };
 
   services.gvfs.enable = true;
-  services.tumbler.enable = true;
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs; [
-      tumbler
-      thunar-volman
-      thunar-archive-plugin
-      thunar-media-tags-plugin
-    ];
-  };
 
 }

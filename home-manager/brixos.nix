@@ -65,4 +65,25 @@
       color-scheme = "prefer-dark";
     };
   };
+
+  wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
+    -- Let games tear for lower latency.
+    hl.config({
+        general = {
+            allow_tearing = true,
+        },
+    })
+
+    hl.window_rule({
+        name      = "tearing-games",
+        match     = { content = "game" },
+        immediate = true,
+    })
+
+    hl.window_rule({
+        name      = "tearing-steam-games",
+        match     = { class = "^(steam_app_.*|gamescope)$" },
+        immediate = true,
+    })
+  '';
 }

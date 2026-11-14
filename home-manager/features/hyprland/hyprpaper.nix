@@ -1,7 +1,11 @@
+let
+  # Drop an image here (and `git add` it) to enable the wallpaper on every host.
+  wallpaper = ./wallpaper.png;
+in
 {
 
   services.hyprpaper = {
-    enable = true;
+    enable = builtins.pathExists wallpaper;
     settings = {
 
       splash = false;
@@ -9,7 +13,7 @@
       wallpaper = [
         {
           monitor = "";
-          path = "/home/brad/Pictures/Wallpaper/waves-wallpaper-blue4k.png";
+          path = "${wallpaper}";
           fit_mode = "cover";
         }
       ];

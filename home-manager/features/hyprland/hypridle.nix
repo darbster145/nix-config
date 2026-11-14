@@ -1,41 +1,36 @@
-{ pkgs, ... }:
+let
+  dpms = action: "hyprctl dispatch 'hl.dsp.dpms({ action = \"${action}\" })'";
+in
 {
 
+  # Shared listeners. Hosts append extra listeners (keyboard backlight,
+  # suspend, ...) from their own home-manager file.
   services.hypridle = {
     enable = true;
     settings = {
-      ignore_dbus_inhibit = false;
-      ignore_systemd_inhibit = false;
-      ignore_wayland_inhibit = false;
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+        after_sleep_cmd = dpms "enable";
+        ignore_dbus_inhibit = false;
+        ignore_systemd_inhibit = false;
+        ignore_wayland_inhibit = false;
+      };
 
-      # Blank Screen
       listener = [
-        {
-          timeout = 300;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-
-        # Lock Screen
+        # Blank screen
         {
           timeout = 600;
-          on-timeout = "hyprlock";
+          on-timeout = dpms "disable";
+          on-resume = dpms "enable";
         }
 
-        # Keyboard Backlight
+        # Lock screen
         {
-          timeout = 60;
-          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -d kbd_backlight set 0";
-          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -rd kbd_backlight 25";
+          timeout = 660;
+          on-timeout = "loginctl lock-session";
         }
       ];
-
-      ## TODO Only suspend on battery ###
-      # Suspend after 15 Minutes
-      # listener = {
-      #   timeout = 900;
-      #   on-timeout = "systemctl suspend";
-      # };
     };
   };
 

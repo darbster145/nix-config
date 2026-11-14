@@ -40,7 +40,7 @@
       @define-color date #1e1e2e;
       @define-color time #3A4253;
       @define-color backlight #1e1e2e;
-      @define-color apple #1e1e2e;
+      @define-color power #1e1e2e;
 
       * {
           border: none;
@@ -67,6 +67,7 @@
       #pulseaudio,
       #temperature,
       #custom-alsa,
+      #mpris,
       #tray,
       #backlight {
           padding-left: 10px;
@@ -88,7 +89,7 @@
           margin-bottom: 3px;
       }
 
-      #custom-apple {
+      #custom-power {
           padding-left: 8px;
           padding-right: 8px;
           margin-right: 5px;
@@ -209,6 +210,11 @@
           border-radius: 8px;
       }
 
+      #mpris {
+          background: @sound;
+          border-radius: 8px;
+      }
+
       #clock {
           background: @date;
           border-radius: 8px;
@@ -224,9 +230,9 @@
           border-radius: 8px;
       }
 
-      #custom-apple {
+      #custom-power {
           font-size: 17px;
-          background: @apple;
+          background: @power;
           border-radius: 8px;
           border-top-left-radius: 16px;
           margin-left: 5px;
