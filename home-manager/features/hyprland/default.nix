@@ -24,7 +24,6 @@
     enable = true;
     tray = "never"; # tray mode needs a tray.target, which nothing provides here
   };
-  services.clipse.enable = true;
 
   # Screenshot annotation (SUPER+SHIFT+A). Enter copies, Ctrl+S saves.
   programs.satty = {
@@ -60,7 +59,7 @@
         hyprpolkitagent = config.services.hyprpolkitagent.enable;
         dunst = config.services.dunst.enable;
         udiskie = config.services.udiskie.enable;
-        clipse = config.services.clipse.enable;
+        batsignal = config.services.batsignal.enable;
         swayosd = config.services.swayosd.enable;
       };
 

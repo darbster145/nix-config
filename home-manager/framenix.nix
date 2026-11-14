@@ -38,6 +38,15 @@
     hl.bind("switch:off:Lid Switch", function() laptopPanel(false) end, { locked = true })
   '';
 
+  # Low-battery notifications (defaults: warning 15%, critical 5%).
+  services.batsignal = {
+    enable = true;
+    extraArgs = [
+      "-n"
+      "BAT1"
+    ];
+  };
+
   programs.waybar.settings.mainBar."group/status".modules = [
     "power-profiles-daemon"
     "battery"

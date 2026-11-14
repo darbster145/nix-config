@@ -88,6 +88,7 @@ in
       }
 
       #tray,
+      #idle_inhibitor,
       #pulseaudio,
       #power-profiles-daemon,
       #battery,
@@ -95,10 +96,15 @@ in
           padding: 0 6px;
       }
 
+      #idle_inhibitor,
       #pulseaudio,
       #power-profiles-daemon,
       #custom-power {
           font-size: 16px;
+      }
+
+      #idle_inhibitor.activated {
+          color: ${c.yellow};
       }
 
       #power-profiles-daemon.performance {

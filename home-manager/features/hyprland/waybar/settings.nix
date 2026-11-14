@@ -18,6 +18,7 @@
           modules = lib.mkMerge [
             (lib.mkOrder 500 [
               "tray"
+              "idle_inhibitor"
               "pulseaudio"
             ])
             (lib.mkOrder 1500 [ "custom/power" ])
@@ -42,6 +43,16 @@
         "tray" = {
           icon-size = 16;
           spacing = 10;
+        };
+
+        "idle_inhibitor" = {
+          format = "{icon}";
+          format-icons = {
+            activated = "󰅶";
+            deactivated = "󰛊";
+          };
+          tooltip-format-activated = "Keeping awake";
+          tooltip-format-deactivated = "Click to keep awake";
         };
 
         "pulseaudio" = {

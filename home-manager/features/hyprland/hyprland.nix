@@ -63,7 +63,7 @@ in
       ---- AUTOSTART ----
       -------------------
 
-      -- Long-running helpers (waybar, hypridle, hyprpaper, dunst, clipse,
+      -- Long-running helpers (waybar, hypridle, hyprpaper, dunst, swayosd,
       -- polkit agent, udiskie) are systemd user services. blueman-applet comes
       -- from XDG autostart.
       hl.on("hyprland.start", function ()
@@ -224,8 +224,8 @@ in
       hl.bind(mainMod .. " + Escape",         hl.dsp.exec_cmd("loginctl lock-session"))
       hl.bind(mainMod .. " + SHIFT + Escape", hl.dsp.exec_cmd("power-menu"))
 
-      -- Clipboard history
-      hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd(terminal .. " --class=clipse.ghostty -e clipse"))
+      -- Clipboard history (recorded by walker's elephant backend)
+      hl.bind(mainMod .. " + SHIFT + V", hl.dsp.exec_cmd("walker -m clipboard"))
 
       -- Screenshots (saved to $HYPRSHOT_DIR and copied to the clipboard)
       hl.bind(mainMod .. " + SHIFT + S", hl.dsp.exec_cmd("hyprshot -m region"))
@@ -313,13 +313,6 @@ in
       })
 
       hl.window_rule({
-          name   = "float-clipse",
-          match  = { class = "clipse.ghostty" },
-          float  = true,
-          center = true,
-      })
-
-      hl.window_rule({
           name   = "float-pavucontrol",
           match  = { class = "org.pulseaudio.pavucontrol" },
           float  = true,
@@ -335,6 +328,14 @@ in
       hl.window_rule({
           name   = "float-bluetooth",
           match  = { class = "blueman-manager" },
+          float  = true,
+          center = true,
+      })
+
+      -- Steam's small windows float instead of tiling.
+      hl.window_rule({
+          name   = "float-steam-dialogs",
+          match  = { class = "^steam$", title = "^(Friends List|Steam Settings|Special Offers|Screenshot Manager|Steam - News.*|.* - Chat)$" },
           float  = true,
           center = true,
       })
