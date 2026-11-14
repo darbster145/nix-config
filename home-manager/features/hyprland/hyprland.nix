@@ -99,7 +99,7 @@ in
               },
 
               resize_on_border = false,
-              allow_tearing    = false,
+              allow_tearing    = true, -- only for windows matched by the tearing rules below
               layout           = "dwindle",
           },
 
@@ -333,6 +333,19 @@ in
           match  = { class = "blueman-manager" },
           float  = true,
           center = true,
+      })
+
+      -- Let games tear for lower latency.
+      hl.window_rule({
+          name      = "tearing-games",
+          match     = { content = "game" },
+          immediate = true,
+      })
+
+      hl.window_rule({
+          name      = "tearing-steam-games",
+          match     = { class = "^(steam_app_.*|gamescope)$" },
+          immediate = true,
       })
 
       hl.window_rule({

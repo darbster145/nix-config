@@ -50,11 +50,6 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    polaris = {
-      url = "github:papi-ux/polaris";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
     # Optional: Homebrew taps for crapple
     homebrew-core = {
       url = "github:homebrew/homebrew-core";
@@ -140,9 +135,7 @@
         brixos = nixpkgs-unstable.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
-            inputs.polaris.nixosModules.polaris
             ./hosts/nixos/brixos/configuration.nix
-            ./hosts/nixos/brixos/polaris-stream.nix
           ];
         };
 

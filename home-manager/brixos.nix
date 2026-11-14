@@ -8,27 +8,6 @@
   ...
 }:
 {
-  nixpkgs.overlays = [
-    (final: prev: {
-      writeShellApplication =
-        args:
-        prev.writeShellApplication (
-          if args.name == "polaris-gamescope-session" then
-            args
-            // {
-              # Polaris currently triggers these ShellCheck false positives
-              # for a lock flag intentionally exported from subshells.
-              excludeShellChecks = (args.excludeShellChecks or [ ]) ++ [
-                "SC2030"
-                "SC2031"
-              ];
-            }
-          else
-            args
-        );
-    })
-  ];
-
   imports = [
     ./global/default.nix
     ./features/cli/default.nix
@@ -37,14 +16,7 @@
     ./features/development/kubernetes.nix
     ./features/development/version-control.nix
     ./features/hyprland/default.nix
-    inputs.polaris.homeModules.polaris
   ];
-
-  services.polaris = {
-    enable = true;
-    streamMode = "gamescope_stream";
-  }
-  // import ../hosts/nixos/brixos/polaris-packages.nix { inherit inputs pkgs; };
 
   home.packages = with pkgs; [
     discord
@@ -58,25 +30,4 @@
     # lutris
     #davinci-resolve
   ];
-
-  wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
-    -- Let games tear for lower latency.
-    hl.config({
-        general = {
-            allow_tearing = true,
-        },
-    })
-
-    hl.window_rule({
-        name      = "tearing-games",
-        match     = { content = "game" },
-        immediate = true,
-    })
-
-    hl.window_rule({
-        name      = "tearing-steam-games",
-        match     = { class = "^(steam_app_.*|gamescope)$" },
-        immediate = true,
-    })
-  '';
 }

@@ -9,7 +9,7 @@
   imports = [
     ./hardware-configuration.nix
     ../features/common.nix
-    ./gaming.nix
+    ../features/gaming.nix
     ../features/lact.nix
     ./iscsi.nix
     ../features/fonts.nix
@@ -33,8 +33,7 @@
     "amdgpu.dcfeaturemask=0x402"
   ];
 
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelModules = [
     "iscsi_tcp"
@@ -97,6 +96,8 @@
     enable = true;
     cpuFreqGovernor = "performance";
   };
+  # Plasma enables this; it would fight the fixed performance governor.
+  services.power-profiles-daemon.enable = false;
 
   networking.hostName = "brixos";
   networking.interfaces.enp7s0.wakeOnLan = {
@@ -106,17 +107,10 @@
 
   networking.networkmanager.enable = true;
 
+  # Mesa (included by default) covers Vulkan, OpenGL and VA-API on AMD.
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-      libva
-      libvdpau-va-gl
-      mesa
-      libva-vdpau-driver
-      mesa.opencl
-    ];
   };
   hardware.amdgpu = {
     opencl.enable = true;

@@ -91,7 +91,7 @@
     };
     efi.canTouchEfiVariables = true;
   };
-  boot.kernelPackages = pkgs.linuxPackages_testing;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "framenix";
   networking.networkmanager.enable = true;

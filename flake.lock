@@ -336,26 +336,6 @@
         "type": "github"
       }
     },
-    "polaris": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1793886041,
-        "narHash": "sha256-/TtDojkGr2r0xAjEKUegjpfz2sAdwzUzeF0Y+FqaU5o=",
-        "owner": "papi-ux",
-        "repo": "polaris",
-        "rev": "874bafc93a4f674552f63a0f0ff16b0a246af546",
-        "type": "github"
-      },
-      "original": {
-        "owner": "papi-ux",
-        "repo": "polaris",
-        "type": "github"
-      }
-    },
     "radar": {
       "flake": false,
       "locked": {
@@ -386,7 +366,6 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "polaris": "polaris",
         "radar": "radar",
         "sops-nix": "sops-nix",
         "zen-browser": "zen-browser"
