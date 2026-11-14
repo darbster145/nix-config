@@ -7,6 +7,7 @@
 
 {
   imports = [
+    ./default-apps.nix
     ./dunst.nix
     ./hypridle.nix
     ./hyprlock.nix
@@ -25,6 +26,9 @@
     tray = "never"; # tray mode needs a tray.target, which nothing provides here
   };
 
+  # Screenshots (hyprshot and satty) go here.
+  systemd.user.tmpfiles.rules = [ "d %h/Pictures/Screenshots - - - -" ];
+
   # Screenshot annotation (SUPER+SHIFT+A). Enter copies, Ctrl+S saves.
   programs.satty = {
     enable = true;
@@ -33,7 +37,7 @@
       corner-roundness = 8;
       initial-tool = "arrow";
       copy-command = "wl-copy";
-      output-filename = "~/Pictures/satty-%Y-%m-%d_%H-%M-%S.png";
+      output-filename = "~/Pictures/Screenshots/satty-%Y-%m-%d_%H-%M-%S.png";
       actions-on-enter = [ "save-to-clipboard" ];
     };
   };

@@ -19,7 +19,7 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    HYPRSHOT_DIR = "/home/brad/Pictures";
+    HYPRSHOT_DIR = "/home/brad/Pictures/Screenshots";
   };
 
   # Bar, idle, wallpaper, notifications, clipboard, etc. are installed and
