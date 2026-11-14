@@ -174,6 +174,8 @@ in
           misc = {
               force_default_wallpaper = 0,
               disable_hyprland_logo   = false,
+              -- Switch to an app when it asks for focus (e.g. a clicked link opening in Zen).
+              focus_on_activate       = true,
           },
           -- Desktop stays SDR; fullscreen HDR content switches the monitor to HDR.
           render = {
