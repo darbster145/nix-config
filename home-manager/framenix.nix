@@ -17,26 +17,31 @@
   ];
 
   wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
-    -- Framework 13 panel
-    hl.monitor({
-        output   = "eDP-1",
-        mode     = "2880x1920@120",
-        position = "auto",
-        scale    = 1.5,
-        vrr      = 2,
-        supports_hdr        = true,
-        bitdepth            = 10,
-        supports_wide_color = true,
-    })
+    -- Framework 13 panel, right of the PG42UQ
+    local function laptopPanel(disabled)
+        hl.monitor({
+            output   = "eDP-1",
+            disabled = disabled,
+            mode     = "2880x1920@120",
+            position = "auto-right",
+            scale    = 1.5,
+            vrr      = 2,
+            supports_hdr        = true,
+            bitdepth            = 10,
+            supports_wide_color = true,
+        })
+    end
+    laptopPanel(false)
+
+    -- Lid closed: panel off (logind decides whether to suspend)
+    hl.bind("switch:on:Lid Switch",  function() laptopPanel(true) end,  { locked = true })
+    hl.bind("switch:off:Lid Switch", function() laptopPanel(false) end, { locked = true })
   '';
 
-  programs.waybar.settings.mainBar = {
-    modules-right = lib.mkAfter [
-      "backlight"
-      "battery"
-    ];
-    backlight.device = "intel_backlight";
-  };
+  programs.waybar.settings.mainBar."group/status".modules = [
+    "power-profiles-daemon"
+    "battery"
+  ];
 
   services.hypridle.settings.listener = [
     # Keyboard backlight

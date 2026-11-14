@@ -52,7 +52,13 @@
     ];
 
   };
-  services.logind.settings.Login.HandlePowerKey = "ignore";
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+    # Lid: suspend on battery, stay awake on AC or with an external monitor.
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "ignore";
+    HandleLidSwitchDocked = "ignore";
+  };
 
   hardware.bluetooth = {
     enable = true;
@@ -128,6 +134,8 @@
     git
     gcc
     dnsutils
+    wireguard-tools
+    cargo
   ];
 
   # The swapfile is encrypted by the underlying LUKS container.

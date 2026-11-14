@@ -3,6 +3,7 @@
 {
 
   fonts.packages = with pkgs; [
+    adwaita-fonts
     font-awesome
     powerline-fonts
     powerline-symbols

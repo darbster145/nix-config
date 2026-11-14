@@ -20,8 +20,6 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     HYPRSHOT_DIR = "/home/brad/Pictures";
-    GDK_DISABLE = "gles-api";
-    GSK_RENDERER = "gl";
   };
 
   # Bar, idle, wallpaper, notifications, clipboard, etc. are installed and
@@ -29,8 +27,6 @@
   environment.systemPackages = with pkgs; [
     brightnessctl
     pavucontrol
-    wireguard-tools
-    cargo
     hyprshot
     wl-clipboard
     playerctl

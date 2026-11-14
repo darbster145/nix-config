@@ -1,19 +1,20 @@
+let
+  c = import ./palette.nix;
+  rgb = color: "rgb(${c.hex color})";
+in
 {
+  # GNOME-style lock screen: blurred desktop, big centred clock, rounded input.
   programs.hyprlock = {
     enable = true;
     settings = {
-      "$font" = "Monospace";
-
-      general = {
-        hide_cursor = false;
-      };
+      general.hide_cursor = true;
 
       animations = {
         enabled = true;
         bezier = [ "linear, 1, 1, 0, 0" ];
         animation = [
-          "fadeIn, 1, 5, linear"
-          "fadeOut, 1, 5, linear"
+          "fadeIn, 1, 4, linear"
+          "fadeOut, 1, 4, linear"
           "inputFieldDots, 1, 2, linear"
         ];
       };
@@ -21,63 +22,55 @@
       background = [
         {
           monitor = "";
-          color = "rgb(0, 0, 0)";
-        }
-      ];
-
-      "input-field" = [
-        {
-          monitor = "";
-          size = "20%, 5%";
-          outline_thickness = 3;
-          inner_color = "rgba(0, 0, 0, 0.0)";
-
-          outer_color = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          check_color = "rgba(00ff99ee) rgba(ff6633ee) 120deg";
-          fail_color = "rgba(ff6633ee) rgba(ff0066ee) 40deg";
-
-          font_color = "rgb(143, 143, 143)";
-          fade_on_empty = false;
-          rounding = 15;
-
-          font_family = "$font";
-          placeholder_text = "Input password...";
-          fail_text = "$PAMFAIL";
-
-          # check_text = "Authenticating...";
-          # dots_text_format = "*";
-          # dots_size = 0.4;
-          dots_spacing = 0.3;
-
-          # hide_input = true;
-
-          position = "0, -20";
-          halign = "center";
-          valign = "center";
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 8;
+          brightness = 0.6;
         }
       ];
 
       label = [
         {
           monitor = "";
-          text = "$TIME";
-          font_size = 90;
-          font_family = "$font";
-
-          position = "-30, 0";
-          halign = "right";
-          valign = "top";
+          text = ''cmd[update:60000] date +"%A, %B %-d"'';
+          color = rgb c.fg;
+          font_size = 20;
+          font_family = "Adwaita Sans";
+          position = "0, 300";
+          halign = "center";
+          valign = "center";
         }
-
         {
           monitor = "";
-          text = ''cmd[update:60000] date +"%A, %d %B %Y"'';
-          font_size = 25;
-          font_family = "$font";
+          text = "$TIME";
+          color = rgb c.fg;
+          font_size = 96;
+          font_family = "Adwaita Sans Bold";
+          position = "0, 200";
+          halign = "center";
+          valign = "center";
+        }
+      ];
 
-          position = "-30, -150";
-          halign = "right";
-          valign = "top";
+      "input-field" = [
+        {
+          monitor = "";
+          size = "300, 48";
+          outline_thickness = 1;
+          rounding = 10;
+          inner_color = rgb c.bg;
+          outer_color = rgb c.border;
+          check_color = rgb c.blue;
+          fail_color = rgb c.red;
+          font_color = rgb c.fg;
+          font_family = "Adwaita Sans";
+          fade_on_empty = false;
+          placeholder_text = "Password";
+          fail_text = "$PAMFAIL";
+          dots_spacing = 0.3;
+          position = "0, -120";
+          halign = "center";
+          valign = "center";
         }
       ];
     };

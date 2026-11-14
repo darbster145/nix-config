@@ -1,89 +1,95 @@
+{ pkgs, ... }:
+
+let
+  c = import ./palette.nix;
+
+  # wlogout only takes pixel margins, so size them from the focused monitor
+  # to get a compact centred row of buttons like GNOME's power menu.
+  power-menu = pkgs.writeShellApplication {
+    name = "power-menu";
+    runtimeInputs = with pkgs; [
+      jq
+      wlogout
+    ];
+    text = ''
+      read -r w h < <(hyprctl monitors -j | jq -r '.[] | select(.focused) | "\(.width / .scale | floor) \(.height / .scale | floor)"')
+      exec wlogout -b 4 -L $(((w - 760) / 2)) -R $(((w - 760) / 2)) -T $(((h - 190) / 2)) -B $(((h - 190) / 2))
+    '';
+  };
+in
 {
 
+  home.packages = [ power-menu ];
+
+  # Opened with `power-menu` from waybar and SUPER+SHIFT+Escape.
   programs.wlogout = {
     enable = true;
     layout = [
 
       {
         label = "lock";
-        action = "hyprlock";
+        action = "loginctl lock-session";
         text = "Lock";
+        keybind = "l";
       }
 
       {
         label = "logout";
         action = "uwsm stop";
-        text = "Logout";
-      }
-
-      {
-        label = "shutdown";
-        action = "systemctl poweroff";
-        text = "Shutdown";
+        text = "Log Out";
+        keybind = "e";
       }
 
       {
         label = "reboot";
         action = "systemctl reboot";
-        text = "Reboot";
+        text = "Restart";
+        keybind = "r";
+      }
+
+      {
+        label = "shutdown";
+        action = "systemctl poweroff";
+        text = "Power Off";
+        keybind = "s";
       }
 
     ];
 
-    # style = ''
-    #   * {
-    #   	background-image: none;
-    #   	box-shadow: none;
-    #   }
-    #
-    #   window {
-    #   	background-color: rgba(12, 12, 12, 0.9);
-    #   }
-    #
-    #   button {
-    #       border-radius: 0;
-    #       border-color: black;
-    #       text-decoration-color: #FFFFFF;
-    #       color: #FFFFFF;
-    #       background-color: #1E1E1E;
-    #   	  border-style: solid;
-    #   	  border-width: 1px;
-    #   	  background-repeat: no-repeat;
-    #   	  background-position: center;
-    #   	  background-size: 25%;
-    #   }
-    #
-    #   button:focus, button:active, button:hover {
-    #   	background-color: #3700B3;
-    #   	outline-style: none;
-    #   }
-    #
-    #   #lock {
-    #       background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
-    #   }
-    #
-    #   #logout {
-    #       background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
-    #   }
-    #
-    #   #suspend {
-    #       background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
-    #   }
-    #
-    #   #hibernate {
-    #       background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
-    #   }
-    #
-    #   #shutdown {
-    #       background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
-    #   }
-    #
-    #   #reboot {
-    #       background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
-    #   }
+    style = ''
+      * {
+          box-shadow: none;
+          font-family: "Adwaita Sans";
+          font-size: 15px;
+          font-weight: bold;
+      }
 
-    #   '';
+      window {
+          background-color: rgba(0, 0, 0, 0.5);
+      }
 
+      button {
+          margin: 10px;
+          border: none;
+          border-radius: 12px;
+          color: ${c.fg};
+          background-color: ${c.bg};
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 48px;
+      }
+
+      button:focus,
+      button:hover {
+          background-color: ${c.bgHighlight};
+          outline-style: none;
+      }
+
+      #lock     { background-image: -gtk-icontheme("system-lock-screen-symbolic"); }
+      #logout   { background-image: -gtk-icontheme("system-log-out-symbolic"); }
+      #reboot   { background-image: -gtk-icontheme("system-reboot-symbolic"); }
+      #shutdown { background-image: -gtk-icontheme("system-shutdown-symbolic"); }
+    '';
   };
 
 }

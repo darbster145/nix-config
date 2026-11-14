@@ -200,6 +200,8 @@
     gtop
     openrgb-with-all-plugins
     via
+    wireguard-tools
+    cargo
   ];
 
   # Enable Appimages

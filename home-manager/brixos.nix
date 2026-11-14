@@ -59,13 +59,6 @@
     #davinci-resolve
   ];
 
-  dconf = {
-    enable = true;
-    settings."org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
   wayland.windowManager.hyprland.extraConfig = lib.mkAfter ''
     -- Let games tear for lower latency.
     hl.config({
