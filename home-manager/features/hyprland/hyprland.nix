@@ -11,6 +11,12 @@ let
 in
 {
 
+  # Lets Dolphin find Plasma's app menu ("Open with"). Set here because UWSM
+  # overrides XDG_MENU_PREFIX before Hyprland's own env runs.
+  xdg.configFile."uwsm/env-hyprland".text = ''
+    export XDG_MENU_PREFIX=plasma-
+  '';
+
   # Shared by every Hyprland host. Host-specific Lua (laptop panel, touchpad,
   # tearing, ...) is appended from the host's home-manager file with lib.mkAfter.
   wayland.windowManager.hyprland = {
@@ -78,8 +84,6 @@ in
       hl.env("XCURSOR_THEME", "Banana")
       hl.env("HYPRCURSOR_SIZE", "24")
       hl.env("HYPRCURSOR_THEME", "Banana")
-      -- Lets Dolphin find Plasma's app menu ("Open with") outside Plasma.
-      hl.env("XDG_MENU_PREFIX", "plasma-")
 
 
       -----------------------
