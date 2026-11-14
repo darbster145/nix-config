@@ -47,6 +47,19 @@
         autoStash = true;
         missingCommitsCheck = "warn";
       };
+      merge.conflictStyle = "zdiff3";
+    };
+  };
+
+  # Syntax-highlighted diffs for git diff/log/show (theme comes from bat.nix)
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true; # n/N jump between files
+      line-numbers = true;
+      side-by-side = true;
+      syntax-theme = "tokyonight_night";
     };
   };
 

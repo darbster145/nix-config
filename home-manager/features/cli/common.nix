@@ -7,7 +7,6 @@
       # File operations & search
       ripgrep # Better grep
       fd # Better find
-      bat # Better cat with syntax highlighting
       unzip # Archive utility
 
       # System monitoring
@@ -16,7 +15,6 @@
       fastfetch # Fast system info display
 
       # Navigation & utilities
-      fzf # Fuzzy finder
       tldr # Simplified man pages
 
       # Network utilities

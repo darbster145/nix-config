@@ -4,7 +4,7 @@
     enableZshIntegration = true;
     settings = {
       add_newline = false;
-      format = "$os$username$hostname$directory$git_branch$git_commit";
+      format = "$os$username$hostname$directory$git_branch$git_commit$cmd_duration$status";
       palette = "tokyo_night";
 
       palettes.tokyo_night = {
@@ -57,6 +57,20 @@
         format = "[$hash]($style) ";
         style = "cyan";
         only_detached = true;
+      };
+
+      # Shown when a command takes 2s or longer
+      cmd_duration = {
+        format = "[$duration]($style) ";
+        style = "foreground";
+        min_time = 2000;
+      };
+
+      # Exit code of the last command, only when it failed
+      status = {
+        disabled = false;
+        format = "[$status]($style) ";
+        style = "red";
       };
     };
   };

@@ -24,6 +24,17 @@
       bind c new-window -c "#{pane_current_path}"
       bind '"' split-window -v -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
+
+      # Popups (fzf, sesh) use the terminal background instead of grey
+      set -g popup-style "bg=default"
+      set -g popup-border-lines rounded
     '';
+  };
+
+  # prefix + T: fuzzy pick a tmux session or zoxide folder to open/attach
+  programs.sesh = {
+    enable = true;
+    enableTmuxIntegration = true;
+    tmuxKey = "T";
   };
 }

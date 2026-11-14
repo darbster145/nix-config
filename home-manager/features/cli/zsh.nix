@@ -5,6 +5,17 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
+    # Shared between open terminals; commands starting with a space are not saved.
+    history = {
+      size = 100000;
+      save = 100000;
+      extended = true;
+      share = true;
+      ignoreAllDups = true;
+      ignoreSpace = true;
+      expireDuplicatesFirst = true;
+    };
+
     # Ctrl+S/Ctrl+Q no longer pause terminal output.
     setOptions = [ "NO_FLOW_CONTROL" ];
 
