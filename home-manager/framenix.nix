@@ -31,7 +31,15 @@
             supports_wide_color = true,
         })
     end
-    laptopPanel(false)
+    -- Match the lid on (re)load, e.g. after home-manager switch with the lid shut
+    local function lidClosed()
+        local f = io.open("/proc/acpi/button/lid/LID0/state")
+        if not f then return false end
+        local state = f:read("*a")
+        f:close()
+        return state:find("closed") ~= nil
+    end
+    laptopPanel(lidClosed())
 
     -- Lid closed: panel off (logind decides whether to suspend)
     hl.bind("switch:on:Lid Switch",  function() laptopPanel(true) end,  { locked = true })
