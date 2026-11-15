@@ -22,6 +22,16 @@
         })
       else
         prev.opencode;
+
+    # bgmod locates bgmod.conf via /proc/self/exe; the Qt wrapper makes that resolve to the
+    # Nix store, so the copy in ~/.local/share/goverlay/gameconfig never reads its [Env] section.
+    goverlay = prev.goverlay.overrideAttrs (old: {
+      postFixup = (old.postFixup or "") + ''
+        for bin in bgmod bgmod-uninstaller; do
+          mv -f $out/libexec/.$bin-wrapped $out/libexec/$bin
+        done
+      '';
+    });
   };
 
   stable-packages = final: _prev: {
