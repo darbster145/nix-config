@@ -28,8 +28,6 @@
     #"acpi_backlight=video"
     #"acpi_backlight=vendor"
     "acpi_backlight=native"
-    # Needed for LACT AMDGPU Overclocking Support
-    "amdgpu.ppfeaturemask=0xffffffff"
     "amdgpu.dcfeaturemask=0x402"
   ];
 
@@ -114,6 +112,11 @@
   };
   hardware.amdgpu = {
     opencl.enable = true;
+    # Needed for LACT AMDGPU Overclocking Support
+    overdrive = {
+      enable = true;
+      ppfeaturemask = "0xffffffff";
+    };
   };
 
   # Configure keymap in X11
