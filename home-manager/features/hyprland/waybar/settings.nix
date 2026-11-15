@@ -1,5 +1,47 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 
+let
+  # Waybar's built-in "disk" module only reports space used, so disk I/O
+  # throughput comes from /proc-style block stats (512-byte sectors).
+  diskIo = pkgs.writeShellApplication {
+    name = "waybar-disk-io";
+    runtimeInputs = [ pkgs.coreutils ];
+    text = ''
+      interval=2
+
+      totals() {
+        r=0
+        w=0
+        for d in /sys/block/*; do
+          case ''${d##*/} in loop* | ram* | zram* | dm-* | md* | sr*) continue ;; esac
+          read -r _ _ rs _ _ _ ws _ < "$d/stat"
+          r=$((r + rs))
+          w=$((w + ws))
+        done
+      }
+
+      human() {
+        numfmt --to=iec --suffix=B/s --format="%.1f" "$1"
+      }
+
+      totals
+      prev_r=$r
+      prev_w=$w
+      while true; do
+        sleep "$interval"
+        totals
+        read_bps=$(((r - prev_r) * 512 / interval))
+        write_bps=$(((w - prev_w) * 512 / interval))
+        prev_r=$r
+        prev_w=$w
+        rh=$(human "$read_bps")
+        wh=$(human "$write_bps")
+        printf '{"text":"󰋊 󰁅 %s 󰁝 %s","tooltip":"Disk read: %s\\nDisk write: %s"}\n' \
+          "$rh" "$wh" "$rh" "$wh"
+      done
+    '';
+  };
+in
 {
   # GNOME-style top bar: workspaces left, clock centre, one status pill right.
   # Hosts add modules to the status pill (e.g. "battery"); power stays last.
@@ -11,7 +53,45 @@
         spacing = 0;
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "clock" ];
-        modules-right = [ "group/status" ];
+        modules-right = [
+          "group/system"
+          "group/status"
+        ];
+
+        "group/system" = {
+          orientation = "horizontal";
+          modules = [
+            "cpu"
+            "memory"
+            "network"
+            "custom/disk-io"
+          ];
+        };
+
+        "cpu" = {
+          interval = 2;
+          format = "󰻠 {usage}%";
+          tooltip-format = "CPU: {usage}% ({avg_frequency} GHz)";
+        };
+
+        "memory" = {
+          interval = 2;
+          format = "󰍛 {percentage}%";
+          tooltip-format = "RAM: {used:0.1f} / {total:0.1f} GiB\nSwap: {swapUsed:0.1f} / {swapTotal:0.1f} GiB";
+        };
+
+        "network" = {
+          interval = 2;
+          format = "󰇚 {bandwidthDownBytes} 󰕒 {bandwidthUpBytes}";
+          format-disconnected = "󰤮 offline";
+          tooltip-format = "{ifname}: {ipaddr}\nDown: {bandwidthDownBytes}\nUp: {bandwidthUpBytes}";
+          tooltip-format-wifi = "{essid} ({signalStrength}%)\n{ifname}: {ipaddr}\nDown: {bandwidthDownBytes}\nUp: {bandwidthUpBytes}";
+        };
+
+        "custom/disk-io" = {
+          exec = lib.getExe diskIo;
+          return-type = "json";
+        };
 
         "group/status" = {
           orientation = "horizontal";

@@ -76,15 +76,25 @@ in
           background: ${c.bgHighlight};
       }
 
-      /* Status pill on the right */
-      #status {
+      /* Status and system-stats pills on the right */
+      #status,
+      #system {
           margin: 4px 4px;
           padding: 0 6px;
           border-radius: 8px;
       }
 
-      #status:hover {
+      #status:hover,
+      #system:hover {
           background: ${c.bgHighlight};
+      }
+
+      #cpu,
+      #memory,
+      #network,
+      #custom-disk-io {
+          padding: 0 6px;
+          font-feature-settings: "tnum";
       }
 
       #tray,
