@@ -16,6 +16,8 @@
     "flakes"
   ];
 
+  nix.settings.warn-dirty = false;
+
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.overlays = [

@@ -27,6 +27,7 @@
     pay-respects
     rustup
     nodejs
+    claude-code
     # lutris
     #davinci-resolve
   ];
