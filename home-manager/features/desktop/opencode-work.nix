@@ -14,5 +14,20 @@
       type = "remote";
       url = "https://mcp.rippling.com/mcp";
     };
+
+    notion = {
+      type = "remote";
+      url = "https://mcp.notion.com/mcp";
+    };
+
+    slack = {
+      type = "remote";
+      url = "https://mcp.slack.com/mcp";
+    };
+
+    drata = {
+      type = "remote";
+      url = "https://mcp.drata.com/mcp/";
+    };
   };
 }
