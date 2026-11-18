@@ -33,7 +33,7 @@
   networking.networkmanager.enable = true;
 
   users = {
-    mutableUsers = false;
+    mutableUsers = true;
     users.darbster = {
       isNormalUser = true;
       extraGroups = [
@@ -71,9 +71,11 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
+    openFirewall = false;
     settings = {
       PermitRootLogin = "no";
       PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
     };
   };
 
@@ -81,8 +83,11 @@
   services.getty.autologinUser = null;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall = {
+    allowedTCPPorts = [ ];
+    allowedUDPPorts = [ ];
+    trustedInterfaces = [ "tailscale0" ];
+  };
 
   # Disable documentation for minimal install.
   documentation.enable = false;
