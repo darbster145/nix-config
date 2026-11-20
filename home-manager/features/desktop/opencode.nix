@@ -1,9 +1,17 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   sops.secrets.github_pat = { };
 
-  home.packages = [ pkgs.opencode-claude-auth ];
+  home.packages = [
+    pkgs.opencode-claude-auth
+    pkgs.opencode-browse
+  ];
 
   programs.opencode = {
     enable = true;
@@ -27,6 +35,14 @@
           type = "remote";
           url = "http://127.0.0.1:52551/mcp";
           oauth = false;
+        };
+
+        browse = {
+          type = "local";
+          command = [
+            (lib.getExe pkgs.opencode-browse)
+            "mcp"
+          ];
         };
       };
     };
