@@ -1,14 +1,16 @@
 { pkgs, config, ... }:
 
 {
+  imports = [ ./k9s.nix ];
+
   home.packages = with pkgs; [
     kubectl
     radar-bin
     radar-desktop-bin
-    k9s
     kubernetes-helm
     helmfile
     talosctl
+    infisical
     fluxcd
     argocd
   ];

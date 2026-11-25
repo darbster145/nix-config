@@ -12,7 +12,7 @@
 
     rippling = {
       type = "remote";
-      url = "https://mcp.rippling.com/mcp";
+      url = "https://mcpgateway.rippling.com/api/v1/proxy/6a6cbe8c5b976ff037e43566/mcp";
     };
 
     notion = {

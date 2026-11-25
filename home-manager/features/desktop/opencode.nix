@@ -11,6 +11,7 @@
   home.packages = [
     pkgs.opencode-claude-auth
     pkgs.opencode-browse
+    pkgs.cursor-cli
   ];
 
   programs.opencode = {
@@ -19,7 +20,10 @@
     validateFiles.config = true;
 
     settings = {
-      plugins = [ "opencode-claude-auth@latest" ];
+      plugins = [
+        "opencode-claude-auth@latest"
+        "@rama_nigg/open-cursor"
+      ];
 
       mcp.servers = {
         github = {
